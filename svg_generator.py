@@ -177,7 +177,7 @@ def position_labels_smartly(conserved_positions, alignment_length, line_length_p
 
     return positioned
 
-def generate_svg(alignments):
+def generate_svg(alignments, cross_conservation=None):
     """
     Generate SVG visualization of conserved residues.
 
@@ -205,8 +205,9 @@ def generate_svg(alignments):
     # Calculate max sequence length from all alignments
     max_length = max((a['length'] for a in alignments), default=400)
 
-    # Legend needs an extra row if SS is present
-    legend_extra = 25 if has_ss else 0
+    # Legend needs extra rows for SS and/or cross-conservation
+    has_cross = bool(cross_conservation)
+    legend_extra = (25 if has_ss else 0) + (25 if has_cross else 0)
 
     # Calculate dimensions
     svg_height = margin_top + (len(alignments) * row_height) + margin_bottom + legend_extra
@@ -350,6 +351,36 @@ def generate_svg(alignments):
                         fill='gray'
                     ))
 
+    # Draw cross-conservation connecting lines between adjacent rows
+    if has_cross:
+        global_scale = max_line_length / max_length
+
+        for entry in cross_conservation:
+            positions = entry['positions']
+            color = get_color(entry['residue'])
+
+            for i in range(len(alignments) - 1):
+                name_i = alignments[i]['name']
+                name_next = alignments[i + 1]['name']
+
+                if name_i not in positions or name_next not in positions:
+                    continue
+
+                x_i = margin_left + positions[name_i] * global_scale
+                x_next = margin_left + positions[name_next] * global_scale
+
+                y_i = margin_top + i * row_height
+                y_next = margin_top + (i + 1) * row_height
+
+                dwg.add(dwg.line(
+                    start=(x_i, y_i),
+                    end=(x_next, y_next),
+                    stroke=color,
+                    stroke_width=1,
+                    stroke_opacity=0.4,
+                    stroke_dasharray='3,3'
+                ))
+
     # Add legend
     legend_x = margin_left
     legend_y = svg_height - 30 - legend_extra
@@ -421,5 +452,23 @@ def generate_svg(alignments):
         dwg.add(dwg.text('Coil',
                          insert=(legend_x + offset + label_gap, ss_legend_y + 2),
                          font_size='12px', fill='black'))
+
+    # Cross-conservation legend
+    if has_cross:
+        cross_legend_y = legend_y + (25 if has_ss else 0) + 25
+        dwg.add(dwg.line(
+            start=(legend_x, cross_legend_y - 2),
+            end=(legend_x + 30, cross_legend_y - 2),
+            stroke='gray',
+            stroke_width=1,
+            stroke_opacity=0.4,
+            stroke_dasharray='3,3'
+        ))
+        dwg.add(dwg.text(
+            'Conserved across all groups',
+            insert=(legend_x + 35, cross_legend_y + 2),
+            font_size='12px',
+            fill='black'
+        ))
 
     return dwg.tostring()

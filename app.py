@@ -3,7 +3,7 @@ import zipfile
 import tempfile
 import shutil
 from flask import Flask, render_template, request, jsonify
-from conservation import analyze_alignment
+from conservation import analyze_alignment, analyze_cross_conservation
 from svg_generator import generate_svg
 from structure import run_dssp, get_ss_segments, map_ss_to_sequence
 from config import Config
@@ -127,14 +127,29 @@ def upload():
                     rel_path = os.path.relpath(os.path.join(root, filename), temp_dir)
                     fasta_files.append(rel_path)
 
+        # Detect all.fasta (cross-conservation reference) and separate it
+        all_fasta = None
+        group_files = []
+        for f in fasta_files:
+            basename_no_ext = os.path.splitext(os.path.basename(f))[0]
+            if basename_no_ext.lower() == 'all':
+                all_fasta = f
+            else:
+                group_files.append(f)
+        fasta_files = group_files
+
         if not fasta_files:
             shutil.rmtree(temp_dir)
             return jsonify({'error': 'No FASTA files found in ZIP'}), 400
 
-        return jsonify({
+        response = {
             'temp_dir': temp_dir,
             'fasta_files': sorted(fasta_files)
-        })
+        }
+        if all_fasta:
+            response['all_fasta'] = all_fasta
+
+        return jsonify(response)
 
     except zipfile.BadZipFile:
         shutil.rmtree(temp_dir)
@@ -197,6 +212,8 @@ def generate():
     thresholds = data.get('thresholds', {})
     pdb_files = data.get('pdb_files', {})  # {fasta_file: {pdb_filename, chain_id}}
     project_id = data.get('project_id')  # Optional: save to project
+    all_fasta = data.get('all_fasta')
+    cross_threshold = data.get('cross_threshold', 95)
 
     if not temp_dir or not os.path.exists(temp_dir):
         return jsonify({'error': 'Invalid session'}), 400
@@ -252,8 +269,34 @@ def generate():
                     shutil.rmtree(temp_dir)
                     return jsonify({'error': f'Error processing {fasta_file}: {str(e)}'}), 400
 
+        # Cross-conservation analysis if all.fasta was provided
+        cross_positions = None
+        if all_fasta:
+            all_fasta_path = os.path.join(temp_dir, all_fasta)
+            if os.path.exists(all_fasta_path):
+                try:
+                    from Bio import SeqIO as _SeqIO
+                    representative_ids = []
+                    for fasta_file in thresholds.keys():
+                        file_path = os.path.join(temp_dir, fasta_file)
+                        if os.path.exists(file_path):
+                            with open(file_path, 'r') as f:
+                                first_seq = next(_SeqIO.parse(f, 'fasta'), None)
+                            if first_seq:
+                                representative_ids.append(
+                                    (os.path.basename(fasta_file), first_seq.id)
+                                )
+
+                    if representative_ids:
+                        cross_positions = analyze_cross_conservation(
+                            all_fasta_path, representative_ids, cross_threshold
+                        )
+                except Exception as e:
+                    print(f"Cross-conservation warning: {e}")
+                    # Non-fatal: continue without cross-conservation
+
         # Generate SVG
-        svg_content = generate_svg(alignments)
+        svg_content = generate_svg(alignments, cross_conservation=cross_positions)
 
         # Save to database if project_id provided
         if project_id:

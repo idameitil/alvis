@@ -427,3 +427,31 @@ button:active {
 .delete-btn:hover {
     background: #c82333;
 }
+
+/* Cross-conservation info box */
+.cross-conservation-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e3f2fd;
+    color: #1565c0;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    font-size: 14px;
+}
+
+.cross-conservation-info strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.cross-threshold-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cross-threshold-control label {
+    color: #1565c0;
+    font-weight: 500;
+}
