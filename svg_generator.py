@@ -183,6 +183,7 @@ def generate_svg(alignments, cross_conservation=None):
 
     Args:
         alignments: List of dicts with 'name', 'conserved', and 'length' keys
+        cross_conservation: Optional list of cross-conserved position dicts
 
     Returns:
         SVG content as string
@@ -191,26 +192,72 @@ def generate_svg(alignments, cross_conservation=None):
     margin_left = 200
     margin_top = 50
     margin_bottom = 50
-    margin_right = 100  # Increased to prevent right-side clipping of labels
-    max_line_length = 600  # Maximum line length in pixels
-    label_height = 60  # Space above line for labels
+    margin_right = 100
+    max_line_length = 600
+    row_gap = 15  # padding between rows
 
     # Secondary structure track parameters
     has_ss = any(a.get('secondary_structure') for a in alignments)
-    ss_track_offset = 5       # pixels below the main line
-    ss_track_height = 12      # height of SS shapes
-    ss_extra_space = 22 if has_ss else 0  # extra vertical space per row when SS present
-    row_height = 100 + ss_extra_space
+    ss_track_offset = 5
+    ss_track_height = 12
+
+    has_cross = bool(cross_conservation)
 
     # Calculate max sequence length from all alignments
     max_length = max((a['length'] for a in alignments), default=400)
 
-    # Legend needs extra rows for SS and/or cross-conservation
-    has_cross = bool(cross_conservation)
-    legend_extra = (25 if has_ss else 0) + (25 if has_cross else 0)
+    # --- Pre-compute label positions and per-row metrics ---
+    row_info = []
+    for alignment in alignments:
+        alignment_length = alignment['length']
+        if alignment_length == 0:
+            row_info.append(None)
+            continue
+        line_length = (alignment_length / max_length) * max_line_length
+        positioned = position_labels_smartly(alignment['conserved'], alignment_length, line_length)
+        max_level = max((p['y_level'] for p in positioned), default=0) if positioned else 0
+        scale = line_length / alignment_length
 
-    # Calculate dimensions
-    svg_height = margin_top + (len(alignments) * row_height) + margin_bottom + legend_extra
+        # Space above the line: base offset (15) + stacked levels (25 each) + position number (8)
+        label_above = 23 + max_level * 25
+        label_above = max(label_above, 30)  # minimum headroom
+
+        # Space below the line: SS track + scale markers
+        ss_data = alignment.get('secondary_structure')
+        marker_y_offset = (ss_track_offset + ss_track_height + 2) if ss_data else 0
+        below = marker_y_offset + 18  # 18px for scale marker text
+
+        row_info.append({
+            'positioned': positioned,
+            'line_length': line_length,
+            'scale': scale,
+            'alignment_length': alignment_length,
+            'label_above': label_above,
+            'below': below,
+        })
+
+    # --- Calculate y position of each row's horizontal line ---
+    y_bases = []
+    for idx in range(len(alignments)):
+        ri = row_info[idx]
+        if ri is None:
+            y_bases.append(0)
+            continue
+        if idx == 0:
+            y_bases.append(margin_top + ri['label_above'])
+        else:
+            prev_below = row_info[idx - 1]['below'] if row_info[idx - 1] else 30
+            y_bases.append(y_bases[idx - 1] + prev_below + row_gap + ri['label_above'])
+
+    # --- Legend sizing ---
+    legend_rows = (1 if has_ss else 0) + (1 if has_cross else 0)
+    legend_height = legend_rows * 25
+
+    # --- SVG dimensions ---
+    last_idx = len(alignments) - 1
+    last_below = row_info[last_idx]['below'] if row_info[last_idx] else 30
+    content_bottom = y_bases[last_idx] + last_below
+    svg_height = content_bottom + (legend_height + 15 if legend_height else 0) + margin_bottom
     svg_width = margin_left + max_line_length + margin_right
 
     # Create SVG
@@ -226,31 +273,27 @@ def generate_svg(alignments, cross_conservation=None):
         fill='black'
     ))
 
-    # Draw each alignment
+    # --- Draw each alignment ---
     for idx, alignment in enumerate(alignments):
-        y_base = margin_top + (idx * row_height)
-
-        # Get this alignment's actual length
-        alignment_length = alignment['length']
-
-        # Skip if alignment length is zero (should not happen, but safety check)
-        if alignment_length == 0:
+        ri = row_info[idx]
+        if ri is None:
             continue
 
-        # Calculate this alignment's line length proportional to max
-        line_length = (alignment_length / max_length) * max_line_length
+        line_y = y_bases[idx]
+        line_length = ri['line_length']
+        scale = ri['scale']
+        alignment_length = ri['alignment_length']
 
-        # Draw alignment name
+        # Alignment name
         dwg.add(dwg.text(
             alignment['name'],
-            insert=(margin_left - 10, y_base + 5),
+            insert=(margin_left - 10, line_y + 5),
             text_anchor='end',
             font_size='14px',
             fill='black'
         ))
 
-        # Draw horizontal line representing the sequence
-        line_y = y_base
+        # Horizontal line representing the sequence
         dwg.add(dwg.line(
             start=(margin_left, line_y),
             end=(margin_left + line_length, line_y),
@@ -258,22 +301,17 @@ def generate_svg(alignments, cross_conservation=None):
             stroke_width=2
         ))
 
-        # Position conserved residue labels
-        positioned = position_labels_smartly(alignment['conserved'], alignment_length, line_length)
-
-        # Draw conserved residues - scale based on this alignment's length
-        scale = line_length / alignment_length
-
-        for pos_data in positioned:
+        # Conserved residue labels (pre-computed)
+        for pos_data in ri['positioned']:
             x_pos = margin_left + (pos_data['position'] * scale) + pos_data['x_offset']
             y_level = pos_data['y_level']
-            y_pos = line_y - 15 - (y_level * 25)  # Stack vertically (more space for number on top)
+            y_pos = line_y - 15 - (y_level * 25)
 
             residue = pos_data['residue']
             position = pos_data['position']
             color = get_color(residue)
 
-            # Draw vertical tick mark
+            # Vertical tick mark
             dwg.add(dwg.line(
                 start=(x_pos, line_y),
                 end=(x_pos, y_pos + 5),
@@ -281,7 +319,7 @@ def generate_svg(alignments, cross_conservation=None):
                 stroke_width=1.5
             ))
 
-            # Draw position number on top (small)
+            # Position number on top
             dwg.add(dwg.text(
                 str(position),
                 insert=(x_pos, y_pos - 8),
@@ -290,7 +328,7 @@ def generate_svg(alignments, cross_conservation=None):
                 fill=color
             ))
 
-            # Draw residue letter below (larger, bold)
+            # Residue letter
             dwg.add(dwg.text(
                 residue,
                 insert=(x_pos, y_pos),
@@ -300,22 +338,20 @@ def generate_svg(alignments, cross_conservation=None):
                 fill=color
             ))
 
-        # Draw secondary structure track if available
+        # Secondary structure track
         ss_data = alignment.get('secondary_structure')
         if ss_data:
             y_center = line_y + ss_track_offset + ss_track_height / 2
-            amplitude = ss_track_height / 2 - 2  # helix wave amplitude
+            amplitude = ss_track_height / 2 - 2
 
             for segment in ss_data:
                 seg_start = segment['start']
                 seg_end = segment['end']
                 ss_type = segment['ss3']
 
-                # Map positions to pixels (center on residue positions)
                 x_start = margin_left + ((seg_start - 0.5) * scale)
                 x_end = margin_left + ((seg_end + 0.5) * scale)
 
-                # Clip to line boundaries
                 x_start = max(x_start, margin_left)
                 x_end = min(x_end, margin_left + line_length)
                 if x_end - x_start <= 0:
@@ -328,20 +364,17 @@ def generate_svg(alignments, cross_conservation=None):
                 else:
                     _draw_coil(dwg, x_start, x_end, y_center)
 
-        # Draw scale markers (every 50 positions)
-        # Shift down when SS track is present for this alignment
+        # Scale markers (every 50 positions)
         marker_y_offset = (ss_track_offset + ss_track_height + 2) if ss_data else 0
         for pos in range(0, alignment_length + 1, 50):
             x_pos = margin_left + (pos * scale)
             if x_pos <= margin_left + line_length:
-                # Small tick below line
                 dwg.add(dwg.line(
                     start=(x_pos, line_y + marker_y_offset),
                     end=(x_pos, line_y + marker_y_offset + 5),
                     stroke='gray',
                     stroke_width=1
                 ))
-                # Position label
                 if pos > 0:
                     dwg.add(dwg.text(
                         str(pos),
@@ -351,7 +384,7 @@ def generate_svg(alignments, cross_conservation=None):
                         fill='gray'
                     ))
 
-    # Draw cross-conservation connecting lines between adjacent rows
+    # --- Cross-conservation connecting lines ---
     if has_cross:
         global_scale = max_line_length / max_length
 
@@ -369,106 +402,68 @@ def generate_svg(alignments, cross_conservation=None):
                 x_i = margin_left + positions[name_i] * global_scale
                 x_next = margin_left + positions[name_next] * global_scale
 
-                y_i = margin_top + i * row_height
-                y_next = margin_top + (i + 1) * row_height
-
                 dwg.add(dwg.line(
-                    start=(x_i, y_i),
-                    end=(x_next, y_next),
+                    start=(x_i, y_bases[i]),
+                    end=(x_next, y_bases[i + 1]),
                     stroke=color,
                     stroke_width=1,
                     stroke_opacity=0.4,
                     stroke_dasharray='3,3'
                 ))
 
-    # Add legend
-    legend_x = margin_left
-    legend_y = svg_height - 30 - legend_extra
+    # --- Legend (SS + cross-conservation only) ---
+    if legend_rows > 0:
+        current_legend_y = content_bottom + 25
 
-    # Residue color legend
-    legend_groups = [
-        ('GYSTNCP', (255, 0, 255)),
-        ('VILPFMWA', (70, 156, 118)),
-        ('H', (255, 140, 0)),
-        ('DE', (192, 0, 0)),
-        ('KR', (0, 0, 255))
-    ]
+        if has_ss:
+            mini_w = 30
+            mini_h = 12
+            label_gap = 35
+            item_gap = 80
+            offset = 0
 
-    offset = 0
-    for residues, color in legend_groups:
-        color_str = f'rgb({color[0]},{color[1]},{color[2]})'
+            _draw_helix(dwg,
+                         margin_left + offset,
+                         margin_left + offset + mini_w,
+                         current_legend_y - 2, mini_h / 2 - 2, 10)
+            dwg.add(dwg.text('Helix',
+                             insert=(margin_left + offset + label_gap, current_legend_y + 2),
+                             font_size='12px', fill='black'))
+            offset += item_gap
 
-        # Color box
-        dwg.add(dwg.rect(
-            insert=(legend_x + offset, legend_y - 10),
-            size=(15, 15),
-            fill=color_str
-        ))
+            _draw_sheet(dwg,
+                        margin_left + offset,
+                        margin_left + offset + mini_w,
+                        current_legend_y - 2, mini_h)
+            dwg.add(dwg.text('Sheet',
+                             insert=(margin_left + offset + label_gap, current_legend_y + 2),
+                             font_size='12px', fill='black'))
+            offset += item_gap
 
-        # Residue labels
-        dwg.add(dwg.text(
-            residues,
-            insert=(legend_x + offset + 20, legend_y + 2),
-            font_size='12px',
-            fill='black'
-        ))
+            _draw_coil(dwg,
+                       margin_left + offset,
+                       margin_left + offset + mini_w,
+                       current_legend_y - 2)
+            dwg.add(dwg.text('Coil',
+                             insert=(margin_left + offset + label_gap, current_legend_y + 2),
+                             font_size='12px', fill='black'))
 
-        offset += len(residues) * 10 + 40
+            current_legend_y += 25
 
-    # Secondary structure legend (second row, only if any alignment has SS)
-    if has_ss:
-        ss_legend_y = legend_y + 25
-        mini_w = 30     # width of each mini shape
-        mini_h = 12     # height
-        label_gap = 35  # space from shape start to label
-        item_gap = 80   # total space per legend item
-        offset = 0
-
-        # Mini helix
-        _draw_helix(dwg,
-                     legend_x + offset,
-                     legend_x + offset + mini_w,
-                     ss_legend_y - 2, mini_h / 2 - 2, 10)
-        dwg.add(dwg.text('Helix',
-                         insert=(legend_x + offset + label_gap, ss_legend_y + 2),
-                         font_size='12px', fill='black'))
-        offset += item_gap
-
-        # Mini sheet arrow
-        _draw_sheet(dwg,
-                    legend_x + offset,
-                    legend_x + offset + mini_w,
-                    ss_legend_y - 2, mini_h)
-        dwg.add(dwg.text('Sheet',
-                         insert=(legend_x + offset + label_gap, ss_legend_y + 2),
-                         font_size='12px', fill='black'))
-        offset += item_gap
-
-        # Mini coil line
-        _draw_coil(dwg,
-                   legend_x + offset,
-                   legend_x + offset + mini_w,
-                   ss_legend_y - 2)
-        dwg.add(dwg.text('Coil',
-                         insert=(legend_x + offset + label_gap, ss_legend_y + 2),
-                         font_size='12px', fill='black'))
-
-    # Cross-conservation legend
-    if has_cross:
-        cross_legend_y = legend_y + (25 if has_ss else 0) + 25
-        dwg.add(dwg.line(
-            start=(legend_x, cross_legend_y - 2),
-            end=(legend_x + 30, cross_legend_y - 2),
-            stroke='gray',
-            stroke_width=1,
-            stroke_opacity=0.4,
-            stroke_dasharray='3,3'
-        ))
-        dwg.add(dwg.text(
-            'Conserved across all groups',
-            insert=(legend_x + 35, cross_legend_y + 2),
-            font_size='12px',
-            fill='black'
-        ))
+        if has_cross:
+            dwg.add(dwg.line(
+                start=(margin_left, current_legend_y - 2),
+                end=(margin_left + 30, current_legend_y - 2),
+                stroke='gray',
+                stroke_width=1,
+                stroke_opacity=0.4,
+                stroke_dasharray='3,3'
+            ))
+            dwg.add(dwg.text(
+                'Conserved across all groups',
+                insert=(margin_left + 35, current_legend_y + 2),
+                font_size='12px',
+                fill='black'
+            ))
 
     return dwg.tostring()
