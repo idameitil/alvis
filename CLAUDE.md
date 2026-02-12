@@ -21,8 +21,7 @@ Or `./run.sh` (creates venv + installs deps + runs).
 - **Backend:** Flask (Python 3.9), BioPython (SeqIO, PDB/DSSP)
 - **Frontend:** Single-page vanilla JS in `templates/index.html`
 - **SVG:** Generated server-side with `svgwrite`
-- **Storage:** Temp directories for uploaded files, no persistent database
-  (the DB/projects layer is being removed — see Pending work below)
+- **Storage:** Temp directories for uploaded files, in-memory session tokens (no database)
 
 ## File map
 
@@ -34,31 +33,20 @@ structure.py           DSSP wrapper: run_dssp(), get_ss_segments(), map_ss_to_se
 templates/index.html   The full UI (HTML + inline JS)
 static/style.css       All styles
 requirements.txt       Python dependencies
-```
-
-### Files pending deletion (DB/projects layer)
-
-```
-models/                SQLAlchemy models — being removed
-services/              project_service.py — being removed
-config.py              DB config — being removed
-schema.sql             MySQL schema — being removed
-setup_db.py            DB setup script — being removed
-setup_user.sql         MySQL user setup — being removed
-DATABASE_SETUP.md      DB docs — being removed
-.env / .env.example    DB credentials — being removed
+session_store.py       In-memory session token store (opaque tokens → temp dirs)
 ```
 
 ## Request flow
 
 ```
 POST /upload         ZIP file → extract → list FASTA files, detect all.fasta
-                     Returns: {temp_dir, fasta_files, all_fasta?}
+                     Returns: {session_token, fasta_files, all_fasta?}
 
 POST /upload-pdb     PDB file for one alignment → parse chains
+                     Form data: session_token, fasta_file, file
                      Returns: {pdb_filename, chains}
 
-POST /generate       {temp_dir, thresholds, pdb_files, all_fasta?, cross_threshold?}
+POST /generate       {session_token, thresholds, pdb_files, all_fasta?, cross_threshold?}
                      → analyze each group alignment (conservation.py)
                      → read first seq from each group for representative IDs
                      → run DSSP if PDB provided (structure.py)
@@ -66,7 +54,7 @@ POST /generate       {temp_dir, thresholds, pdb_files, all_fasta?, cross_thresho
                      → generate SVG (svg_generator.py)
                      Returns: {svg}
 
-POST /cleanup        Delete the temp directory
+POST /cleanup        {session_token} → delete temp directory + session
 ```
 
 ## Key concepts
@@ -123,17 +111,6 @@ rows use.
 | Blue `(0,0,255)` | K R (basic) |
 
 ## Pending work
-
-### Immediate: Remove DB, add session tokens
-
-See `plans/remove-db-add-sessions.md` for the full plan. Summary:
-
-- Delete all project/DB code (models/, services/, config.py, schema.sql,
-  setup files, .env)
-- Replace `temp_dir` paths exposed to the frontend with opaque session
-  tokens (new `session_store.py` — in-memory dict with 1h expiry)
-- Remove project UI (save/load modals, Recent Projects button)
-- Drop DB dependencies from requirements.txt
 
 ### Known issue: redundant FASTA reads
 
