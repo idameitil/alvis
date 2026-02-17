@@ -18,7 +18,7 @@ jobs:
           script: |
             cd ~/alvis
             git pull origin main
-            docker build --no-cache -t alvis .
+            docker build -t alvis .
             docker stop alvis 2>/dev/null || true
             docker rm alvis 2>/dev/null || true
             docker run -d --name alvis --restart always -p 127.0.0.1:8000:8000 alvis

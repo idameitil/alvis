@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="topbar">
-        <span class="topbar-title">alvis</span>
+        <a href="#" class="topbar-title" onclick="resetApp(); return false;">alvis</a>
     </nav>
 
     <div class="container">
@@ -34,7 +34,6 @@
                 <h3>How it works</h3>
                 <ol>
                     <li><strong>Upload</strong> a ZIP with your FASTA alignment files (.fasta, .fa, .faa, .fas)</li>
-                    <li><strong>Set thresholds</strong> for conservation analysis per alignment</li>
                     <li><strong>Add structure</strong> (optional) &mdash; upload PDB files to overlay secondary structure</li>
                     <li><strong>Download</strong> your SVG conservation diagram</li>
                 </ol>
@@ -43,23 +42,13 @@
             </div>
         </div>
 
-        <!-- Step 2: Configure Thresholds -->
-        <div id="threshold-section" class="section" style="display: none;">
-            <h2>Step 2: Configure Conservation Thresholds</h2>
-            <p>Default threshold is 95%. You can customize for each alignment file.</p>
-            <div id="threshold-controls"></div>
-            <button id="next-btn" onclick="showPdbSection()">Next</button>
-            <button id="cancel-btn" onclick="cancelSession()">Cancel</button>
-        </div>
-
-        <!-- Step 3: Upload PDB files -->
+        <!-- Step 2: Upload PDB files -->
         <div id="pdb-section" class="section" style="display: none;">
-            <h2>Step 3: Upload PDB Files (Optional)</h2>
+            <h2>Upload PDB Files (Optional)</h2>
             <p>Upload PDB files for representative proteins to show secondary structure.
                You can skip any or all alignments.</p>
             <div id="pdb-controls"></div>
             <button id="generate-btn" onclick="generateSVG()">Generate SVG</button>
-            <button class="secondary-btn" onclick="backToThresholds()">Back</button>
             <button id="cancel-btn" onclick="cancelSession()">Cancel</button>
         </div>
 
@@ -113,86 +102,12 @@
                 }
 
                 sessionData = data;
-                statusDiv.textContent = `Found ${data.fasta_files.length} FASTA files`;
-                statusDiv.className = 'status-success';
-
-                showThresholdSection(data.fasta_files);
+                showPdbSection();
             })
             .catch(error => {
                 statusDiv.textContent = 'Error: ' + error.message;
                 statusDiv.className = 'status-error';
             });
-        }
-
-        function showThresholdSection(fastaFiles) {
-            const controlsDiv = document.getElementById('threshold-controls');
-            controlsDiv.innerHTML = '';
-
-            const defaultThreshold = document.getElementById('default-threshold').value;
-
-            // Global threshold option
-            const globalDiv = document.createElement('div');
-            globalDiv.className = 'threshold-control';
-            globalDiv.innerHTML = `
-                <label>
-                    <input type="checkbox" id="use-global" checked onchange="toggleGlobalThreshold()">
-                    Use ${escapeHtml(defaultThreshold)}% threshold for all files
-                </label>
-                <input type="number" id="global-threshold" value="${escapeHtml(defaultThreshold)}" min="0" max="100" step="1">
-                <span>%</span>
-            `;
-            controlsDiv.appendChild(globalDiv);
-
-            // Individual controls
-            const individualDiv = document.createElement('div');
-            individualDiv.id = 'individual-controls';
-            individualDiv.style.display = 'none';
-
-            fastaFiles.forEach(file => {
-                const fileDiv = document.createElement('div');
-                fileDiv.className = 'file-threshold';
-                fileDiv.innerHTML = `
-                    <label>${file}</label>
-                    <input type="number" class="threshold-input" data-file="${file}"
-                           value="${escapeHtml(defaultThreshold)}" min="0" max="100" step="1">
-                    <span>%</span>
-                `;
-                individualDiv.appendChild(fileDiv);
-            });
-
-            controlsDiv.appendChild(individualDiv);
-
-            // Cross-conservation info box
-            if (sessionData && sessionData.all_fasta) {
-                const crossDiv = document.createElement('div');
-                crossDiv.className = 'cross-conservation-info';
-                crossDiv.innerHTML = `
-                    <strong>Cross-conservation enabled</strong> (${escapeHtml(sessionData.all_fasta.split('/').pop())} detected)
-                    <div class="cross-threshold-control">
-                        <label>Cross-conservation threshold:</label>
-                        <input type="number" id="cross-threshold" value="${escapeHtml(defaultThreshold)}" min="0" max="100" step="1">
-                        <span>%</span>
-                    </div>
-                `;
-                controlsDiv.appendChild(crossDiv);
-            }
-
-            document.getElementById('upload-section').style.display = 'none';
-            document.getElementById('threshold-section').style.display = 'block';
-        }
-
-        function toggleGlobalThreshold() {
-            const useGlobal = document.getElementById('use-global').checked;
-            const individualControls = document.getElementById('individual-controls');
-            const globalThreshold = document.getElementById('global-threshold');
-
-            if (useGlobal) {
-                individualControls.style.display = 'none';
-                globalThreshold.disabled = false;
-            } else {
-                individualControls.style.display = 'block';
-                globalThreshold.disabled = true;
-            }
         }
 
         function showPdbSection() {
@@ -221,13 +136,8 @@
                 controlsDiv.appendChild(itemDiv);
             });
 
-            document.getElementById('threshold-section').style.display = 'none';
+            document.getElementById('upload-section').style.display = 'none';
             document.getElementById('pdb-section').style.display = 'block';
-        }
-
-        function backToThresholds() {
-            document.getElementById('pdb-section').style.display = 'none';
-            document.getElementById('threshold-section').style.display = 'block';
         }
 
         function uploadPdb(input, fastaFile) {
@@ -289,21 +199,11 @@
                 return;
             }
 
-            const useGlobal = document.getElementById('use-global').checked;
+            const defaultThreshold = parseFloat(document.getElementById('default-threshold').value);
             const thresholds = {};
-
-            if (useGlobal) {
-                const globalValue = parseFloat(document.getElementById('global-threshold').value);
-                sessionData.fasta_files.forEach(file => {
-                    thresholds[file] = globalValue;
-                });
-            } else {
-                const inputs = document.querySelectorAll('.threshold-input');
-                inputs.forEach(input => {
-                    const file = input.getAttribute('data-file');
-                    thresholds[file] = parseFloat(input.value);
-                });
-            }
+            sessionData.fasta_files.forEach(file => {
+                thresholds[file] = defaultThreshold;
+            });
 
             document.getElementById('pdb-section').style.display = 'none';
             document.getElementById('download-section').style.display = 'block';
@@ -316,8 +216,7 @@
 
             if (sessionData.all_fasta) {
                 generateBody.all_fasta = sessionData.all_fasta;
-                const crossInput = document.getElementById('cross-threshold');
-                generateBody.cross_threshold = crossInput ? parseFloat(crossInput.value) : 95;
+                generateBody.cross_threshold = defaultThreshold;
             }
 
             fetch('/generate', {
@@ -401,7 +300,6 @@
             window.currentSVG = null;
             pdbData = {};
             document.getElementById('upload-section').style.display = 'block';
-            document.getElementById('threshold-section').style.display = 'none';
             document.getElementById('pdb-section').style.display = 'none';
             document.getElementById('download-section').style.display = 'none';
             document.getElementById('result-section').style.display = 'none';

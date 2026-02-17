@@ -23,6 +23,11 @@ body {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.topbar-title:hover {
+    opacity: 0.8;
 }
 
 .container {
