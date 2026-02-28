@@ -124,6 +124,19 @@ def _draw_coil(dwg, x_start, x_end, y_center):
     ))
 
 
+def _draw_uncovered(dwg, x_start, x_end, y_center):
+    """Draw uncovered/no-structure region as a dotted gray line."""
+    if x_end - x_start < 1:
+        return
+    dwg.add(dwg.line(
+        start=(x_start, y_center),
+        end=(x_end, y_center),
+        stroke=SS_FILL['C'],
+        stroke_width=1.5,
+        stroke_dasharray='3,3'
+    ))
+
+
 def position_labels_smartly(conserved_positions, alignment_length, line_length_pixels, min_spacing=25):
     """
     Position labels to avoid overlap by moving them horizontally and vertically.
@@ -198,7 +211,7 @@ def generate_svg(alignments, cross_conservation=None):
     """
     # Layout parameters
     margin_left = 200
-    margin_top = 50
+    margin_top = 20
     margin_bottom = 50
     margin_right = 100
     max_line_length = 600
@@ -257,8 +270,15 @@ def generate_svg(alignments, cross_conservation=None):
             prev_below = row_info[idx - 1]['below'] if row_info[idx - 1] else 30
             y_bases.append(y_bases[idx - 1] + prev_below + row_gap + ri['label_above'])
 
+    # Check for uncovered ('U') segments in any alignment
+    has_uncovered = any(
+        seg.get('ss3') == 'U'
+        for a in alignments
+        for seg in a.get('secondary_structure', [])
+    )
+
     # --- Legend sizing ---
-    legend_rows = (1 if has_ss else 0) + (1 if has_cross else 0)
+    legend_rows = (1 if has_ss else 0) + (1 if has_uncovered else 0) + (1 if has_cross else 0)
     legend_height = legend_rows * 25
 
     # --- SVG dimensions ---
@@ -270,16 +290,6 @@ def generate_svg(alignments, cross_conservation=None):
 
     # Create SVG
     dwg = svgwrite.Drawing(size=(svg_width, svg_height))
-
-    # Add title
-    dwg.add(dwg.text(
-        'Protein Alignment Conservation',
-        insert=(svg_width / 2, 30),
-        text_anchor='middle',
-        font_size='20px',
-        font_weight='bold',
-        fill='black'
-    ))
 
     # --- Draw each alignment ---
     for idx, alignment in enumerate(alignments):
@@ -369,6 +379,8 @@ def generate_svg(alignments, cross_conservation=None):
                     _draw_helix(dwg, x_start, x_end, y_center, amplitude, scale)
                 elif ss_type == 'E':
                     _draw_sheet(dwg, x_start, x_end, y_center, ss_track_height)
+                elif ss_type == 'U':
+                    _draw_uncovered(dwg, x_start, x_end, y_center)
                 else:
                     _draw_coil(dwg, x_start, x_end, y_center)
 
@@ -456,6 +468,16 @@ def generate_svg(alignments, cross_conservation=None):
                              insert=(margin_left + offset + label_gap, current_legend_y + 2),
                              font_size='12px', fill='black'))
 
+            current_legend_y += 25
+
+        if has_uncovered:
+            _draw_uncovered(dwg,
+                            margin_left,
+                            margin_left + 30,
+                            current_legend_y - 2)
+            dwg.add(dwg.text('No structure data',
+                             insert=(margin_left + 35, current_legend_y + 2),
+                             font_size='12px', fill='black'))
             current_legend_y += 25
 
         if has_cross:

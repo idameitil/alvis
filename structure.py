@@ -141,6 +141,119 @@ def get_ss_segments(residues):
     return segments
 
 
+def align_pdb_to_fasta(residues, fasta_sequence):
+    """
+    Build per-residue position mappings between PDB chain and FASTA sequence.
+
+    Uses substring matching (fast path) or pairwise local alignment (fallback)
+    to map each PDB residue position to the corresponding FASTA ungapped position.
+
+    Args:
+        residues: list of dicts from run_dssp() (each has 'resname', 'position')
+        fasta_sequence: ungapped representative sequence from FASTA
+
+    Returns:
+        (pdb_to_fasta, fasta_to_pdb) — two dicts mapping 1-indexed positions
+        bidirectionally. Empty dicts if no alignment found.
+    """
+    pdb_seq = ''.join(r['resname'] for r in residues)
+    fasta_upper = fasta_sequence.upper()
+    pdb_upper = pdb_seq.upper()
+
+    pdb_to_fasta = {}
+    fasta_to_pdb = {}
+
+    # Fast path: PDB sequence is a substring of FASTA
+    idx = fasta_upper.find(pdb_upper)
+    if idx >= 0:
+        for i, r in enumerate(residues):
+            pdb_pos = r['position']
+            fasta_pos = idx + i + 1  # 1-indexed
+            pdb_to_fasta[pdb_pos] = fasta_pos
+            fasta_to_pdb[fasta_pos] = pdb_pos
+        return pdb_to_fasta, fasta_to_pdb
+
+    # Fast path: FASTA sequence is a substring of PDB
+    idx = pdb_upper.find(fasta_upper)
+    if idx >= 0:
+        for i in range(len(fasta_upper)):
+            pdb_pos = residues[idx + i]['position']
+            fasta_pos = i + 1  # 1-indexed
+            pdb_to_fasta[pdb_pos] = fasta_pos
+            fasta_to_pdb[fasta_pos] = pdb_pos
+        return pdb_to_fasta, fasta_to_pdb
+
+    # Fallback: pairwise local alignment
+    from Bio.Align import PairwiseAligner
+    aligner = PairwiseAligner()
+    aligner.mode = 'local'
+    aligner.match_score = 2
+    aligner.mismatch_score = -1
+    aligner.open_gap_score = -5
+    aligner.extend_gap_score = -0.5
+
+    alignments = aligner.align(fasta_upper, pdb_upper)
+    if not alignments:
+        return pdb_to_fasta, fasta_to_pdb
+
+    best = alignments[0]
+    # aligned[0] = FASTA blocks, aligned[1] = PDB blocks
+    # Each block is a list of (start, end) tuples (0-indexed, half-open)
+    for fasta_block, pdb_block in zip(best.aligned[0], best.aligned[1]):
+        fasta_start, fasta_end = fasta_block
+        pdb_start, pdb_end = pdb_block
+        block_len = fasta_end - fasta_start
+        for j in range(block_len):
+            pdb_pos = residues[pdb_start + j]['position']
+            fasta_pos = fasta_start + j + 1  # 1-indexed
+            pdb_to_fasta[pdb_pos] = fasta_pos
+            fasta_to_pdb[fasta_pos] = pdb_pos
+
+    return pdb_to_fasta, fasta_to_pdb
+
+
+def remap_ss_segments(segments, pdb_to_fasta, fasta_length):
+    """
+    Remap secondary structure segments from PDB coordinates to FASTA coordinates,
+    filling unmapped FASTA positions with 'U' (uncovered) segments.
+
+    Args:
+        segments: list of segment dicts from get_ss_segments() (PDB coordinates)
+        pdb_to_fasta: dict mapping PDB positions to FASTA positions
+        fasta_length: length of the ungapped FASTA sequence
+
+    Returns:
+        List of segment dicts in FASTA coordinates, with 'U' type for uncovered regions.
+    """
+    # Build per-FASTA-position SS type from PDB segments
+    fasta_ss = {}
+    for seg in segments:
+        for pdb_pos in range(seg['start'], seg['end'] + 1):
+            fasta_pos = pdb_to_fasta.get(pdb_pos)
+            if fasta_pos is not None:
+                fasta_ss[fasta_pos] = seg['ss3']
+
+    # Walk all FASTA positions and merge consecutive same-type into segments
+    if fasta_length == 0:
+        return []
+
+    result = []
+    current_type = fasta_ss.get(1, 'U')
+    start = 1
+
+    for pos in range(2, fasta_length + 1):
+        ss = fasta_ss.get(pos, 'U')
+        if ss != current_type:
+            result.append({'start': start, 'end': pos - 1, 'ss3': current_type})
+            current_type = ss
+            start = pos
+
+    # Final segment
+    result.append({'start': start, 'end': fasta_length, 'ss3': current_type})
+
+    return result
+
+
 def map_ss_to_sequence(residues, fasta_sequence):
     """
     Find where PDB residues map onto the FASTA representative sequence.

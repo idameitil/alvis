@@ -9,7 +9,7 @@ from Bio import SeqIO, SeqUtils
 from Bio.PDB import PDBParser
 from conservation import analyze_alignment, analyze_cross_conservation
 from svg_generator import generate_svg
-from structure import run_dssp, get_ss_segments, map_ss_to_sequence
+from structure import run_dssp, get_ss_segments, align_pdb_to_fasta, remap_ss_segments
 import session_store
 
 app = Flask(__name__)
@@ -139,25 +139,34 @@ def _parse_pdb_chains(pdb_path):
 
 def _find_representative_index(fasta_path, pdb_sequence):
     """Find which FASTA sequence best matches the PDB chain sequence.
+    Uses local pairwise alignment scoring to handle offset homologs.
     Returns the 0-based index, or 0 if no good match."""
+    from Bio.Align import PairwiseAligner
+
     sequences = list(SeqIO.parse(fasta_path, 'fasta'))
     pdb_upper = pdb_sequence.upper()
     best_index = 0
-    best_identity = 0.0
+    best_score = -1
+
+    aligner = PairwiseAligner()
+    aligner.mode = 'local'
+    aligner.match_score = 2
+    aligner.mismatch_score = -1
+    aligner.open_gap_score = -5
+    aligner.extend_gap_score = -0.5
+
     for i, seq in enumerate(sequences):
         ungapped = str(seq.seq).replace('-', '').upper()
-        # Check if one is a substring of the other (common case)
+        # Fast path: substring match (identical or truncated)
         if pdb_upper in ungapped or ungapped in pdb_upper:
             return i
-        # Otherwise compute simple identity via alignment overlap
-        min_len = min(len(pdb_upper), len(ungapped))
-        if min_len == 0:
-            continue
-        matches = sum(a == b for a, b in zip(pdb_upper, ungapped))
-        identity = matches / max(len(pdb_upper), len(ungapped))
-        if identity > best_identity:
-            best_identity = identity
-            best_index = i
+        alignments = aligner.align(ungapped, pdb_upper)
+        if alignments:
+            score = alignments[0].score
+            if score > best_score:
+                best_score = score
+                best_index = i
+
     return best_index
 
 @app.route('/upload-pdb', methods=['POST'])
@@ -272,6 +281,7 @@ def generate():
     try:
         # Analyze each alignment
         alignments = []
+        alignment_info = []
         rep_indices = {}  # fasta_file -> representative index
         for fasta_file, threshold in thresholds.items():
             file_path = os.path.join(temp_dir, fasta_file)
@@ -304,8 +314,15 @@ def generate():
                         'num_sequences': num_sequences
                     }
 
+                    # Build per-alignment info for the response
+                    info = {
+                        'name': os.path.basename(fasta_file),
+                        'num_sequences': num_sequences,
+                    }
+
                     # Run DSSP if PDB provided for this alignment
                     if pdb_info:
+                        info['representative'] = rep_seq_record.id
                         pdb_path = os.path.join(temp_dir, 'pdb', pdb_info['pdb_filename'])
                         chain_id = pdb_info.get('chain_id')
                         if os.path.exists(pdb_path):
@@ -315,17 +332,28 @@ def generate():
 
                                 # Map PDB positions to FASTA representative positions
                                 rep_seq = str(rep_seq_record.seq).replace('-', '')
-                                offset = map_ss_to_sequence(residues, rep_seq)
-                                for seg in segments:
-                                    seg['start'] += offset
-                                    seg['end'] += offset
-
-                                alignment_data['secondary_structure'] = segments
+                                pdb_to_fasta, _ = align_pdb_to_fasta(residues, rep_seq)
+                                remapped = remap_ss_segments(segments, pdb_to_fasta, seq_length)
+                                alignment_data['secondary_structure'] = remapped
                                 alignment_data['ss_length'] = len(residues)
+
+                                mapped_count = len(pdb_to_fasta)
+                                coverage = mapped_count / seq_length * 100 if seq_length else 0
+                                info['pdb_coverage'] = f'{coverage:.1f}%'
+                                info['pdb_mapped'] = f'{mapped_count} / {seq_length} positions'
+
+                                # Warn if DSSP resolved very few residues
+                                if coverage < 10:
+                                    alignment_data['ss_warning'] = (
+                                        f"DSSP resolved only {len(residues)} residues "
+                                        f"({mapped_count} mapped to alignment). "
+                                        f"The PDB may lack backbone coordinates for most residues."
+                                    )
                             except Exception as e:
                                 print(f"DSSP warning for {fasta_file}: {e}")
                                 # Non-fatal: continue without secondary structure
 
+                    alignment_info.append(info)
                     alignments.append(alignment_data)
                 except Exception as e:
                     return jsonify({'error': f'Error processing {fasta_file}: {str(e)}'}), 400
@@ -359,10 +387,18 @@ def generate():
         # Generate SVG
         svg_content = generate_svg(alignments, cross_conservation=cross_positions)
 
-        return jsonify({
+        # Collect warnings
+        warnings = [a['ss_warning'] for a in alignments if a.get('ss_warning')]
+
+        response = {
             'svg': svg_content,
-            'success': True
-        })
+            'success': True,
+            'alignment_info': alignment_info
+        }
+        if warnings:
+            response['warnings'] = warnings
+
+        return jsonify(response)
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

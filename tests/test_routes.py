@@ -89,6 +89,30 @@ class TestGenerateRoute:
         # Cleanup
         session_store.remove(token)
 
+    def test_end_to_end_single_fasta(self, client, sample_fasta):
+        # Upload single FASTA
+        with open(sample_fasta, 'rb') as f:
+            upload_resp = client.post('/upload', data={
+                'file': (f, 'single.fasta')
+            }, content_type='multipart/form-data')
+        upload_data = upload_resp.get_json()
+        token = upload_data['session_token']
+        assert upload_data['fasta_files'] == ['single.fasta']
+
+        # Generate — no all_fasta, no PDB, just one alignment
+        thresholds = {upload_data['fasta_files'][0]: 100}
+        gen_resp = client.post('/generate', json={
+            'session_token': token,
+            'thresholds': thresholds,
+        })
+        assert gen_resp.status_code == 200
+        gen_data = gen_resp.get_json()
+        assert gen_data['success'] is True
+        assert '<svg' in gen_data['svg']
+
+        # Cleanup
+        session_store.remove(token)
+
 
 class TestCleanupRoute:
     def test_cleanup_removes_session(self, client, sample_zip):

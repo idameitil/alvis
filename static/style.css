@@ -441,3 +441,31 @@ button:active {
     color: #1a5276;
     font-weight: 500;
 }
+
+/* Analysis details */
+#analysis-details {
+    margin: 16px 0 0;
+}
+
+.analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.analysis-table th,
+.analysis-table td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.analysis-table th {
+    color: #666;
+    font-weight: 500;
+}
+
+.analysis-table td {
+    color: #444;
+}

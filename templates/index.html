@@ -61,6 +61,9 @@
         <div id="result-section" class="section" style="display: none;">
             <h2>Conservation Analysis Results</h2>
             <div id="svg-container"></div>
+            <div id="analysis-details" style="display:none">
+                <div id="analysis-details-content"></div>
+            </div>
             <div class="button-group">
                 <button onclick="downloadSVG()">Download SVG</button>
                 <button onclick="resetApp()">Start Over</button>
@@ -306,8 +309,11 @@
                     throw new Error(data.error);
                 }
 
+                if (data.warnings && data.warnings.length > 0) {
+                    alert('Warning: ' + data.warnings.join('\n'));
+                }
                 window.currentSVG = data.svg;
-                showSVGResult(data.svg);
+                showSVGResult(data.svg, data.alignment_info);
             })
             .catch(error => {
                 alert('Error: ' + error.message);
@@ -330,7 +336,7 @@
             resetApp();
         }
 
-        function showSVGResult(svgContent) {
+        function showSVGResult(svgContent, alignmentInfo) {
             document.getElementById('download-section').style.display = 'none';
             document.getElementById('result-section').style.display = 'block';
 
@@ -338,6 +344,27 @@
             svgContainer.innerHTML = svgContent;
 
             window.currentSVG = svgContent;
+
+            const detailsEl = document.getElementById('analysis-details');
+            const contentEl = document.getElementById('analysis-details-content');
+            if (alignmentInfo && alignmentInfo.length > 0) {
+                let html = '<table class="analysis-table"><thead><tr>' +
+                    '<th>Alignment</th><th>Sequences</th><th>Representative</th><th>PDB coverage</th>' +
+                    '</tr></thead><tbody>';
+                alignmentInfo.forEach(info => {
+                    html += '<tr>';
+                    html += '<td>' + escapeHtml(info.name) + '</td>';
+                    html += '<td>' + info.num_sequences + '</td>';
+                    html += '<td>' + (info.representative ? escapeHtml(info.representative) : '\u2014') + '</td>';
+                    html += '<td>' + (info.pdb_mapped ? escapeHtml(info.pdb_mapped) + ' (' + escapeHtml(info.pdb_coverage) + ')' : '\u2014') + '</td>';
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+                contentEl.innerHTML = html;
+                detailsEl.style.display = 'block';
+            } else {
+                detailsEl.style.display = 'none';
+            }
         }
 
         function downloadSVG() {
@@ -380,6 +407,8 @@
             document.getElementById('file-input').value = '';
             document.getElementById('upload-status').textContent = '';
             document.getElementById('svg-container').innerHTML = '';
+            document.getElementById('analysis-details').style.display = 'none';
+            document.getElementById('analysis-details-content').innerHTML = '';
         }
 
         // Utility
