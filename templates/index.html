@@ -17,6 +17,7 @@
             <div class="intro">
                 <div class="upload-form">
                     <input type="file" id="file-input" accept=".zip">
+                    <button type="button" class="example-btn" onclick="loadExample()">Try example data</button>
                     <div class="upload-threshold">
                         <label>Conservation threshold</label>
                         <div>
@@ -72,6 +73,26 @@
     <script>
         let sessionData = null;
         let pdbData = {};  // {fasta_file: {pdb_filename, chain_id}}
+
+        function loadExample() {
+            const statusDiv = document.getElementById('upload-status');
+            statusDiv.textContent = 'Loading example data...';
+            statusDiv.className = 'status-info';
+
+            fetch('/example-data')
+                .then(response => response.blob())
+                .then(blob => {
+                    const file = new File([blob], 'globins_example.zip', { type: 'application/zip' });
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    document.getElementById('file-input').files = dataTransfer.files;
+                    uploadFile();
+                })
+                .catch(error => {
+                    statusDiv.textContent = 'Error loading example: ' + error.message;
+                    statusDiv.className = 'status-error';
+                });
+        }
 
         function uploadFile() {
             const fileInput = document.getElementById('file-input');

@@ -98,6 +98,22 @@ body {
     border-color: #333;
 }
 
+.example-btn {
+    width: 100%;
+    background: none;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    margin-right: 0;
+}
+
+.example-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
 .upload-threshold {
     margin-bottom: 12px;
 }

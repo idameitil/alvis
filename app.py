@@ -1,7 +1,7 @@
 import os
 import zipfile
 import tempfile
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from Bio import SeqIO
 from conservation import analyze_alignment, analyze_cross_conservation
 from svg_generator import generate_svg
@@ -14,6 +14,15 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max upload
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/example-data')
+def example_data():
+    """Serve the example globins ZIP file"""
+    return send_from_directory(
+        os.path.join(app.root_path, 'example_data'),
+        'globins_example.zip',
+        as_attachment=True
+    )
 
 @app.route('/upload', methods=['POST'])
 def upload():
