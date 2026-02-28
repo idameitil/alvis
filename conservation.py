@@ -1,13 +1,14 @@
 from Bio import SeqIO
 from collections import Counter
 
-def analyze_alignment(fasta_path, threshold):
+def analyze_alignment(fasta_path, threshold, representative_index=0):
     """
     Analyze a protein alignment and identify conserved positions.
 
     Args:
         fasta_path: Path to FASTA alignment file
         threshold: Conservation threshold (0-100)
+        representative_index: 0-based index of the representative sequence (default: first)
 
     Returns:
         Tuple of (conserved_positions, sequence_length):
@@ -31,8 +32,9 @@ def analyze_alignment(fasta_path, threshold):
     if not sequences:
         return [], 0
 
-    # First sequence is the representative
-    representative = str(sequences[0].seq)
+    # Select the representative sequence
+    rep_idx = min(representative_index, len(sequences) - 1)
+    representative = str(sequences[rep_idx].seq)
     num_sequences = len(sequences)
     alignment_length = len(representative)
 

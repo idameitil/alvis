@@ -1,8 +1,12 @@
 import os
+import re
 import zipfile
 import tempfile
+import urllib.request
+import urllib.error
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from Bio import SeqIO
+from Bio import SeqIO, SeqUtils
+from Bio.PDB import PDBParser
 from conservation import analyze_alignment, analyze_cross_conservation
 from svg_generator import generate_svg
 from structure import run_dssp, get_ss_segments, map_ss_to_sequence
@@ -24,9 +28,11 @@ def example_data():
         as_attachment=True
     )
 
+FASTA_EXTENSIONS = ('.fasta', '.fa', '.faa', '.fas')
+
 @app.route('/upload', methods=['POST'])
 def upload():
-    """Handle ZIP upload and extract FASTA file names"""
+    """Handle ZIP or single FASTA upload"""
     session_store.cleanup_expired()
 
     if 'file' not in request.files:
@@ -36,11 +42,28 @@ def upload():
     if file.filename == '':
         return jsonify({'error': 'No file selected'}), 400
 
-    if not file.filename.endswith('.zip'):
-        return jsonify({'error': 'File must be a ZIP archive'}), 400
+    is_zip = file.filename.lower().endswith('.zip')
+    is_fasta = file.filename.lower().endswith(FASTA_EXTENSIONS)
+
+    if not is_zip and not is_fasta:
+        return jsonify({'error': 'File must be a ZIP archive or a FASTA file (.fasta, .fa, .faa, .fas)'}), 400
 
     # Create temp directory for this session
     temp_dir = tempfile.mkdtemp()
+
+    if is_fasta:
+        # Single FASTA file — save directly
+        fasta_filename = file.filename
+        fasta_path = os.path.join(temp_dir, fasta_filename)
+        file.save(fasta_path)
+
+        token = session_store.create(temp_dir)
+        return jsonify({
+            'session_token': token,
+            'fasta_files': [fasta_filename]
+        })
+
+    # ZIP file — existing logic
     zip_path = os.path.join(temp_dir, 'upload.zip')
     file.save(zip_path)
 
@@ -60,7 +83,7 @@ def upload():
                 if filename.startswith('.') or filename.startswith('._'):
                     continue
 
-                if filename.endswith(('.fasta', '.fa', '.faa', '.fas')):
+                if filename.endswith(FASTA_EXTENSIONS):
                     # Store relative path from temp_dir
                     rel_path = os.path.relpath(os.path.join(root, filename), temp_dir)
                     fasta_files.append(rel_path)
@@ -97,6 +120,46 @@ def upload():
         shutil.rmtree(temp_dir)
         return jsonify({'error': 'Invalid ZIP file'}), 400
 
+def _parse_pdb_chains(pdb_path):
+    """Parse a PDB file and return list of chain dicts with id, num_residues, and sequence."""
+    parser = PDBParser(QUIET=True)
+    structure = parser.get_structure("protein", pdb_path)
+    model = structure[0]
+    chains = []
+    for chain in model.get_chains():
+        residues = [r for r in chain.get_residues() if r.id[0] == ' ']
+        seq = ''.join(SeqUtils.seq1(r.get_resname()) for r in residues)
+        chains.append({
+            'id': chain.id,
+            'num_residues': len(residues),
+            'sequence': seq
+        })
+    return chains
+
+
+def _find_representative_index(fasta_path, pdb_sequence):
+    """Find which FASTA sequence best matches the PDB chain sequence.
+    Returns the 0-based index, or 0 if no good match."""
+    sequences = list(SeqIO.parse(fasta_path, 'fasta'))
+    pdb_upper = pdb_sequence.upper()
+    best_index = 0
+    best_identity = 0.0
+    for i, seq in enumerate(sequences):
+        ungapped = str(seq.seq).replace('-', '').upper()
+        # Check if one is a substring of the other (common case)
+        if pdb_upper in ungapped or ungapped in pdb_upper:
+            return i
+        # Otherwise compute simple identity via alignment overlap
+        min_len = min(len(pdb_upper), len(ungapped))
+        if min_len == 0:
+            continue
+        matches = sum(a == b for a, b in zip(pdb_upper, ungapped))
+        identity = matches / max(len(pdb_upper), len(ungapped))
+        if identity > best_identity:
+            best_identity = identity
+            best_index = i
+    return best_index
+
 @app.route('/upload-pdb', methods=['POST'])
 def upload_pdb():
     """Handle PDB file upload for a specific alignment"""
@@ -121,17 +184,8 @@ def upload_pdb():
     pdb_path = os.path.join(pdb_dir, pdb_filename)
     file.save(pdb_path)
 
-    # Parse PDB to get available chains
     try:
-        from Bio.PDB import PDBParser
-        parser = PDBParser(QUIET=True)
-        structure = parser.get_structure("protein", pdb_path)
-        model = structure[0]
-        chains = []
-        for chain in model.get_chains():
-            num_residues = sum(1 for r in chain.get_residues()
-                              if r.id[0] == ' ')  # standard residues only
-            chains.append({'id': chain.id, 'num_residues': num_residues})
+        chains = _parse_pdb_chains(pdb_path)
     except Exception as e:
         os.remove(pdb_path)
         return jsonify({'error': f'Failed to parse PDB file: {str(e)}'}), 400
@@ -145,6 +199,61 @@ def upload_pdb():
         'chains': chains
     })
 
+@app.route('/fetch-pdb', methods=['POST'])
+def fetch_pdb():
+    """Fetch a PDB file from RCSB by its 4-character ID."""
+    data = request.json
+    if not data:
+        return jsonify({'error': 'Request body must be JSON'}), 400
+
+    token = data.get('session_token')
+    pdb_id = data.get('pdb_id', '').strip()
+
+    temp_dir = session_store.get_temp_dir(token) if token else None
+    if not temp_dir:
+        return jsonify({'error': 'Invalid session'}), 400
+
+    # Strict validation: exactly 4 alphanumeric characters
+    if not re.fullmatch(r'[A-Za-z0-9]{4}', pdb_id):
+        return jsonify({'error': 'PDB ID must be exactly 4 alphanumeric characters'}), 400
+
+    pdb_id_upper = pdb_id.upper()
+    pdb_filename = f'{pdb_id_upper}.pdb'
+
+    pdb_dir = os.path.join(temp_dir, 'pdb')
+    os.makedirs(pdb_dir, exist_ok=True)
+    pdb_path = os.path.join(pdb_dir, pdb_filename)
+
+    # Download from RCSB
+    url = f'https://files.rcsb.org/download/{pdb_id_upper}.pdb'
+    try:
+        with urllib.request.urlopen(url, timeout=10) as response:
+            pdb_data = response.read()
+        with open(pdb_path, 'wb') as f:
+            f.write(pdb_data)
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return jsonify({'error': f'PDB ID "{pdb_id_upper}" not found on RCSB'}), 404
+        return jsonify({'error': f'RCSB returned HTTP {e.code}'}), 502
+    except urllib.error.URLError as e:
+        return jsonify({'error': f'Network error fetching PDB: {e.reason}'}), 502
+    except Exception as e:
+        return jsonify({'error': f'Failed to download PDB: {str(e)}'}), 500
+
+    try:
+        chains = _parse_pdb_chains(pdb_path)
+    except Exception as e:
+        os.remove(pdb_path)
+        return jsonify({'error': f'Failed to parse downloaded PDB: {str(e)}'}), 400
+
+    if not chains:
+        os.remove(pdb_path)
+        return jsonify({'error': 'No protein chains found in downloaded PDB'}), 400
+
+    return jsonify({
+        'pdb_filename': pdb_filename,
+        'chains': chains
+    })
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -163,15 +272,29 @@ def generate():
     try:
         # Analyze each alignment
         alignments = []
+        rep_indices = {}  # fasta_file -> representative index
         for fasta_file, threshold in thresholds.items():
             file_path = os.path.join(temp_dir, fasta_file)
             if os.path.exists(file_path):
                 try:
-                    conserved_positions, seq_length = analyze_alignment(file_path, threshold)
+                    # Determine representative index: match PDB chain if provided
+                    rep_index = 0
+                    pdb_info = pdb_files.get(fasta_file)
+                    if pdb_info and pdb_info.get('chain_sequence'):
+                        rep_index = _find_representative_index(
+                            file_path, pdb_info['chain_sequence']
+                        )
+                    rep_indices[fasta_file] = rep_index
 
-                    # Count sequences in file
+                    conserved_positions, seq_length = analyze_alignment(
+                        file_path, threshold, representative_index=rep_index
+                    )
+
+                    # Read sequences once for num_sequences and representative
                     with open(file_path, 'r') as f:
-                        num_sequences = sum(1 for _ in SeqIO.parse(f, 'fasta'))
+                        seqs = list(SeqIO.parse(f, 'fasta'))
+                    num_sequences = len(seqs)
+                    rep_seq_record = seqs[rep_index] if rep_index < len(seqs) else seqs[0]
 
                     alignment_data = {
                         'name': os.path.basename(fasta_file),
@@ -182,7 +305,6 @@ def generate():
                     }
 
                     # Run DSSP if PDB provided for this alignment
-                    pdb_info = pdb_files.get(fasta_file)
                     if pdb_info:
                         pdb_path = os.path.join(temp_dir, 'pdb', pdb_info['pdb_filename'])
                         chain_id = pdb_info.get('chain_id')
@@ -192,8 +314,7 @@ def generate():
                                 segments = get_ss_segments(residues)
 
                                 # Map PDB positions to FASTA representative positions
-                                with open(file_path, 'r') as f:
-                                    rep_seq = str(list(SeqIO.parse(f, 'fasta'))[0].seq).replace('-', '')
+                                rep_seq = str(rep_seq_record.seq).replace('-', '')
                                 offset = map_ss_to_sequence(residues, rep_seq)
                                 for seg in segments:
                                     seg['start'] += offset
@@ -219,12 +340,13 @@ def generate():
                     for fasta_file in thresholds.keys():
                         file_path = os.path.join(temp_dir, fasta_file)
                         if os.path.exists(file_path):
+                            rep_index = rep_indices.get(fasta_file, 0)
                             with open(file_path, 'r') as f:
-                                first_seq = next(SeqIO.parse(f, 'fasta'), None)
-                            if first_seq:
-                                representative_ids.append(
-                                    (os.path.basename(fasta_file), first_seq.id)
-                                )
+                                seqs = list(SeqIO.parse(f, 'fasta'))
+                            rep_record = seqs[rep_index] if rep_index < len(seqs) else seqs[0]
+                            representative_ids.append(
+                                (os.path.basename(fasta_file), rep_record.id)
+                            )
 
                     if representative_ids:
                         cross_positions = analyze_cross_conservation(

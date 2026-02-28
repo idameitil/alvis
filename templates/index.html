@@ -16,7 +16,7 @@
         <div id="upload-section" class="section">
             <div class="intro">
                 <div class="upload-form">
-                    <input type="file" id="file-input" accept=".zip">
+                    <input type="file" id="file-input" accept=".zip,.fasta,.fa,.faa,.fas">
                     <button type="button" class="example-btn" onclick="loadExample()">Try example data</button>
                     <div class="upload-threshold">
                         <label>Conservation threshold</label>
@@ -29,24 +29,22 @@
                     <div id="upload-status"></div>
                 </div>
                 <h2>Protein Alignment Conservation Analyzer</h2>
-                <p>Visualize conserved residues across your protein sequence alignments.
-                   Upload a ZIP file containing your FASTA alignment files and get a
-                   publication-ready SVG diagram.</p>
                 <h3>How it works</h3>
                 <ol>
-                    <li><strong>Upload</strong> a ZIP with your FASTA alignment files (.fasta, .fa, .faa, .fas)</li>
-                    <li><strong>Add structure</strong> (optional) &mdash; upload PDB files to overlay secondary structure</li>
+                    <li><strong>Upload</strong> a single FASTA alignment file or a ZIP with multiple FASTA files</li>
+                    <li><strong>Add structure</strong> (optional) &mdash; upload a PDB file to overlay secondary structure</li>
                     <li><strong>Download</strong> your SVG conservation diagram</li>
                 </ol>
-                <p>Include a file named <code>all.fasta</code> in your ZIP to enable
-                   cross-conservation analysis across all groups.</p>
+                <p>For multiple alignments, use a ZIP archive. Include a file named
+                   <code>all.fasta</code> in your ZIP to enable cross-conservation analysis
+                   across all groups.</p>
             </div>
         </div>
 
         <!-- Step 2: Upload PDB files -->
         <div id="pdb-section" class="section" style="display: none;">
-            <h2>Upload PDB Files (Optional)</h2>
-            <p>Upload PDB files for representative proteins to show secondary structure.
+            <h2>Add PDB Structures (Optional)</h2>
+            <p>Upload PDB files or fetch by PDB ID for representative proteins to show secondary structure.
                You can skip any or all alignments.</p>
             <div id="pdb-controls"></div>
             <button id="generate-btn" onclick="generateSVG()">Generate SVG</button>
@@ -149,6 +147,12 @@
                     <div class="pdb-item-controls">
                         <input type="file" accept=".pdb"
                                onchange="uploadPdb(this, '${file}')">
+                        <span class="pdb-or-divider">or</span>
+                        <input type="text" class="pdb-id-input" maxlength="4"
+                               placeholder="PDB ID"
+                               id="pdb-id-${CSS.escape(file)}">
+                        <button type="button" class="pdb-fetch-btn"
+                                onclick="fetchPdb('${file}')">Fetch</button>
                         <select class="chain-select" id="chain-${CSS.escape(file)}"
                                 style="display:none" onchange="selectChain('${file}', this.value)">
                         </select>
@@ -159,6 +163,25 @@
 
             document.getElementById('upload-section').style.display = 'none';
             document.getElementById('pdb-section').style.display = 'block';
+        }
+
+        function handlePdbSuccess(fastaFile, data, label) {
+            const chainSelect = document.getElementById('chain-' + CSS.escape(fastaFile));
+            chainSelect.innerHTML = data.chains.map(c =>
+                `<option value="${c.id}">Chain ${c.id} (${c.num_residues} residues)</option>`
+            ).join('');
+            chainSelect.style.display = 'inline-block';
+
+            pdbData[fastaFile] = {
+                pdb_filename: data.pdb_filename,
+                chain_id: data.chains[0].id,
+                chain_sequence: data.chains[0].sequence,
+                chains: data.chains
+            };
+
+            const statusEl = document.getElementById('pdb-status-' + CSS.escape(fastaFile));
+            statusEl.textContent = label;
+            statusEl.className = 'pdb-item-status status-success';
         }
 
         function uploadPdb(input, fastaFile) {
@@ -185,22 +208,7 @@
                     statusEl.className = 'pdb-item-status status-error';
                     return;
                 }
-
-                // Populate chain selector
-                const chainSelect = document.getElementById('chain-' + CSS.escape(fastaFile));
-                chainSelect.innerHTML = data.chains.map(c =>
-                    `<option value="${c.id}">Chain ${c.id} (${c.num_residues} residues)</option>`
-                ).join('');
-                chainSelect.style.display = 'inline-block';
-
-                // Store PDB info
-                pdbData[fastaFile] = {
-                    pdb_filename: data.pdb_filename,
-                    chain_id: data.chains[0].id
-                };
-
-                statusEl.textContent = 'Ready';
-                statusEl.className = 'pdb-item-status status-success';
+                handlePdbSuccess(fastaFile, data, 'Ready');
             })
             .catch(error => {
                 statusEl.textContent = 'Upload failed';
@@ -208,9 +216,54 @@
             });
         }
 
+        function fetchPdb(fastaFile) {
+            const input = document.getElementById('pdb-id-' + CSS.escape(fastaFile));
+            const pdbId = input.value.trim();
+
+            if (!pdbId) {
+                alert('Please enter a PDB ID');
+                return;
+            }
+
+            if (!/^[A-Za-z0-9]{4}$/.test(pdbId)) {
+                alert('PDB ID must be exactly 4 alphanumeric characters');
+                return;
+            }
+
+            const statusEl = document.getElementById('pdb-status-' + CSS.escape(fastaFile));
+            statusEl.textContent = 'Fetching...';
+            statusEl.className = 'pdb-item-status status-info';
+
+            fetch('/fetch-pdb', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_token: sessionData.session_token,
+                    pdb_id: pdbId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    statusEl.textContent = data.error;
+                    statusEl.className = 'pdb-item-status status-error';
+                    return;
+                }
+                handlePdbSuccess(fastaFile, data, pdbId.toUpperCase() + ' ready');
+            })
+            .catch(error => {
+                statusEl.textContent = 'Fetch failed';
+                statusEl.className = 'pdb-item-status status-error';
+            });
+        }
+
         function selectChain(fastaFile, chainId) {
             if (pdbData[fastaFile]) {
                 pdbData[fastaFile].chain_id = chainId;
+                const chain = pdbData[fastaFile].chains.find(c => c.id === chainId);
+                if (chain) {
+                    pdbData[fastaFile].chain_sequence = chain.sequence;
+                }
             }
         }
 
