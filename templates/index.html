@@ -9,414 +9,57 @@
 <body>
     <nav class="topbar">
         <a href="#" class="topbar-title" onclick="resetApp(); return false;">alvis</a>
+        <a href="/about" class="topbar-help">?</a>
     </nav>
 
     <div class="container">
-        <!-- Step 1: Upload -->
-        <div id="upload-section" class="section">
-            <div class="intro">
-                <div class="upload-form">
-                    <input type="file" id="file-input" accept=".zip,.fasta,.fa,.faa,.fas">
-                    <button type="button" class="example-btn" onclick="loadExample()">Try example data</button>
-                    <div class="upload-threshold">
-                        <label>Conservation threshold</label>
-                        <div>
-                            <input type="number" id="default-threshold" value="95" min="0" max="100" step="1">
-                            <span>%</span>
-                        </div>
-                    </div>
-                    <button id="upload-btn" onclick="uploadFile()">Upload</button>
-                    <div id="upload-status"></div>
-                </div>
-                <h2>Protein Alignment Conservation Analyzer</h2>
-                <h3>How it works</h3>
-                <ol>
-                    <li><strong>Upload</strong> a single FASTA alignment file or a ZIP with multiple FASTA files</li>
-                    <li><strong>Add structure</strong> (optional) &mdash; upload a PDB file to overlay secondary structure</li>
-                    <li><strong>Download</strong> your SVG conservation diagram</li>
-                </ol>
-                <p>For multiple alignments, use a ZIP archive. Include a file named
-                   <code>all.fasta</code> in your ZIP to enable cross-conservation analysis
-                   across all groups.</p>
+        <!-- Top bar: heading + actions -->
+        <div class="groups-header">
+            <div class="groups-header-left">
+                <span class="groups-heading">Specify your groups</span>
+                <span class="groups-or">or</span>
+                <input type="file" id="zip-input" accept=".zip" style="display:none"
+                       onchange="handleZipUpload(this)">
+                <a href="#" class="link-action" onclick="document.getElementById('zip-input').click(); return false;">upload ZIP</a>
+                <span class="groups-or">&middot;</span>
+                <a href="#" class="link-action" onclick="loadExample(); return false;">try example data</a>
             </div>
+            <button type="button" class="add-group-btn" onclick="addGroup()">+ Add group</button>
         </div>
 
-        <!-- Step 2: Upload PDB files -->
-        <div id="pdb-section" class="section" style="display: none;">
-            <h2>Add PDB Structures (Optional)</h2>
-            <p>Upload PDB files or fetch by PDB ID for representative proteins to show secondary structure.
-               You can skip any or all alignments.</p>
-            <div id="pdb-controls"></div>
-            <button id="generate-btn" onclick="generateSVG()">Generate SVG</button>
-            <button id="cancel-btn" onclick="cancelSession()">Cancel</button>
+        <div id="upload-status"></div>
+
+        <!-- Group cards (rendered dynamically) -->
+        <div id="groups-container"></div>
+
+        <!-- Cross-alignment card (rendered dynamically) -->
+        <div id="cross-container"></div>
+
+        <!-- Generate button -->
+        <div id="action-section">
+            <button id="generate-btn" onclick="generate()" disabled>Generate SVG</button>
         </div>
 
-        <!-- Step 4: Generating -->
-        <div id="download-section" class="section" style="display: none;">
+        <!-- Generating spinner -->
+        <div id="generating-section" style="display:none">
             <h2>Generating...</h2>
             <div class="spinner"></div>
         </div>
 
-        <!-- Step 5: Results -->
-        <div id="result-section" class="section" style="display: none;">
-            <h2>Conservation Analysis Results</h2>
+        <!-- Result -->
+        <div id="result-section" style="display:none">
+            <h2>Result</h2>
             <div id="svg-container"></div>
             <div id="analysis-details" style="display:none">
                 <div id="analysis-details-content"></div>
             </div>
             <div class="button-group">
                 <button onclick="downloadSVG()">Download SVG</button>
-                <button onclick="resetApp()">Start Over</button>
+                <button onclick="regenerate()" class="secondary-btn">Regenerate</button>
             </div>
         </div>
     </div>
 
-    <script>
-        let sessionData = null;
-        let pdbData = {};  // {fasta_file: {pdb_filename, chain_id}}
-
-        function loadExample() {
-            const statusDiv = document.getElementById('upload-status');
-            statusDiv.textContent = 'Loading example data...';
-            statusDiv.className = 'status-info';
-
-            fetch('/example-data')
-                .then(response => response.blob())
-                .then(blob => {
-                    const file = new File([blob], 'globins_example.zip', { type: 'application/zip' });
-                    const dataTransfer = new DataTransfer();
-                    dataTransfer.items.add(file);
-                    document.getElementById('file-input').files = dataTransfer.files;
-                    uploadFile();
-                })
-                .catch(error => {
-                    statusDiv.textContent = 'Error loading example: ' + error.message;
-                    statusDiv.className = 'status-error';
-                });
-        }
-
-        function uploadFile() {
-            const fileInput = document.getElementById('file-input');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please select a file');
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            const statusDiv = document.getElementById('upload-status');
-            statusDiv.textContent = 'Uploading...';
-            statusDiv.className = 'status-info';
-
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    statusDiv.textContent = 'Error: ' + data.error;
-                    statusDiv.className = 'status-error';
-                    return;
-                }
-
-                sessionData = data;
-                showPdbSection();
-            })
-            .catch(error => {
-                statusDiv.textContent = 'Error: ' + error.message;
-                statusDiv.className = 'status-error';
-            });
-        }
-
-        function showPdbSection() {
-            const controlsDiv = document.getElementById('pdb-controls');
-            controlsDiv.innerHTML = '';
-            pdbData = {};
-
-            sessionData.fasta_files.forEach(file => {
-                const basename = file.split('/').pop();
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'pdb-item';
-                itemDiv.id = 'pdb-item-' + CSS.escape(file);
-                itemDiv.innerHTML = `
-                    <div class="pdb-item-header">
-                        <span class="pdb-item-name">${escapeHtml(basename)}</span>
-                        <span class="pdb-item-status" id="pdb-status-${CSS.escape(file)}"></span>
-                    </div>
-                    <div class="pdb-item-controls">
-                        <input type="file" accept=".pdb"
-                               onchange="uploadPdb(this, '${file}')">
-                        <span class="pdb-or-divider">or</span>
-                        <input type="text" class="pdb-id-input" maxlength="4"
-                               placeholder="PDB ID"
-                               id="pdb-id-${CSS.escape(file)}">
-                        <button type="button" class="pdb-fetch-btn"
-                                onclick="fetchPdb('${file}')">Fetch</button>
-                        <select class="chain-select" id="chain-${CSS.escape(file)}"
-                                style="display:none" onchange="selectChain('${file}', this.value)">
-                        </select>
-                    </div>
-                `;
-                controlsDiv.appendChild(itemDiv);
-            });
-
-            document.getElementById('upload-section').style.display = 'none';
-            document.getElementById('pdb-section').style.display = 'block';
-        }
-
-        function handlePdbSuccess(fastaFile, data, label) {
-            const chainSelect = document.getElementById('chain-' + CSS.escape(fastaFile));
-            chainSelect.innerHTML = data.chains.map(c =>
-                `<option value="${c.id}">Chain ${c.id} (${c.num_residues} residues)</option>`
-            ).join('');
-            chainSelect.style.display = 'inline-block';
-
-            pdbData[fastaFile] = {
-                pdb_filename: data.pdb_filename,
-                chain_id: data.chains[0].id,
-                chain_sequence: data.chains[0].sequence,
-                chains: data.chains
-            };
-
-            const statusEl = document.getElementById('pdb-status-' + CSS.escape(fastaFile));
-            statusEl.textContent = label;
-            statusEl.className = 'pdb-item-status status-success';
-        }
-
-        function uploadPdb(input, fastaFile) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const statusEl = document.getElementById('pdb-status-' + CSS.escape(fastaFile));
-            statusEl.textContent = 'Uploading...';
-            statusEl.className = 'pdb-item-status status-info';
-
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('session_token', sessionData.session_token);
-            formData.append('fasta_file', fastaFile);
-
-            fetch('/upload-pdb', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    statusEl.textContent = data.error;
-                    statusEl.className = 'pdb-item-status status-error';
-                    return;
-                }
-                handlePdbSuccess(fastaFile, data, 'Ready');
-            })
-            .catch(error => {
-                statusEl.textContent = 'Upload failed';
-                statusEl.className = 'pdb-item-status status-error';
-            });
-        }
-
-        function fetchPdb(fastaFile) {
-            const input = document.getElementById('pdb-id-' + CSS.escape(fastaFile));
-            const pdbId = input.value.trim();
-
-            if (!pdbId) {
-                alert('Please enter a PDB ID');
-                return;
-            }
-
-            if (!/^[A-Za-z0-9]{4}$/.test(pdbId)) {
-                alert('PDB ID must be exactly 4 alphanumeric characters');
-                return;
-            }
-
-            const statusEl = document.getElementById('pdb-status-' + CSS.escape(fastaFile));
-            statusEl.textContent = 'Fetching...';
-            statusEl.className = 'pdb-item-status status-info';
-
-            fetch('/fetch-pdb', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    session_token: sessionData.session_token,
-                    pdb_id: pdbId
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    statusEl.textContent = data.error;
-                    statusEl.className = 'pdb-item-status status-error';
-                    return;
-                }
-                handlePdbSuccess(fastaFile, data, pdbId.toUpperCase() + ' ready');
-            })
-            .catch(error => {
-                statusEl.textContent = 'Fetch failed';
-                statusEl.className = 'pdb-item-status status-error';
-            });
-        }
-
-        function selectChain(fastaFile, chainId) {
-            if (pdbData[fastaFile]) {
-                pdbData[fastaFile].chain_id = chainId;
-                const chain = pdbData[fastaFile].chains.find(c => c.id === chainId);
-                if (chain) {
-                    pdbData[fastaFile].chain_sequence = chain.sequence;
-                }
-            }
-        }
-
-        function generateSVG() {
-            if (!sessionData) {
-                alert('No session data');
-                return;
-            }
-
-            const defaultThreshold = parseFloat(document.getElementById('default-threshold').value);
-            const thresholds = {};
-            sessionData.fasta_files.forEach(file => {
-                thresholds[file] = defaultThreshold;
-            });
-
-            document.getElementById('pdb-section').style.display = 'none';
-            document.getElementById('download-section').style.display = 'block';
-
-            const generateBody = {
-                session_token: sessionData.session_token,
-                thresholds: thresholds,
-                pdb_files: pdbData
-            };
-
-            if (sessionData.all_fasta) {
-                generateBody.all_fasta = sessionData.all_fasta;
-                generateBody.cross_threshold = defaultThreshold;
-            }
-
-            fetch('/generate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(generateBody)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-
-                if (data.warnings && data.warnings.length > 0) {
-                    alert('Warning: ' + data.warnings.join('\n'));
-                }
-                window.currentSVG = data.svg;
-                showSVGResult(data.svg, data.alignment_info);
-            })
-            .catch(error => {
-                alert('Error: ' + error.message);
-                resetApp();
-            });
-        }
-
-        function cancelSession() {
-            if (sessionData) {
-                fetch('/cleanup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        session_token: sessionData.session_token
-                    })
-                });
-            }
-            resetApp();
-        }
-
-        function showSVGResult(svgContent, alignmentInfo) {
-            document.getElementById('download-section').style.display = 'none';
-            document.getElementById('result-section').style.display = 'block';
-
-            const svgContainer = document.getElementById('svg-container');
-            svgContainer.innerHTML = svgContent;
-
-            window.currentSVG = svgContent;
-
-            const detailsEl = document.getElementById('analysis-details');
-            const contentEl = document.getElementById('analysis-details-content');
-            if (alignmentInfo && alignmentInfo.length > 0) {
-                let html = '<table class="analysis-table"><thead><tr>' +
-                    '<th>Alignment</th><th>Sequences</th><th>Representative</th><th>PDB coverage</th>' +
-                    '</tr></thead><tbody>';
-                alignmentInfo.forEach(info => {
-                    html += '<tr>';
-                    html += '<td>' + escapeHtml(info.name) + '</td>';
-                    html += '<td>' + info.num_sequences + '</td>';
-                    html += '<td>' + (info.representative ? escapeHtml(info.representative) : '\u2014') + '</td>';
-                    html += '<td>' + (info.pdb_mapped ? escapeHtml(info.pdb_mapped) + ' (' + escapeHtml(info.pdb_coverage) + ')' : '\u2014') + '</td>';
-                    html += '</tr>';
-                });
-                html += '</tbody></table>';
-                contentEl.innerHTML = html;
-                detailsEl.style.display = 'block';
-            } else {
-                detailsEl.style.display = 'none';
-            }
-        }
-
-        function downloadSVG() {
-            if (!window.currentSVG) {
-                alert('No SVG to download');
-                return;
-            }
-
-            const blob = new Blob([window.currentSVG], {type: 'image/svg+xml'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'alignment_conservation.svg';
-            document.body.appendChild(a);
-            a.click();
-            URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        }
-
-        function resetApp() {
-            if (sessionData && sessionData.session_token) {
-                fetch('/cleanup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        session_token: sessionData.session_token
-                    })
-                });
-            }
-
-            sessionData = null;
-            window.currentSVG = null;
-            pdbData = {};
-            document.getElementById('upload-section').style.display = 'block';
-            document.getElementById('pdb-section').style.display = 'none';
-            document.getElementById('download-section').style.display = 'none';
-            document.getElementById('result-section').style.display = 'none';
-            document.getElementById('file-input').value = '';
-            document.getElementById('upload-status').textContent = '';
-            document.getElementById('svg-container').innerHTML = '';
-            document.getElementById('analysis-details').style.display = 'none';
-            document.getElementById('analysis-details-content').innerHTML = '';
-        }
-
-        // Utility
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    </script>
+    <script src="/static/app.js"></script>
 </body>
 </html>

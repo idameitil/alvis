@@ -5,7 +5,7 @@ import pytest
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from app import app as flask_app
+from app import create_app
 
 
 @pytest.fixture
@@ -21,8 +21,9 @@ def tmp_fasta(tmp_path):
 @pytest.fixture
 def client():
     """Flask test client."""
-    flask_app.config['TESTING'] = True
-    with flask_app.test_client() as c:
+    app = create_app()
+    app.config['TESTING'] = True
+    with app.test_client() as c:
         yield c
 
 

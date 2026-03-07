@@ -1,133 +1,207 @@
 import io
 import json
-import zipfile
 import session_store
 
 
-class TestUploadRoute:
-    def test_upload_valid_zip(self, client, sample_zip):
-        with open(sample_zip, 'rb') as f:
-            resp = client.post('/upload', data={
-                'file': (f, 'test.zip')
-            }, content_type='multipart/form-data')
+def _create_session(client):
+    """Helper: create a session and return its id."""
+    resp = client.post('/session')
+    assert resp.status_code == 200
+    return resp.get_json()['id']
 
+
+def _upload_zip(client, session_id, zip_path):
+    """Helper: upload a ZIP to a session, return session data."""
+    with open(zip_path, 'rb') as f:
+        resp = client.post(f'/session/{session_id}/fasta', data={
+            'file': (f, 'test.zip')
+        }, content_type='multipart/form-data')
+    assert resp.status_code == 200
+    return resp.get_json()
+
+
+def _upload_fasta(client, session_id, fasta_path, filename='single.fasta'):
+    """Helper: upload a single FASTA to a session, return session data."""
+    with open(fasta_path, 'rb') as f:
+        resp = client.post(f'/session/{session_id}/fasta', data={
+            'file': (f, filename)
+        }, content_type='multipart/form-data')
+    assert resp.status_code == 200
+    return resp.get_json()
+
+
+class TestSessionCreate:
+    def test_create_session(self, client):
+        resp = client.post('/session')
         assert resp.status_code == 200
         data = resp.get_json()
-        assert 'session_token' in data
-        assert 'fasta_files' in data
-        assert len(data['fasta_files']) == 2
-        assert data.get('all_fasta') is not None
+        assert 'id' in data
+        assert 'groups' in data
+        assert data['groups'] == {}
 
         # Cleanup
-        session_store.remove(data['session_token'])
+        session_store.remove(data['id'])
+
+
+class TestFastaUpload:
+    def test_upload_valid_zip(self, client, sample_zip):
+        session_id = _create_session(client)
+        data = _upload_zip(client, session_id, sample_zip)
+
+        assert len(data['groups']) == 2
+        assert data['all_fasta'] is not None
+
+        session_store.remove(session_id)
 
     def test_upload_single_fasta(self, client, sample_fasta):
-        with open(sample_fasta, 'rb') as f:
-            resp = client.post('/upload', data={
-                'file': (f, 'single.fasta')
-            }, content_type='multipart/form-data')
+        session_id = _create_session(client)
+        data = _upload_fasta(client, session_id, sample_fasta)
 
-        assert resp.status_code == 200
-        data = resp.get_json()
-        assert 'session_token' in data
-        assert data['fasta_files'] == ['single.fasta']
-        assert 'all_fasta' not in data
+        assert 'single.fasta' in data['groups']
+        assert data['all_fasta'] is None
 
-        # Cleanup
-        session_store.remove(data['session_token'])
+        session_store.remove(session_id)
 
     def test_upload_single_fasta_alt_extensions(self, client, tmp_path):
-        """FASTA files with .fa, .faa, .fas extensions should be accepted."""
         content = ">s1\nACDE\n>s2\nACDE\n"
         for ext in ('.fa', '.faa', '.fas'):
+            session_id = _create_session(client)
             fasta_path = str(tmp_path / f"test{ext}")
             with open(fasta_path, 'w') as f:
                 f.write(content)
-            with open(fasta_path, 'rb') as f:
-                resp = client.post('/upload', data={
-                    'file': (f, f'test{ext}')
-                }, content_type='multipart/form-data')
-            assert resp.status_code == 200
-            data = resp.get_json()
-            assert data['fasta_files'] == [f'test{ext}']
-            session_store.remove(data['session_token'])
+            data = _upload_fasta(client, session_id, fasta_path, f'test{ext}')
+            assert f'test{ext}' in data['groups']
+            session_store.remove(session_id)
 
     def test_upload_bad_file(self, client):
-        resp = client.post('/upload', data={
+        session_id = _create_session(client)
+        resp = client.post(f'/session/{session_id}/fasta', data={
             'file': (io.BytesIO(b"not a zip"), 'test.txt')
         }, content_type='multipart/form-data')
         assert resp.status_code == 400
 
+        session_store.remove(session_id)
+
     def test_upload_no_file(self, client):
-        resp = client.post('/upload', data={})
+        session_id = _create_session(client)
+        resp = client.post(f'/session/{session_id}/fasta', data={})
         assert resp.status_code == 400
 
+        session_store.remove(session_id)
 
-class TestGenerateRoute:
+    def test_upload_fasta_content_json(self, client):
+        session_id = _create_session(client)
+        resp = client.post(f'/session/{session_id}/fasta', json={
+            'name': 'pasted.fasta',
+            'content': '>seq1\nACDE\n>seq2\nACDE\n'
+        })
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert 'pasted.fasta' in data['groups']
+
+        session_store.remove(session_id)
+
+    def test_invalid_session(self, client):
+        resp = client.post('/session/nonexistent/fasta', data={
+            'file': (io.BytesIO(b">s\nACDE\n"), 'test.fasta')
+        }, content_type='multipart/form-data')
+        assert resp.status_code == 404
+
+
+class TestSessionConfig:
+    def test_patch_thresholds(self, client, sample_fasta):
+        session_id = _create_session(client)
+        _upload_fasta(client, session_id, sample_fasta)
+
+        resp = client.patch(f'/session/{session_id}', json={
+            'thresholds': {'single.fasta': 80}
+        })
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert data['groups']['single.fasta']['threshold'] == 80
+
+        session_store.remove(session_id)
+
+    def test_patch_cross_threshold(self, client, sample_zip):
+        session_id = _create_session(client)
+        _upload_zip(client, session_id, sample_zip)
+
+        resp = client.patch(f'/session/{session_id}', json={
+            'cross_threshold': 90
+        })
+        assert resp.status_code == 200
+        assert resp.get_json()['cross_threshold'] == 90
+
+        session_store.remove(session_id)
+
+
+class TestDeleteFasta:
+    def test_remove_fasta(self, client, sample_zip):
+        session_id = _create_session(client)
+        data = _upload_zip(client, session_id, sample_zip)
+
+        files = list(data['groups'].keys())
+        resp = client.delete(f'/session/{session_id}/fasta/{files[0]}')
+        assert resp.status_code == 200
+        result = resp.get_json()
+        assert files[0] not in result['groups']
+
+        session_store.remove(session_id)
+
+
+class TestAnalysisResult:
     def test_end_to_end(self, client, sample_zip):
-        # Upload
-        with open(sample_zip, 'rb') as f:
-            upload_resp = client.post('/upload', data={
-                'file': (f, 'test.zip')
-            }, content_type='multipart/form-data')
-        upload_data = upload_resp.get_json()
-        token = upload_data['session_token']
+        session_id = _create_session(client)
+        data = _upload_zip(client, session_id, sample_zip)
 
-        # Generate
-        thresholds = {f: 100 for f in upload_data['fasta_files']}
-        gen_resp = client.post('/generate', json={
-            'session_token': token,
+        # Set thresholds
+        thresholds = {f: 100 for f in data['groups'].keys()}
+        client.patch(f'/session/{session_id}', json={
             'thresholds': thresholds,
-            'all_fasta': upload_data.get('all_fasta'),
             'cross_threshold': 100,
         })
-        assert gen_resp.status_code == 200
-        gen_data = gen_resp.get_json()
-        assert gen_data['success'] is True
-        assert '<svg' in gen_data['svg']
 
-        # Cleanup
-        session_store.remove(token)
+        # Get result
+        resp = client.get(f'/session/{session_id}/result')
+        assert resp.status_code == 200
+        result = resp.get_json()
+        assert result['success'] is True
+        assert '<svg' in result['svg']
+
+        session_store.remove(session_id)
 
     def test_end_to_end_single_fasta(self, client, sample_fasta):
-        # Upload single FASTA
-        with open(sample_fasta, 'rb') as f:
-            upload_resp = client.post('/upload', data={
-                'file': (f, 'single.fasta')
-            }, content_type='multipart/form-data')
-        upload_data = upload_resp.get_json()
-        token = upload_data['session_token']
-        assert upload_data['fasta_files'] == ['single.fasta']
+        session_id = _create_session(client)
+        _upload_fasta(client, session_id, sample_fasta)
 
-        # Generate — no all_fasta, no PDB, just one alignment
-        thresholds = {upload_data['fasta_files'][0]: 100}
-        gen_resp = client.post('/generate', json={
-            'session_token': token,
-            'thresholds': thresholds,
+        client.patch(f'/session/{session_id}', json={
+            'thresholds': {'single.fasta': 100}
         })
-        assert gen_resp.status_code == 200
-        gen_data = gen_resp.get_json()
-        assert gen_data['success'] is True
-        assert '<svg' in gen_data['svg']
 
-        # Cleanup
-        session_store.remove(token)
+        resp = client.get(f'/session/{session_id}/result')
+        assert resp.status_code == 200
+        result = resp.get_json()
+        assert result['success'] is True
+        assert '<svg' in result['svg']
+
+        session_store.remove(session_id)
+
+    def test_no_fasta_returns_error(self, client):
+        session_id = _create_session(client)
+        resp = client.get(f'/session/{session_id}/result')
+        assert resp.status_code == 400
+
+        session_store.remove(session_id)
 
 
-class TestCleanupRoute:
-    def test_cleanup_removes_session(self, client, sample_zip):
-        with open(sample_zip, 'rb') as f:
-            upload_resp = client.post('/upload', data={
-                'file': (f, 'test.zip')
-            }, content_type='multipart/form-data')
-        token = upload_resp.get_json()['session_token']
+class TestDeleteSession:
+    def test_delete_removes_session(self, client, sample_zip):
+        session_id = _create_session(client)
+        _upload_zip(client, session_id, sample_zip)
 
-        # Verify session exists
-        assert session_store.get_temp_dir(token) is not None
+        assert session_store.get(session_id) is not None
 
-        # Cleanup
-        resp = client.post('/cleanup', json={'session_token': token})
+        resp = client.delete(f'/session/{session_id}')
         assert resp.status_code == 200
 
-        # Session should be gone
-        assert session_store.get_temp_dir(token) is None
+        assert session_store.get(session_id) is None
