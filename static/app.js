@@ -22,6 +22,11 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function escapeAttr(text) {
+    return text.replace(/&/g, '&amp;').replace(/'/g, '&#39;')
+               .replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function el(id) {
     return document.getElementById(id);
 }
@@ -45,6 +50,14 @@ async function api(method, url, body) {
         opts.body = JSON.stringify(body);
     }
     const resp = await fetch(url, opts);
+    if (!resp.ok) {
+        let msg = `Server error (${resp.status})`;
+        try {
+            const err = await resp.json();
+            if (err.error) msg = err.error;
+        } catch (_) { /* response wasn't JSON */ }
+        throw new Error(msg);
+    }
     const data = await resp.json();
     if (data.error) throw new Error(data.error);
     return data;
@@ -602,7 +615,7 @@ function buildRepHtml(group, serverGroup, seqs) {
         return `
             <div class="card-row">
                 <label>Representative</label>
-                <select class="rep-select" onchange="updateRepresentative('${group.serverFilename}', this.value)">
+                <select class="rep-select" onchange="updateRepresentative('${escapeAttr(group.serverFilename)}', this.value)">
                     ${repOptions}
                 </select>
             </div>`;
@@ -627,7 +640,7 @@ function buildPdbHtml(group, hasData) {
                 `Chain ${c.id} (${c.num_residues} residues)</option>`
             ).join('');
             chainHtml = `<select class="chain-select" id="chain-${escaped}"
-                          onchange="selectChain('${group.serverFilename}', this.value)">${chainOptions}</select>`;
+                          onchange="selectChain('${escapeAttr(group.serverFilename)}', this.value)">${chainOptions}</select>`;
         } else {
             chainHtml = `<select class="chain-select" id="chain-${escaped}" style="display:none"></select>`;
         }
@@ -640,12 +653,12 @@ function buildPdbHtml(group, hasData) {
                 <label>PDB structure</label>
                 <div class="pdb-controls">
                     <input type="file" accept=".pdb"
-                           onchange="uploadPdb(this, '${group.serverFilename}')">
+                           onchange="uploadPdb(this, '${escapeAttr(group.serverFilename)}')">
                     <span class="pdb-or-divider">or</span>
                     <input type="text" class="pdb-id-input" maxlength="4"
                            placeholder="PDB ID" id="pdb-id-${escaped}">
                     <button type="button" class="pdb-fetch-btn"
-                            onclick="fetchPdb('${group.serverFilename}')">Fetch</button>
+                            onclick="fetchPdb('${escapeAttr(group.serverFilename)}')">Fetch</button>
                     ${chainHtml}
                     ${pdbStatus}
                 </div>

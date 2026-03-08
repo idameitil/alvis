@@ -29,10 +29,14 @@ def fetch_pdb():
     pdb_id_upper = pdb_id.upper()
     pdb_filename = f'{pdb_id_upper}.pdb'
 
+    MAX_PDB_SIZE = 10 * 1024 * 1024  # 10 MB
+
     url = f'https://files.rcsb.org/download/{pdb_id_upper}.pdb'
     try:
         with urllib.request.urlopen(url, timeout=10) as response:
-            pdb_data = response.read()
+            pdb_data = response.read(MAX_PDB_SIZE + 1)
+            if len(pdb_data) > MAX_PDB_SIZE:
+                return jsonify({'error': 'PDB file exceeds 10 MB size limit'}), 400
     except urllib.error.HTTPError as e:
         if e.code == 404:
             return jsonify({'error': f'PDB ID "{pdb_id_upper}" not found on RCSB'}), 404

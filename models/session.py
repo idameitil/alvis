@@ -16,6 +16,15 @@ FASTA_EXTENSIONS = ('.fasta', '.fa', '.faa', '.fas')
 FASTA_ENCODINGS = ('utf-8', 'latin-1', 'cp1252', 'iso-8859-1')
 
 
+def _safe_path(base_dir: str, filename: str) -> str:
+    """Join base_dir and filename, raising ValueError on path traversal."""
+    joined = os.path.normpath(os.path.join(base_dir, filename))
+    base = os.path.normpath(base_dir) + os.sep
+    if not joined.startswith(base):
+        raise ValueError(f'Invalid path: {filename}')
+    return joined
+
+
 def parse_pdb_chains(pdb_path):
     """Parse a PDB file and return list of ChainInfo."""
     parser = PDBParser(QUIET=True)
@@ -122,6 +131,17 @@ class Session:
 
         try:
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                # Validate all paths before extracting (prevent ZipSlip)
+                for member in zip_ref.namelist():
+                    member_path = os.path.normpath(
+                        os.path.join(self.temp_dir, member)
+                    )
+                    if not member_path.startswith(
+                        os.path.normpath(self.temp_dir) + os.sep
+                    ) and member_path != os.path.normpath(self.temp_dir):
+                        raise ValueError(
+                            f'ZIP contains path traversal entry: {member}'
+                        )
                 zip_ref.extractall(self.temp_dir)
         except zipfile.BadZipFile:
             os.remove(zip_path)
@@ -157,7 +177,7 @@ class Session:
         if filename not in self.groups and filename != self.all_fasta:
             raise FileNotFoundError(f'FASTA file not found: {filename}')
 
-        file_path = os.path.join(self.temp_dir, filename)
+        file_path = _safe_path(self.temp_dir, filename)
         if os.path.exists(file_path):
             os.remove(file_path)
 
@@ -173,7 +193,7 @@ class Session:
 
         Returns list of {index, id, length} dicts.
         """
-        path = os.path.join(self.temp_dir, filename)
+        path = _safe_path(self.temp_dir, filename)
         if not os.path.exists(path):
             raise FileNotFoundError(f'FASTA file not found: {filename}')
 
@@ -230,7 +250,8 @@ class Session:
 
     def remove_pdb(self, filename) -> 'Session':
         """Remove a PDB file and clear any group references to it."""
-        pdb_path = os.path.join(self.temp_dir, 'pdb', filename)
+        pdb_dir = os.path.join(self.temp_dir, 'pdb')
+        pdb_path = _safe_path(pdb_dir, filename)
         if os.path.exists(pdb_path):
             os.remove(pdb_path)
 
