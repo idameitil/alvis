@@ -10,15 +10,47 @@ from svg_generator import generate_svg
 from structure import run_dssp, get_ss_segments, align_pdb_to_fasta, remap_ss_segments
 
 
-def _find_representative_index(fasta_path, pdb_sequence):
+MIN_PDB_IDENTITY = 0.90   # 90 % sequence identity over aligned region
+MIN_PDB_COVERAGE = 30     # at least 30 aligned positions
+
+
+def _alignment_identity(seq_a, seq_b, alignment):
+    """Compute (identical_count, aligned_length) from a pairwise alignment."""
+    identical = 0
+    aligned = 0
+    for a_block, b_block in zip(alignment.aligned[0], alignment.aligned[1]):
+        length = a_block[1] - a_block[0]
+        for j in range(length):
+            aligned += 1
+            if seq_a[a_block[0] + j] == seq_b[b_block[0] + j]:
+                identical += 1
+    return identical, aligned
+
+
+def find_representative_index(fasta_path, pdb_sequence,
+                              min_identity=MIN_PDB_IDENTITY,
+                              min_coverage=MIN_PDB_COVERAGE):
     """Find which FASTA sequence best matches the PDB chain sequence.
-    Uses local pairwise alignment scoring to handle offset homologs.
-    Returns the 0-based index, or 0 if no good match."""
+
+    Returns a dict with keys:
+        index            — 0-based sequence index (None if no good match)
+        identity         — fraction of identical residues in aligned region
+        aligned_length   — number of aligned positions
+        warning          — string if no sequence passed thresholds, else None
+    """
     sequences = list(SeqIO.parse(fasta_path, 'fasta'))
     pdb_upper = pdb_sequence.upper()
-    best_index = 0
-    best_score = -1
 
+    best = {'index': None, 'identity': 0.0, 'aligned_length': 0, 'warning': None}
+
+    # Fast path: exact substring match
+    for i, seq in enumerate(sequences):
+        ungapped = str(seq.seq).replace('-', '').upper()
+        if pdb_upper in ungapped or ungapped in pdb_upper:
+            overlap = min(len(pdb_upper), len(ungapped))
+            return {'index': i, 'identity': 1.0, 'aligned_length': overlap, 'warning': None}
+
+    # Pairwise local alignment
     aligner = PairwiseAligner()
     aligner.mode = 'local'
     aligner.match_score = 2
@@ -28,16 +60,30 @@ def _find_representative_index(fasta_path, pdb_sequence):
 
     for i, seq in enumerate(sequences):
         ungapped = str(seq.seq).replace('-', '').upper()
-        if pdb_upper in ungapped or ungapped in pdb_upper:
-            return i
         alignments = aligner.align(ungapped, pdb_upper)
-        if alignments:
-            score = alignments[0].score
-            if score > best_score:
-                best_score = score
-                best_index = i
+        if not alignments:
+            continue
+        identical, aligned = _alignment_identity(ungapped, pdb_upper, alignments[0])
+        if aligned == 0:
+            continue
+        identity = identical / aligned
+        if identity > best['identity'] or (
+            identity == best['identity'] and aligned > best['aligned_length']
+        ):
+            best = {'index': i, 'identity': identity, 'aligned_length': aligned, 'warning': None}
 
-    return best_index
+    # Apply thresholds
+    if best['index'] is None or best['identity'] < min_identity or best['aligned_length'] < min_coverage:
+        pct = best['identity'] * 100
+        best['warning'] = (
+            f"No FASTA sequence matched the PDB chain well enough "
+            f"(best: {pct:.0f}% identity over {best['aligned_length']} positions; "
+            f"need \u2265{min_identity*100:.0f}% over \u2265{min_coverage}). "
+            f"PDB assignment ignored."
+        )
+        best['index'] = None
+
+    return best
 
 
 @dataclass
@@ -101,6 +147,7 @@ def build_result(session) -> AnalysisResult:
     alignments = []
     alignment_info = []
     rep_indices = {}
+    warnings_list = []
 
     for fasta_file, group in sorted(session.groups.items()):
         file_path = os.path.join(session.temp_dir, fasta_file)
@@ -112,8 +159,17 @@ def build_result(session) -> AnalysisResult:
 
         # Determine representative index: manual override > PDB match > default (0)
         rep_index = group.representative_index
-        if pdb_info and pdb_info.chain_sequence and rep_index == 0:
-            rep_index = _find_representative_index(file_path, pdb_info.chain_sequence)
+        pdb_identity = None
+        if rep_index is None and pdb_info and pdb_info.chain_sequence:
+            match = find_representative_index(file_path, pdb_info.chain_sequence)
+            if match['warning']:
+                warnings_list.append(f"{os.path.basename(fasta_file)}: {match['warning']}")
+                pdb_info = None  # skip DSSP for this group
+            else:
+                rep_index = match['index']
+                pdb_identity = match['identity']
+        if rep_index is None:
+            rep_index = 0
         rep_indices[fasta_file] = rep_index
 
         conserved_positions, seq_length = analyze_alignment(
@@ -142,6 +198,8 @@ def build_result(session) -> AnalysisResult:
         # Run DSSP if PDB provided
         if pdb_info:
             info['representative'] = rep_seq_record.id
+            if pdb_identity is not None:
+                info['pdb_identity'] = f'{pdb_identity * 100:.1f}%'
             pdb_path = os.path.join(session.temp_dir, 'pdb', pdb_info.filename)
             chain_id = pdb_info.chain_id
             if os.path.exists(pdb_path):
@@ -201,7 +259,7 @@ def build_result(session) -> AnalysisResult:
     svg_content = generate_svg(alignments, cross_conservation=cross_positions)
 
     # Collect warnings
-    warnings = [a['ss_warning'] for a in alignments if a.get('ss_warning')]
+    warnings = warnings_list + [a['ss_warning'] for a in alignments if a.get('ss_warning')]
 
     return AnalysisResult(
         session_id=session.id,

@@ -37,7 +37,7 @@ class GroupConfig:
     filename: str
     threshold: float = 95.0
     pdb: PdbInfo | None = None
-    representative_index: int = 0
+    representative_index: int | None = None
     num_sequences: int = 0
     alignment_length: int = 0
 

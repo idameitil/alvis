@@ -77,7 +77,7 @@ async function ensureSession() {
 function addGroup() {
     localGroups.push({
         id: nextGroupId++,
-        name: 'Group ' + localGroups.length,
+        name: 'Group ' + (localGroups.length + 1),
         threshold: 95,
         serverFilename: null,
         loading: false,
@@ -289,9 +289,13 @@ async function fetchAllSequenceLists() {
 // Representative & PDB actions
 // ---------------------------------------------------------------------------
 
-function updateRepresentative(serverFilename, index) {
+function updateRepresentative(serverFilename, index, isManual) {
     if (!session || !session.groups[serverFilename]) return;
     session.groups[serverFilename].representative_index = parseInt(index);
+    if (isManual) {
+        const group = localGroups.find(g => g.serverFilename === serverFilename);
+        if (group) group.manualRep = true;
+    }
     api('PATCH', `/session/${session.id}`, {
         representative_indices: { [serverFilename]: parseInt(index) }
     }).catch(() => {});
@@ -309,6 +313,7 @@ async function uploadPdb(input, serverFilename) {
     try {
         const form = new FormData();
         form.append('file', file);
+        form.append('fasta_filename', serverFilename);
         const data = await api('POST', `/session/${session.id}/pdb`, form);
         handlePdbSuccess(serverFilename, data, 'Ready');
     } catch (e) {
@@ -334,7 +339,8 @@ async function fetchPdb(serverFilename) {
     try {
         const data = await api('POST', '/fetch-pdb', {
             session_id: session.id,
-            pdb_id: pdbId
+            pdb_id: pdbId,
+            fasta_filename: serverFilename
         });
         handlePdbSuccess(serverFilename, data, pdbId.toUpperCase() + ' ready');
     } catch (e) {
@@ -350,7 +356,8 @@ function handlePdbSuccess(serverFilename, data, label) {
         pdb_filename: data.pdb_filename,
         chain_id: data.chains[0].id,
         chain_sequence: data.chains[0].sequence,
-        chains: data.chains
+        chains: data.chains,
+        pdb_id_value: data.pdb_filename.replace(/\.pdb$/i, '')
     };
 
     const chainSelect = el('chain-' + escaped);
@@ -360,15 +367,63 @@ function handlePdbSuccess(serverFilename, data, label) {
     chainSelect.style.display = 'inline-block';
 
     const statusEl = el('pdb-status-' + escaped);
-    statusEl.textContent = label;
     statusEl.className = 'pdb-item-status status-success';
+
+    if (data.pdb_match_warning) {
+        statusEl.textContent = label + ' — ' + data.pdb_match_warning;
+        statusEl.className = 'pdb-item-status status-warning';
+    } else {
+        const identityStr = data.pdb_identity ? ` (${data.pdb_identity} identity)` : '';
+        statusEl.textContent = label + identityStr;
+    }
+
+    if (data.suggested_representative != null) {
+        applySuggestedRepresentative(serverFilename, data.suggested_representative);
+    }
 }
 
-function selectChain(serverFilename, chainId) {
+function applySuggestedRepresentative(serverFilename, index) {
+    if (!session || !session.groups[serverFilename]) return;
+
+    // Don't override if the user has manually chosen a representative
+    const group = localGroups.find(g => g.serverFilename === serverFilename);
+    if (group && group.manualRep) return;
+
+    session.groups[serverFilename].representative_index = index;
+    updateRepresentative(serverFilename, index);
+
+    if (group) updateCardDynamicParts(group);
+}
+
+async function selectChain(serverFilename, chainId) {
     if (!pdbData[serverFilename]) return;
     pdbData[serverFilename].chain_id = chainId;
     const chain = pdbData[serverFilename].chains.find(c => c.id === chainId);
-    if (chain) pdbData[serverFilename].chain_sequence = chain.sequence;
+    if (chain) {
+        pdbData[serverFilename].chain_sequence = chain.sequence;
+        // Re-query suggested representative for the new chain
+        if (session) {
+            try {
+                const data = await api('GET',
+                    `/session/${session.id}/fasta/${encodeURIComponent(serverFilename)}/sequences` +
+                    `?chain_sequence=${encodeURIComponent(chain.sequence)}`
+                );
+                const escaped = CSS.escape(serverFilename);
+                const statusEl = el('pdb-status-' + escaped);
+                if (data.pdb_match_warning) {
+                    statusEl.textContent = data.pdb_match_warning;
+                    statusEl.className = 'pdb-item-status status-warning';
+                } else if (data.pdb_identity) {
+                    statusEl.textContent = statusEl.textContent.replace(/ \([\d.]+% identity\)$/, '')
+                        + ` (${data.pdb_identity} identity)`;
+                    statusEl.className = 'pdb-item-status status-success';
+                }
+                if (data.suggested_representative != null) {
+                    applySuggestedRepresentative(serverFilename, data.suggested_representative);
+                }
+            } catch (_) { /* non-fatal */ }
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -473,17 +528,19 @@ function showResult(svgContent, alignmentInfo) {
             const pdb = info.pdb_mapped
                 ? escapeHtml(info.pdb_mapped) + ' (' + escapeHtml(info.pdb_coverage) + ')'
                 : '\u2014';
+            const identity = info.pdb_identity ? escapeHtml(info.pdb_identity) : '\u2014';
             return `<tr>
                 <td>${escapeHtml(info.name)}</td>
                 <td>${info.num_sequences}</td>
                 <td>${rep}</td>
+                <td>${identity}</td>
                 <td>${pdb}</td>
             </tr>`;
         }).join('');
 
         contentEl.innerHTML =
             '<table class="analysis-table"><thead><tr>' +
-            '<th>Alignment</th><th>Sequences</th><th>Representative</th><th>PDB coverage</th>' +
+            '<th>Alignment</th><th>Sequences</th><th>Representative</th><th>PDB identity</th><th>PDB coverage</th>' +
             '</tr></thead><tbody>' + rows + '</tbody></table>';
         detailsEl.style.display = 'block';
     } else {
@@ -607,7 +664,7 @@ function updateCardDynamicParts(group) {
 
 function buildRepHtml(group, serverGroup, seqs) {
     if (seqs.length > 0) {
-        const repIndex = serverGroup ? (serverGroup.representative_index || 0) : 0;
+        const repIndex = serverGroup && serverGroup.representative_index != null ? serverGroup.representative_index : 0;
         const repOptions = seqs.map(s =>
             `<option value="${s.index}" ${s.index === repIndex ? 'selected' : ''}>` +
             `${escapeHtml(s.id)} (${s.length} aa)</option>`
@@ -615,7 +672,7 @@ function buildRepHtml(group, serverGroup, seqs) {
         return `
             <div class="card-row">
                 <label>Representative</label>
-                <select class="rep-select" onchange="updateRepresentative('${escapeAttr(group.serverFilename)}', this.value)">
+                <select class="rep-select" onchange="updateRepresentative('${escapeAttr(group.serverFilename)}', this.value, true)">
                     ${repOptions}
                 </select>
             </div>`;
@@ -656,7 +713,8 @@ function buildPdbHtml(group, hasData) {
                            onchange="uploadPdb(this, '${escapeAttr(group.serverFilename)}')">
                     <span class="pdb-or-divider">or</span>
                     <input type="text" class="pdb-id-input" maxlength="4"
-                           placeholder="PDB ID" id="pdb-id-${escaped}">
+                           placeholder="PDB ID" id="pdb-id-${escaped}"
+                           value="${pdb && pdb.pdb_id_value ? escapeAttr(pdb.pdb_id_value) : ''}">
                     <button type="button" class="pdb-fetch-btn"
                             onclick="fetchPdb('${escapeAttr(group.serverFilename)}')">Fetch</button>
                     ${chainHtml}
@@ -705,22 +763,26 @@ function buildGroupCardHtml(group) {
             </div>
         </div>
         <div class="card-body">
-            <div class="card-fasta-input">
-                <label class="fasta-input-label">Paste the alignment FASTA</label>
-                <textarea class="fasta-textarea" rows="4"
-                          placeholder=">seq1&#10;MVLSPADKTN...&#10;>seq2&#10;MVLSGEDKSN..."
-                          onblur="handleTextareaBlur(${group.id})"></textarea>
-                <div class="fasta-input-actions">
-                    <span class="fasta-or">or upload FASTA file</span>
-                    <input type="file" id="${fileInputId}" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"
-                           onchange="handleCardFastaUpload(this, ${group.id})">
-                </div>
-                <div class="card-loading-overlay" style="display:${group.loading ? 'flex' : 'none'}">
-                    <div class="spinner small-spinner"></div> Loading...
+            <div class="card-col card-col-left">
+                <div class="card-fasta-input">
+                    <label class="fasta-input-label">Paste the alignment FASTA</label>
+                    <textarea class="fasta-textarea" rows="5"
+                              placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
+                              onblur="handleTextareaBlur(${group.id})"></textarea>
+                    <div class="fasta-input-actions">
+                        <span class="fasta-or">or upload FASTA file</span>
+                        <input type="file" id="${fileInputId}" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"
+                               onchange="handleCardFastaUpload(this, ${group.id})">
+                    </div>
+                    <div class="card-loading-overlay" style="display:${group.loading ? 'flex' : 'none'}">
+                        <div class="spinner small-spinner"></div> Loading...
+                    </div>
                 </div>
             </div>
-            <div class="rep-container">${buildRepHtml(group, serverGroup, seqs)}</div>
-            <div class="pdb-container">${buildPdbHtml(group, hasData)}</div>
+            <div class="card-col card-col-right">
+                <div class="rep-container">${buildRepHtml(group, serverGroup, seqs)}</div>
+                <div class="pdb-container">${buildPdbHtml(group, hasData)}</div>
+            </div>
         </div>
     </div>`;
 }

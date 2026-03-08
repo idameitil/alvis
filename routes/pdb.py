@@ -51,7 +51,23 @@ def fetch_pdb():
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
 
-    return jsonify({
+    result = {
         'pdb_filename': pdb_filename,
         'chains': [c.to_dict() for c in chains],
-    })
+    }
+
+    fasta_filename = data.get('fasta_filename')
+    if fasta_filename and fasta_filename in session.groups and chains:
+        try:
+            match = session.suggest_representative(
+                fasta_filename, chains[0].sequence
+            )
+            result['suggested_representative'] = match['index']
+            if match['warning']:
+                result['pdb_match_warning'] = match['warning']
+            elif match['identity'] is not None:
+                result['pdb_identity'] = f"{match['identity'] * 100:.1f}%"
+        except Exception:
+            pass
+
+    return jsonify(result)

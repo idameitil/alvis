@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>alvis</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <nav class="topbar">
         <a href="#" class="topbar-title" onclick="resetApp(); return false;">alvis</a>
-        <a href="/about" class="topbar-help">?</a>
+        <a href="/about" class="topbar-help">Help</a>
     </nav>
 
     <div class="container">
@@ -24,13 +25,16 @@
                 <span class="groups-or">&middot;</span>
                 <a href="#" class="link-action" onclick="loadExample(); return false;">try example data</a>
             </div>
-            <button type="button" class="add-group-btn" onclick="addGroup()">+ Add group</button>
         </div>
 
         <div id="upload-status"></div>
 
         <!-- Group cards (rendered dynamically) -->
         <div id="groups-container"></div>
+
+        <div class="add-group-row">
+            <button type="button" class="add-group-btn" onclick="addGroup()">+ Add group</button>
+        </div>
 
         <!-- Cross-alignment card (rendered dynamically) -->
         <div id="cross-container"></div>

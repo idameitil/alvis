@@ -11,6 +11,8 @@ from Bio.PDB import PDBParser
 from Bio import SeqUtils
 
 from models.types import ChainInfo, PdbInfo, GroupConfig
+from models.analysis import find_representative_index
+from models.analysis import find_representative_index
 
 FASTA_EXTENSIONS = ('.fasta', '.fa', '.faa', '.fas')
 FASTA_ENCODINGS = ('utf-8', 'latin-1', 'cp1252', 'iso-8859-1')
@@ -206,6 +208,16 @@ class Session:
             }
             for i, seq in enumerate(seqs)
         ]
+
+    def suggest_representative(self, fasta_filename, chain_sequence):
+        """Find the FASTA sequence that best matches a PDB chain sequence.
+
+        Returns the full match dict from find_representative_index.
+        """
+        path = _safe_path(self.temp_dir, fasta_filename)
+        if not os.path.exists(path):
+            raise FileNotFoundError(f'FASTA file not found: {fasta_filename}')
+        return find_representative_index(path, chain_sequence)
 
     def add_pdb(self, filename, file_storage) -> list[ChainInfo]:
         """Save a PDB file and return its parsed chains."""
