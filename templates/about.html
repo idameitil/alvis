@@ -20,7 +20,7 @@
             Alvis is a tool for visualizing amino acid conservation across
             multiple sequence alignments of protein families. It takes aligned
             FASTA sequences, identifies conserved positions above a configurable
-            threshold, and produces a publication-ready SVG diagram.
+            threshold, and produces an SVG diagram.
         </p>
 
         <h2>How to use it</h2>
@@ -61,84 +61,8 @@
             <li>
                 <strong>Generate.</strong>
                 Click "Generate SVG" to run the analysis and view the result.
-                Download the SVG for use in papers, presentations, or further
-                editing in vector graphics software.
             </li>
         </ol>
-
-        <h2>Biological significance</h2>
-
-        <p>
-            Sequence conservation is one of the most informative signals in
-            molecular biology. When a residue is maintained across many species
-            or family members despite millions of years of evolutionary
-            divergence, it is almost always functionally or structurally
-            important. Conservation analysis helps answer questions like:
-        </p>
-
-        <ul>
-            <li>
-                <strong>Which residues are critical?</strong>
-                Highly conserved positions often form the active site, binding
-                pocket, or structural core of a protein. Mutations at these
-                sites are more likely to be deleterious, making them prime
-                targets for mutagenesis studies.
-            </li>
-            <li>
-                <strong>What do protein families share?</strong>
-                Cross-conservation across different families reveals residues
-                that are essential not just within one group but across an
-                entire superfamily &mdash; pointing to deeply conserved
-                functional mechanisms.
-            </li>
-            <li>
-                <strong>Where is the protein tolerant to change?</strong>
-                Variable regions are often surface-exposed loops that can
-                accommodate insertions, deletions, or substitutions. These are
-                safer targets for engineering, tagging, or domain swapping.
-            </li>
-            <li>
-                <strong>How does structure relate to conservation?</strong>
-                Overlaying secondary structure (from DSSP) with conservation
-                patterns reveals whether conserved residues cluster in helices
-                vs. sheets vs. loops, giving insight into fold stability and
-                functional architecture.
-            </li>
-        </ul>
-
-        <h2>Applications</h2>
-
-        <ul>
-            <li>
-                <strong>Rational protein engineering.</strong>
-                Use conservation maps to decide where to mutate: conserved
-                positions to disrupt function, variable positions for safe
-                modification.
-            </li>
-            <li>
-                <strong>Drug target identification.</strong>
-                Conserved active-site residues across pathogen protein families
-                make attractive drug targets &mdash; less likely to develop
-                resistance mutations.
-            </li>
-            <li>
-                <strong>Variant interpretation.</strong>
-                Clinical and population genetics variants at highly conserved
-                positions are more likely to be pathogenic. Alvis diagrams
-                provide visual context for variant assessment.
-            </li>
-            <li>
-                <strong>Evolutionary analysis.</strong>
-                Compare conservation patterns across paralogous families (e.g.
-                globins: hemoglobins vs. myoglobins vs. neuroglobins) to trace
-                functional divergence after gene duplication.
-            </li>
-            <li>
-                <strong>Publication figures.</strong>
-                The SVG output is resolution-independent and editable, suitable
-                for journal figures that summarize alignment data compactly.
-            </li>
-        </ul>
 
         <h2>Methodology</h2>
 
@@ -149,8 +73,7 @@
             count against conservation &mdash; a column where half the sequences
             have gaps needs the remaining residues to compensate. Conserved
             positions are reported as ungapped coordinates in the representative
-            sequence (1-indexed), making them directly comparable to
-            experimental numbering when a PDB structure is mapped.
+            sequence (1-indexed).
         </p>
         <p>
             Secondary structure assignment uses DSSP (Dictionary of Secondary
