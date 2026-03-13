@@ -13,7 +13,7 @@ A web platform for visualizing conserved residues in protein sequence alignments
   - Smart label positioning to avoid overlap
   - Sequence position markers
   - File names for each alignment
-- Download publication-ready SVG figures
+- Download SVG figures
 
 ## Installation
 
