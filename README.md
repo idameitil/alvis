@@ -2,6 +2,8 @@
 
 A web platform for visualizing conserved residues in protein sequence alignments.
 
+![Example conservation visualization](example_figure.svg)
+
 ## Features
 
 - Upload ZIP files containing multiple FASTA alignment files
