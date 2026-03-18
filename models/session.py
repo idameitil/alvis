@@ -7,7 +7,7 @@ import time
 from dataclasses import dataclass, field
 
 from Bio import SeqIO
-from Bio.PDB import PDBParser
+from Bio.PDB import PDBParser, MMCIFParser
 from Bio import SeqUtils
 
 from models.types import ChainInfo, PdbInfo, GroupConfig
@@ -27,9 +27,16 @@ def _safe_path(base_dir: str, filename: str) -> str:
     return joined
 
 
+def _structure_parser(pdb_path):
+    """Return the appropriate BioPython parser for PDB or mmCIF files."""
+    if pdb_path.lower().endswith('.cif'):
+        return MMCIFParser(QUIET=True)
+    return PDBParser(QUIET=True)
+
+
 def parse_pdb_chains(pdb_path):
-    """Parse a PDB file and return list of ChainInfo."""
-    parser = PDBParser(QUIET=True)
+    """Parse a PDB/mmCIF file and return list of ChainInfo."""
+    parser = _structure_parser(pdb_path)
     structure = parser.get_structure("protein", pdb_path)
     model = structure[0]
     chains = []
@@ -274,8 +281,14 @@ class Session:
         return self
 
     def update_config(self, thresholds=None, chain_assignments=None,
-                      cross_threshold=None, representative_indices=None) -> 'Session':
+                      cross_threshold=None, representative_indices=None,
+                      display_names=None) -> 'Session':
         """Update session configuration."""
+        if display_names:
+            for filename, name in display_names.items():
+                if filename in self.groups:
+                    self.groups[filename].display_name = name
+
         if thresholds:
             for filename, threshold in thresholds.items():
                 if filename in self.groups:

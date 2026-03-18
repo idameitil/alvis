@@ -9,7 +9,7 @@ Pipeline:
 """
 import os
 
-from Bio.PDB import PDBParser
+from Bio.PDB import PDBParser, MMCIFParser
 from Bio.PDB.DSSP import DSSP
 from Bio.Align import PairwiseAligner
 
@@ -43,7 +43,10 @@ def run_dssp(pdb_path, chain_id=None):
     if not os.path.exists(pdb_path):
         raise FileNotFoundError(f"PDB file not found: {pdb_path}")
 
-    parser = PDBParser(QUIET=True)
+    if pdb_path.lower().endswith('.cif'):
+        parser = MMCIFParser(QUIET=True)
+    else:
+        parser = PDBParser(QUIET=True)
     model = parser.get_structure("protein", pdb_path)[0]
 
     available_chains = [c.id for c in model.get_chains()]

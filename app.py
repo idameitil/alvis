@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory
+import session_store
 
 
 def create_app():
@@ -24,6 +25,8 @@ def create_app():
 
     from routes import register_blueprints
     register_blueprints(app)
+
+    session_store.start_cleanup_thread()
 
     return app
 

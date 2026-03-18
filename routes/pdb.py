@@ -65,8 +65,13 @@ def fetch_pdb():
             result['suggested_representative'] = match['index']
             if match['warning']:
                 result['pdb_match_warning'] = match['warning']
-            elif match['identity'] is not None:
+            if match['identity'] is not None and match['identity'] > 0:
                 result['pdb_identity'] = f"{match['identity'] * 100:.1f}%"
+                if match['index'] is not None and match['identity'] < 1.0:
+                    result['pdb_match_warning'] = (
+                        f"Matched with {match['identity'] * 100:.1f}% identity "
+                        f"over {match['aligned_length']} positions (not a perfect match)."
+                    )
         except Exception:
             pass
 

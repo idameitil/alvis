@@ -7,10 +7,14 @@ import time
 import os
 import shutil
 import threading
+import logging
+
+logger = logging.getLogger(__name__)
 
 _sessions = {}  # {token: Session}
 _lock = threading.Lock()
-MAX_AGE = 3600  # 1 hour
+MAX_AGE = 259200  # 3 days
+CLEANUP_INTERVAL = 3600  # run cleanup every hour
 
 
 def create(session):
@@ -56,3 +60,20 @@ def cleanup_expired():
                    if now - s.created_at > MAX_AGE]
     for token in expired:
         remove(token)
+
+
+def _cleanup_loop():
+    """Background loop that periodically removes expired sessions."""
+    while True:
+        time.sleep(CLEANUP_INTERVAL)
+        try:
+            cleanup_expired()
+            logger.info("Session cleanup completed")
+        except Exception:
+            logger.exception("Error during session cleanup")
+
+
+def start_cleanup_thread():
+    """Start the background cleanup daemon thread. Call once at app startup."""
+    t = threading.Thread(target=_cleanup_loop, daemon=True)
+    t.start()

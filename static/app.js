@@ -12,6 +12,9 @@ let nextGroupId = 1;
 // Local group cards: { id, name, threshold, serverFilename, loading }
 let localGroups = [];
 
+// Local cross-alignment card (null when not added)
+let localCross = null;
+
 // ---------------------------------------------------------------------------
 // Utilities
 // ---------------------------------------------------------------------------
@@ -98,9 +101,119 @@ function removeGroup(groupId) {
     render();
 }
 
+function addCross() {
+    if (localCross) return; // only one cross-alignment allowed
+    localCross = {
+        id: nextGroupId++,
+        name: 'Cross-alignment',
+        threshold: session ? session.cross_threshold : 95,
+        serverFilename: null,
+        loading: false,
+    };
+    render();
+}
+
+function removeCross() {
+    if (localCross && localCross.serverFilename && session) {
+        api('DELETE', `/session/${session.id}/fasta/${encodeURIComponent(localCross.serverFilename)}`).then(data => {
+            session = data;
+        }).catch(() => {});
+    }
+    localCross = null;
+    render();
+}
+
+function updateCrossName(name) {
+    if (localCross) localCross.name = name;
+}
+
+function updateCrossThreshold(value) {
+    if (!localCross) return;
+    localCross.threshold = parseFloat(value);
+    if (session) {
+        clearTimeout(updateCrossThreshold._timer);
+        updateCrossThreshold._timer = setTimeout(() => {
+            api('PATCH', `/session/${session.id}`, {
+                cross_threshold: parseFloat(value)
+            }).catch(() => {});
+        }, 500);
+    }
+}
+
+function handleCrossTextareaBlur() {
+    if (!localCross) return;
+    const textarea = document.querySelector('.cross-card .fasta-textarea');
+    const content = textarea ? textarea.value.trim() : '';
+    if (!content) return;
+    if (localCross._lastSubmittedContent === content) return;
+    localCross._lastSubmittedContent = content;
+
+    let name = localCross.name.trim();
+    if (!/\.(fasta|fa|faa|fas)$/i.test(name)) name += '.fasta';
+
+    replaceCrossFasta(async () => {
+        session = await api('POST', `/session/${session.id}/fasta`, {
+            name, content, role: 'cross'
+        });
+        return name;
+    });
+}
+
+function handleCrossFastaUpload(input) {
+    const file = input.files[0];
+    if (!file || !localCross) return;
+
+    const baseName = file.name.replace(/\.(fasta|fa|faa|fas)$/i, '');
+    localCross.name = baseName;
+    localCross._lastSubmittedContent = null;
+
+    const textarea = document.querySelector('.cross-card .fasta-textarea');
+    if (textarea) textarea.value = '';
+
+    replaceCrossFasta(async () => {
+        const form = new FormData();
+        form.append('file', file);
+        form.append('role', 'cross');
+        session = await api('POST', `/session/${session.id}/fasta`, form);
+        return file.name;
+    });
+}
+
+async function replaceCrossFasta(submitFn) {
+    if (!localCross || localCross.loading) return;
+    localCross.loading = true;
+    renderCross();
+
+    try {
+        await ensureSession();
+
+        if (localCross.serverFilename) {
+            try {
+                session = await api('DELETE', `/session/${session.id}/fasta/${encodeURIComponent(localCross.serverFilename)}`);
+            } catch (e) { /* ignore */ }
+            localCross.serverFilename = null;
+        }
+
+        const newFilename = await submitFn();
+        localCross.serverFilename = newFilename;
+        if (session) session.cross_threshold = localCross.threshold;
+    } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+    }
+
+    localCross.loading = false;
+    renderCross();
+    updateGenerateButton();
+}
+
 function updateGroupName(groupId, name) {
     const group = localGroups.find(g => g.id === groupId);
     if (group) group.name = name;
+    if (group && group.serverFilename && session) {
+        api('PATCH', `/session/${session.id}`, {
+            display_names: { [group.serverFilename]: name }
+        });
+    }
 }
 
 function updateGroupThreshold(groupId, value) {
@@ -217,6 +330,7 @@ async function handleZipUpload(input) {
         setStatus('');
 
         localGroups = [];
+        localCross = null;
         for (const [filename, groupConfig] of Object.entries(session.groups)) {
             localGroups.push({
                 id: nextGroupId++,
@@ -248,6 +362,7 @@ async function loadExample() {
         setStatus('');
 
         localGroups = [];
+        localCross = null;
         for (const [filename, groupConfig] of Object.entries(session.groups)) {
             localGroups.push({
                 id: nextGroupId++,
@@ -315,7 +430,7 @@ async function uploadPdb(input, serverFilename) {
         form.append('file', file);
         form.append('fasta_filename', serverFilename);
         const data = await api('POST', `/session/${session.id}/pdb`, form);
-        handlePdbSuccess(serverFilename, data, 'Ready');
+        handlePdbSuccess(serverFilename, data, 'Loaded');
     } catch (e) {
         statusEl.textContent = e.message || 'Upload failed';
         statusEl.className = 'pdb-item-status status-error';
@@ -342,7 +457,7 @@ async function fetchPdb(serverFilename) {
             pdb_id: pdbId,
             fasta_filename: serverFilename
         });
-        handlePdbSuccess(serverFilename, data, pdbId.toUpperCase() + ' ready');
+        handlePdbSuccess(serverFilename, data, pdbId.toUpperCase() + ' loaded');
     } catch (e) {
         statusEl.textContent = e.message || 'Fetch failed';
         statusEl.className = 'pdb-item-status status-error';
@@ -357,7 +472,7 @@ function handlePdbSuccess(serverFilename, data, label) {
         chain_id: data.chains[0].id,
         chain_sequence: data.chains[0].sequence,
         chains: data.chains,
-        pdb_id_value: data.pdb_filename.replace(/\.pdb$/i, '')
+        pdb_id_value: data.pdb_filename.replace(/\.(pdb|cif)$/i, '')
     };
 
     const chainSelect = el('chain-' + escaped);
@@ -369,12 +484,21 @@ function handlePdbSuccess(serverFilename, data, label) {
     const statusEl = el('pdb-status-' + escaped);
     statusEl.className = 'pdb-item-status status-success';
 
-    if (data.pdb_match_warning) {
-        statusEl.textContent = label + ' — ' + data.pdb_match_warning;
+    if (data.pdb_match_warning && data.suggested_representative == null) {
+        // No match found — PDB chain doesn't match any FASTA sequence
+        statusEl.innerHTML = 'PDB sequence not found in alignment '
+            + `<span class="pdb-help-icon" title="${escapeAttr(data.pdb_match_warning)}">?</span>`;
+        statusEl.className = 'pdb-item-status status-error';
+    } else if (data.pdb_match_warning) {
+        // Partial match — above thresholds but not perfect
+        const identityStr = data.pdb_identity ? ` (${data.pdb_identity} identity)` : '';
+        statusEl.textContent = '\u26a0 ' + label + identityStr;
+        statusEl.title = data.pdb_match_warning;
         statusEl.className = 'pdb-item-status status-warning';
     } else {
         const identityStr = data.pdb_identity ? ` (${data.pdb_identity} identity)` : '';
         statusEl.textContent = label + identityStr;
+        statusEl.title = '';
     }
 
     if (data.suggested_representative != null) {
@@ -410,12 +534,20 @@ async function selectChain(serverFilename, chainId) {
                 );
                 const escaped = CSS.escape(serverFilename);
                 const statusEl = el('pdb-status-' + escaped);
-                if (data.pdb_match_warning) {
-                    statusEl.textContent = data.pdb_match_warning;
+                if (data.pdb_match_warning && data.suggested_representative == null) {
+                    statusEl.innerHTML = 'PDB sequence not found in alignment '
+                        + `<span class="pdb-help-icon" title="${escapeAttr(data.pdb_match_warning)}">?</span>`;
+                    statusEl.className = 'pdb-item-status status-error';
+                } else if (data.pdb_match_warning) {
+                    let base = statusEl.textContent.replace(/^\u26a0 /, '').replace(/ \([\d.]+% identity\)$/, '');
+                    statusEl.textContent = '\u26a0 ' + base
+                        + (data.pdb_identity ? ` (${data.pdb_identity} identity)` : '');
+                    statusEl.title = data.pdb_match_warning;
                     statusEl.className = 'pdb-item-status status-warning';
                 } else if (data.pdb_identity) {
-                    statusEl.textContent = statusEl.textContent.replace(/ \([\d.]+% identity\)$/, '')
-                        + ` (${data.pdb_identity} identity)`;
+                    let base = statusEl.textContent.replace(/^\u26a0 /, '').replace(/ \([\d.]+% identity\)$/, '');
+                    statusEl.textContent = base + ` (${data.pdb_identity} identity)`;
+                    statusEl.title = '';
                     statusEl.className = 'pdb-item-status status-success';
                 }
                 if (data.suggested_representative != null) {
@@ -424,31 +556,6 @@ async function selectChain(serverFilename, chainId) {
             } catch (_) { /* non-fatal */ }
         }
     }
-}
-
-// ---------------------------------------------------------------------------
-// Cross-alignment
-// ---------------------------------------------------------------------------
-
-async function removeCross() {
-    if (!session || !session.all_fasta) return;
-    try {
-        session = await api('DELETE', `/session/${session.id}/fasta/${encodeURIComponent(session.all_fasta)}`);
-        render();
-    } catch (e) {
-        alert('Error: ' + e.message);
-    }
-}
-
-function updateCrossThreshold(value) {
-    if (!session) return;
-    session.cross_threshold = parseFloat(value);
-    clearTimeout(updateCrossThreshold._timer);
-    updateCrossThreshold._timer = setTimeout(() => {
-        api('PATCH', `/session/${session.id}`, {
-            cross_threshold: parseFloat(value)
-        }).catch(() => {});
-    }, 500);
 }
 
 // ---------------------------------------------------------------------------
@@ -489,8 +596,8 @@ async function generate() {
             chain_assignments: chainAssignments,
             representative_indices: repIndices,
         };
-        if (session.all_fasta) {
-            patchBody.cross_threshold = session.cross_threshold;
+        if (session.all_fasta && localCross) {
+            patchBody.cross_threshold = localCross.threshold;
         }
 
         await api('PATCH', `/session/${session.id}`, patchBody);
@@ -578,6 +685,7 @@ function resetApp() {
     generating = false;
     nextGroupId = 1;
     localGroups = [];
+    localCross = null;
     setStatus('');
     el('svg-container').innerHTML = '';
     el('analysis-details').style.display = 'none';
@@ -702,14 +810,14 @@ function buildPdbHtml(group, hasData) {
             chainHtml = `<select class="chain-select" id="chain-${escaped}" style="display:none"></select>`;
         }
         const pdbStatus = pdb
-            ? `<span class="pdb-item-status status-success" id="pdb-status-${escaped}">Ready</span>`
+            ? `<span class="pdb-item-status status-success" id="pdb-status-${escaped}">Loaded</span>`
             : `<span class="pdb-item-status" id="pdb-status-${escaped}"></span>`;
 
         return `
             <div class="card-row">
-                <label>PDB structure</label>
+                <label>PDB structure (optional)</label>
                 <div class="pdb-controls">
-                    <input type="file" accept=".pdb"
+                    <input type="file" accept=".pdb,.cif"
                            onchange="uploadPdb(this, '${escapeAttr(group.serverFilename)}')">
                     <span class="pdb-or-divider">or</span>
                     <input type="text" class="pdb-id-input" maxlength="4"
@@ -726,7 +834,7 @@ function buildPdbHtml(group, hasData) {
         <div class="card-row">
             <label>PDB structure (optional)</label>
             <div class="pdb-controls disabled">
-                <input type="file" accept=".pdb" disabled>
+                <input type="file" accept=".pdb,.cif" disabled>
                 <span class="pdb-or-divider">or</span>
                 <input type="text" class="pdb-id-input" maxlength="4" placeholder="PDB ID" disabled>
                 <button type="button" class="pdb-fetch-btn" disabled>Fetch</button>
@@ -790,28 +898,68 @@ function buildGroupCardHtml(group) {
 function renderCross() {
     const container = el('cross-container');
 
-    if (!session || !session.all_fasta) {
+    // If there's a server-side cross but no local card, create one
+    if (session && session.all_fasta && !localCross) {
+        localCross = {
+            id: nextGroupId++,
+            name: session.all_fasta.replace(/\.(fasta|fa|faa|fas)$/i, ''),
+            threshold: session.cross_threshold,
+            serverFilename: session.all_fasta,
+            loading: false,
+        };
+    }
+
+    if (!localCross) {
         container.innerHTML = '';
+        updateCrossButton();
         return;
     }
 
-    const basename = session.all_fasta.split('/').pop();
+    const hasData = !!localCross.serverFilename;
+
     container.innerHTML = `
-    <div class="group-card cross-card">
+    <div class="group-card cross-card ${hasData ? 'has-data' : ''}" data-cross-id="${localCross.id}">
         <div class="card-header">
-            <span class="card-name-display">${escapeHtml(basename)}</span>
+            <input type="text" class="card-name-input" value="${escapeHtml(localCross.name)}"
+                   onchange="updateCrossName(this.value)"
+                   placeholder="Cross-alignment name">
             <span class="card-badge">cross-alignment</span>
+            <span class="card-meta"></span>
             <div class="card-header-right">
                 <div class="threshold-inline">
                     <label>Threshold</label>
-                    <input type="number" value="${session.cross_threshold}" min="0" max="100" step="1"
+                    <input type="number" value="${localCross.threshold}" min="0" max="100" step="1"
                            onchange="updateCrossThreshold(this.value)">
                     <span class="unit">%</span>
                 </div>
                 <button type="button" class="card-remove" onclick="removeCross()">&times;</button>
             </div>
         </div>
+        <div class="card-body">
+            <div class="card-col">
+                <div class="card-fasta-input">
+                    <label class="fasta-input-label">Paste the cross-alignment FASTA</label>
+                    <textarea class="fasta-textarea" rows="5"
+                              placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
+                              onblur="handleCrossTextareaBlur()"></textarea>
+                    <div class="fasta-input-actions">
+                        <span class="fasta-or">or upload FASTA file</span>
+                        <input type="file" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"
+                               onchange="handleCrossFastaUpload(this)">
+                    </div>
+                    <div class="card-loading-overlay" style="display:${localCross.loading ? 'flex' : 'none'}">
+                        <div class="spinner small-spinner"></div> Loading...
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>`;
+    updateCrossButton();
+}
+
+function updateCrossButton() {
+    const btn = document.querySelector('.add-cross-btn');
+    if (btn) btn.disabled = !!localCross;
 }
 
 // ---------------------------------------------------------------------------

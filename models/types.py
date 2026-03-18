@@ -40,6 +40,7 @@ class GroupConfig:
     representative_index: int | None = None
     num_sequences: int = 0
     alignment_length: int = 0
+    display_name: str | None = None
 
     def to_dict(self):
         return {
@@ -49,4 +50,5 @@ class GroupConfig:
             'representative_index': self.representative_index,
             'num_sequences': self.num_sequences,
             'alignment_length': self.alignment_length,
+            'display_name': self.display_name,
         }

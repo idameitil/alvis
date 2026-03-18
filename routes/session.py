@@ -114,8 +114,13 @@ def list_sequences(session_id, name):
             result['suggested_representative'] = match['index']
             if match['warning']:
                 result['pdb_match_warning'] = match['warning']
-            elif match['identity'] is not None:
+            if match['identity'] is not None and match['identity'] > 0:
                 result['pdb_identity'] = f"{match['identity'] * 100:.1f}%"
+                if match['index'] is not None and match['identity'] < 1.0:
+                    result['pdb_match_warning'] = (
+                        f"Matched with {match['identity'] * 100:.1f}% identity "
+                        f"over {match['aligned_length']} positions (not a perfect match)."
+                    )
         except Exception:
             pass
 
@@ -133,8 +138,8 @@ def add_pdb(session_id):
         return jsonify({'error': 'No file uploaded'}), 400
 
     file = request.files['file']
-    if not file.filename.endswith('.pdb'):
-        return jsonify({'error': 'File must be a PDB file (.pdb)'}), 400
+    if not (file.filename.endswith('.pdb') or file.filename.endswith('.cif')):
+        return jsonify({'error': 'File must be a PDB (.pdb) or mmCIF (.cif) file'}), 400
 
     try:
         chains = session.add_pdb(file.filename, file)
@@ -155,8 +160,13 @@ def add_pdb(session_id):
             result['suggested_representative'] = match['index']
             if match['warning']:
                 result['pdb_match_warning'] = match['warning']
-            elif match['identity'] is not None:
+            if match['identity'] is not None and match['identity'] > 0:
                 result['pdb_identity'] = f"{match['identity'] * 100:.1f}%"
+                if match['index'] is not None and match['identity'] < 1.0:
+                    result['pdb_match_warning'] = (
+                        f"Matched with {match['identity'] * 100:.1f}% identity "
+                        f"over {match['aligned_length']} positions (not a perfect match)."
+                    )
         except Exception:
             pass
 
@@ -187,6 +197,7 @@ def update_session(session_id):
         chain_assignments=data.get('chain_assignments'),
         cross_threshold=data.get('cross_threshold'),
         representative_indices=data.get('representative_indices'),
+        display_names=data.get('display_names'),
     )
     return jsonify(session.to_dict())
 

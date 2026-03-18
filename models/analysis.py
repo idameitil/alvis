@@ -168,6 +168,13 @@ def build_result(session) -> AnalysisResult:
             else:
                 rep_index = match['index']
                 pdb_identity = match['identity']
+                if pdb_identity < 1.0:
+                    pct = pdb_identity * 100
+                    warnings_list.append(
+                        f"{os.path.basename(fasta_file)}: PDB chain matched sequence "
+                        f"#{rep_index + 1} with {pct:.1f}% identity over "
+                        f"{match['aligned_length']} positions (not a perfect match)."
+                    )
         if rep_index is None:
             rep_index = 0
         rep_indices[fasta_file] = rep_index
@@ -183,7 +190,7 @@ def build_result(session) -> AnalysisResult:
         rep_seq_record = seqs[rep_index] if rep_index < len(seqs) else seqs[0]
 
         alignment_data = {
-            'name': os.path.basename(fasta_file),
+            'name': group.display_name or os.path.basename(fasta_file),
             'conserved': conserved_positions,
             'length': seq_length,
             'threshold': threshold,
@@ -191,7 +198,7 @@ def build_result(session) -> AnalysisResult:
         }
 
         info = {
-            'name': os.path.basename(fasta_file),
+            'name': group.display_name or os.path.basename(fasta_file),
             'num_sequences': num_sequences,
         }
 
