@@ -340,7 +340,7 @@ def generate_svg(alignments, cross_conservation=None):
             # Position number on top
             dwg.add(dwg.text(
                 str(position),
-                insert=(x_pos, y_pos - 8),
+                insert=(x_pos, y_pos - 10),
                 text_anchor='middle',
                 font_size='8px',
                 fill=color

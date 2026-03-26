@@ -359,21 +359,64 @@ async function loadExample() {
         const form = new FormData();
         form.append('file', file);
         session = await api('POST', `/session/${session.id}/fasta`, form);
-        setStatus('');
+
+        const exampleDisplayNames = {
+            'HBA.fasta': 'Hemoglobin \u03b1',
+            'HBB.fasta': 'Hemoglobin \u03b2',
+            'MB.fasta':  'Myoglobin',
+        };
 
         localGroups = [];
         localCross = null;
         for (const [filename, groupConfig] of Object.entries(session.groups)) {
             localGroups.push({
                 id: nextGroupId++,
-                name: filename.replace(/\.(fasta|fa|faa|fas)$/i, ''),
+                name: exampleDisplayNames[filename] || filename.replace(/\.(fasta|fa|faa|fas)$/i, ''),
                 threshold: groupConfig.threshold,
                 serverFilename: filename,
                 loading: false,
             });
         }
 
+        // Send display names to backend so the SVG uses them
+        session = await api('PATCH', `/session/${session.id}`, {
+            display_names: exampleDisplayNames,
+        });
+
+        // Load PDB structures for the example alignments
+        setStatus('Loading PDB structures...', 'info');
+        const examplePdbConfig = [
+            { fasta: 'HBA.fasta', pdb_id: '1A3N', chain: 'A' },
+            { fasta: 'HBB.fasta', pdb_id: '1A3N', chain: 'B' },
+            { fasta: 'MB.fasta',  pdb_id: '1A6M', chain: 'A' },
+        ];
+        const fetchedPdbs = {};
+        for (const cfg of examplePdbConfig) {
+            if (!session.groups[cfg.fasta]) continue;
+            if (!fetchedPdbs[cfg.pdb_id]) {
+                try {
+                    fetchedPdbs[cfg.pdb_id] = await api('POST', '/fetch-pdb', {
+                        session_id: session.id,
+                        pdb_id: cfg.pdb_id,
+                    });
+                } catch (e) {
+                    console.warn('Could not fetch PDB', cfg.pdb_id, e);
+                }
+            }
+            const pdbResp = fetchedPdbs[cfg.pdb_id];
+            if (!pdbResp) continue;
+            const chain = pdbResp.chains.find(c => c.id === cfg.chain) || pdbResp.chains[0];
+            pdbData[cfg.fasta] = {
+                pdb_filename: pdbResp.pdb_filename,
+                chain_id: chain.id,
+                chain_sequence: chain.sequence,
+                chains: pdbResp.chains,
+                pdb_id_value: pdbResp.pdb_filename.replace(/\.(pdb|cif)$/i, ''),
+            };
+        }
+
         await fetchAllSequenceLists();
+        setStatus('');
         render();
     } catch (e) {
         setStatus('Error: ' + e.message, 'error');

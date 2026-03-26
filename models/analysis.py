@@ -251,8 +251,10 @@ def build_result(session) -> AnalysisResult:
                         with open(file_path, 'r') as f:
                             seqs = list(SeqIO.parse(f, 'fasta'))
                         rep_record = seqs[rep_index] if rep_index < len(seqs) else seqs[0]
+                        group = session.groups[fasta_file]
+                        group_name = group.display_name or os.path.basename(fasta_file)
                         representative_ids.append(
-                            (os.path.basename(fasta_file), rep_record.id)
+                            (group_name, rep_record.id)
                         )
 
                 if representative_ids:
