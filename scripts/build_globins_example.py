@@ -41,7 +41,13 @@ SEEDS = {
 PDBS = {
     "HBA": "1a3n",
     "HBB": "1a3n",
-    "MB":  "1a6m",
+    "MB":  "3rgk",  # human myoglobin — matches the human seed sequence
+}
+
+PDB_CHAINS = {
+    "HBA": "A",
+    "HBB": "B",
+    "MB":  "A",
 }
 
 EVALUE_THRESHOLD = 1e-5
@@ -50,9 +56,10 @@ CDHIT_IDENTITY   = 0.95   # 95% — raise to keep more diverse representatives
 CDHIT_COVERAGE   = 0.70
 LENGTH_TOLERANCE = 0.30   # ±30% of seed length
 
-OUT_DIR  = Path(__file__).parent.parent / "example_data" / "globins_example"
-ZIP_OUT  = Path(__file__).parent.parent / "example_data" / "globins_example.zip"
-WORK_DIR = Path("/tmp/globins_build")
+OUT_DIR        = Path(__file__).parent.parent / "example_data" / "globins_example"
+ZIP_OUT        = Path(__file__).parent.parent / "example_data" / "globins_example.zip"
+BLAST_HITS_DIR = Path(__file__).parent.parent / "example_data" / "blast_hits"
+WORK_DIR       = Path("/tmp/globins_build")
 
 UNIPROT_BASE = "https://rest.uniprot.org"
 RCSB_BASE    = "https://files.rcsb.org/download"
@@ -181,8 +188,9 @@ def blast_search(seed_seq: str, label: str) -> list[str]:
         if passes:
             accessions.extend(accs_in_hit)
 
-    # Save all hits to TSV for inspection
-    tsv_path = WORK_DIR / f"{label}_blast_hits.tsv"
+    # Save all hits to TSV for permanent inspection
+    BLAST_HITS_DIR.mkdir(parents=True, exist_ok=True)
+    tsv_path = BLAST_HITS_DIR / f"{label}_blast_hits.tsv"
     with open(tsv_path, "w") as fh:
         fh.write("accession\tevalue\tidentity_pct\tquery_coverage\tpasses_filter\ttitle\n")
         for row in rows:
@@ -298,11 +306,34 @@ def download_pdb(pdb_id: str, out_path: Path) -> None:
     r.raise_for_status()
     out_path.write_text(r.text)
 
+
+def extract_pdb_chain_seq(pdb_path: Path, chain_id: str) -> tuple[str, str] | None:
+    """Return (header, sequence) for a chain extracted from a PDB file, or None on failure."""
+    try:
+        from Bio.PDB import PDBParser
+        from Bio import SeqUtils
+        parser = PDBParser(QUIET=True)
+        structure = parser.get_structure("pdb", str(pdb_path))[0]
+        if chain_id not in [c.id for c in structure.get_chains()]:
+            print(f"  Warning: chain {chain_id} not found in {pdb_path.name}")
+            return None
+        chain = structure[chain_id]
+        residues = [r for r in chain.get_residues() if r.id[0] == ' ']
+        seq = ''.join(SeqUtils.seq1(r.get_resname()) for r in residues)
+        if not seq:
+            return None
+        header = f"PDB_{pdb_path.stem.upper()}_Chain_{chain_id}"
+        return header, seq
+    except Exception as e:
+        print(f"  Warning: could not extract chain {chain_id} from {pdb_path.name}: {e}")
+        return None
+
 # ---------------------------------------------------------------------------
 # Per-group pipeline
 # ---------------------------------------------------------------------------
 
-def build_group(group_label: str, seed_acc: str, work_dir: Path) -> Path | None:
+def build_group(group_label: str, seed_acc: str, work_dir: Path,
+                pdb_id: str | None = None, pdb_chain: str = 'A') -> Path | None:
     """
     Full pipeline for one protein group.
     Returns path to the aligned FASTA, or None on failure.
@@ -357,19 +388,56 @@ def build_group(group_label: str, seed_acc: str, work_dir: Path) -> Path | None:
         print(f"  Too few sequences after length filter ({len(records)}), skipping.")
         return None
 
-    # 5. Write unaligned FASTA
+    # 5. Download PDB and inject its chain sequence so it is guaranteed to be
+    #    in the alignment (CD-HIT can otherwise drop the exact PDB sequence).
+    if pdb_id:
+        pdb_path = OUT_DIR / f"{pdb_id.upper()}.pdb"
+        if not pdb_path.exists():
+            try:
+                download_pdb(pdb_id, pdb_path)
+            except Exception as e:
+                print(f"  Warning: could not download {pdb_id}: {e}")
+        if pdb_path.exists():
+            pdb_entry = extract_pdb_chain_seq(pdb_path, pdb_chain)
+            if pdb_entry:
+                pdb_hdr, pdb_seq = pdb_entry
+                # Only add if not already present (exact or substring match)
+                already_in = any(
+                    pdb_seq.upper() in s.upper() or s.upper() in pdb_seq.upper()
+                    for _, s in records
+                )
+                if not already_in:
+                    print(f"  Injecting PDB {pdb_id} chain {pdb_chain} "
+                          f"({len(pdb_seq)} aa) into sequence pool.")
+                    records.insert(0, (pdb_hdr, pdb_seq))
+                else:
+                    print(f"  PDB {pdb_id} chain {pdb_chain} already covered "
+                          f"by a sequence in the pool.")
+
+    # 6. Write unaligned FASTA
     raw_path = work_dir / f"{group_label}_raw.fasta"
     write_fasta(records, raw_path)
     print(f"  Wrote {len(records)} sequences → {raw_path.name}")
 
-    # 6. CD-HIT at 90%
-    cdhit_stem = work_dir / f"{group_label}_cdhit90"
+    # 6. CD-HIT
+    cdhit_stem = work_dir / f"{group_label}_cdhit"
     try:
         cdhit_fasta = run_cdhit(raw_path, cdhit_stem, CDHIT_IDENTITY, CDHIT_COVERAGE)
     except Exception as e:
         print(f"  CD-HIT failed ({e}), using unfiltered sequences.")
         cdhit_fasta = raw_path
     print(f"  CD-HIT representatives: {count_seqs(cdhit_fasta)}")
+
+    # Ensure seed is present — CD-HIT may have dropped it in favour of a longer
+    # cluster representative.  Re-insert it at position 0 if missing.
+    if seed_id_str:
+        cdhit_records = parse_fasta(cdhit_fasta.read_text())
+        seed_present = any(seed_id_str in h for h, _ in cdhit_records)
+        if not seed_present:
+            print(f"  Seed {seed_id_str} absent from CD-HIT output — re-inserting.")
+            cdhit_records.insert(0, (seed_header, seed_seq))
+            write_fasta(cdhit_records, cdhit_fasta)
+            print(f"  CD-HIT representatives after re-insert: {count_seqs(cdhit_fasta)}")
 
     # 7. MAFFT L-INS-i
     aligned_path = work_dir / f"{group_label}_aligned.fasta"
@@ -390,6 +458,7 @@ def build_group(group_label: str, seed_acc: str, work_dir: Path) -> Path | None:
 def main() -> None:
     WORK_DIR.mkdir(parents=True, exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    BLAST_HITS_DIR.mkdir(parents=True, exist_ok=True)
 
     print("=" * 60)
     print("Globins Example Data Builder")
@@ -397,7 +466,11 @@ def main() -> None:
 
     aligned_files: dict[str, Path] = {}
     for group_label, seed_acc in SEEDS.items():
-        result = build_group(group_label, seed_acc, WORK_DIR)
+        result = build_group(
+            group_label, seed_acc, WORK_DIR,
+            pdb_id=PDBS.get(group_label),
+            pdb_chain=PDB_CHAINS.get(group_label, 'A'),
+        )
         if result:
             aligned_files[group_label] = result
 
@@ -409,20 +482,23 @@ def main() -> None:
     else:
         print("\nNot enough groups for all.fasta.")
 
-    # Download PDB files
+    # Download any PDB files not already fetched during group building
     print(f"\n{'='*60}")
-    print("Downloading PDB files...")
-    downloaded: set[str] = set()
+    print("Checking PDB files...")
+    seen: set[str] = set()
     for pdb_id in PDBS.values():
-        if pdb_id in downloaded:
+        if pdb_id in seen:
             continue
+        seen.add(pdb_id)
         pdb_path = OUT_DIR / f"{pdb_id.upper()}.pdb"
-        try:
-            download_pdb(pdb_id, pdb_path)
-            downloaded.add(pdb_id)
-            print(f"  Saved {pdb_path.name}")
-        except Exception as e:
-            print(f"  Failed to download {pdb_id}: {e}")
+        if pdb_path.exists():
+            print(f"  {pdb_path.name} already present.")
+        else:
+            try:
+                download_pdb(pdb_id, pdb_path)
+                print(f"  Saved {pdb_path.name}")
+            except Exception as e:
+                print(f"  Failed to download {pdb_id}: {e}")
 
     # Package ZIP
     print(f"\n{'='*60}")

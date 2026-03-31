@@ -1,0 +1,748 @@
+accession	evalue	identity_pct	query_coverage	passes_filter	title
+P69905	1.98e-100	100.0	100.0	True	sp|P69905.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01923	1.07e-98	99.3	99.3	True	sp|P01923.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9TS35	2.38e-98	98.6	100.0	True	sp|Q9TS35.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P06635	3.57e-98	97.9	100.0	True	sp|P06635.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01924	3.00e-97	97.9	99.3	True	sp|P01924.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P63107	3.31e-97	97.2	100.0	True	sp|P63107.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P67817	1.14e-96	96.5	100.0	True	sp|P67817.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9TS34	1.33e-96	96.5	100.0	True	sp|Q9TS34.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P18972	1.41e-96	97.2	99.3	True	sp|P18972.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01926	3.66e-96	96.5	100.0	True	sp|P01926.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P21767	4.31e-96	97.2	99.3	True	sp|P21767.1| RecName: Full=Hemoglobin subunit alpha-A/Q/R/T; AltName: Full=Alpha-A/Q/R/T-globin; AltName: Full=Hemoglobi
+P01928	4.37e-96	95.8	100.0	True	sp|P01928.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P67818	9.93e-96	96.5	99.3	True	sp|P67818.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P21766	1.07e-95	97.2	99.3	True	sp|P21766.1| RecName: Full=Hemoglobin subunit alpha-1/2/3; AltName: Full=Alpha-1/2/3-globin; AltName: Full=Hemoglobin al
+P01929	1.20e-95	96.5	99.3	True	sp|P01929.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P07421	4.05e-95	95.7	99.3	True	sp|P07421.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P21768	4.67e-95	96.5	99.3	True	sp|P21768.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P19002	6.63e-95	96.5	99.3	True	sp|P19002.1| RecName: Full=Hemoglobin subunit alpha-1/2/3; AltName: Full=Alpha-1/2/3-globin; AltName: Full=Hemoglobin al
+P07402	1.70e-94	96.5	99.3	True	sp|P07402.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01930	2.48e-94	95.1	100.0	True	sp|P01930.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q7M3B6	2.82e-94	95.7	99.3	True	sp|Q7M3B6.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01937	1.34e-92	93.6	99.3	True	sp|P01937.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01939	1.97e-92	92.3	100.0	True	sp|P01939.3| RecName: Full=Hemoglobin subunit alpha-B; AltName: Full=Alpha-B-globin; AltName: Full=Alpha-II; AltName: Fu
+P01935	3.49e-92	88.7	99.3	True	sp|P01935.1| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Hemoglobin alpha-2 ch
+P01934	5.60e-92	89.4	99.3	True	sp|P01934.1| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Hemoglobin alpha-2 ch
+P14259	6.90e-92	92.3	100.0	True	sp|P14259.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; Short=Alpha-I; AltName: Full=Hemogl
+P08258	9.07e-92	93.6	99.3	True	sp|P08258.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01938	1.50e-91	92.9	99.3	True	sp|P01938.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01940	1.57e-91	91.5	99.3	True	sp|P01940.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P11757	2.84e-91	90.8	99.3	True	sp|P11757.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P63111	1.25e-90	92.3	100.0	True	sp|P63111.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01933	1.59e-90	92.9	99.3	True	sp|P01933.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P11753	2.31e-90	90.1	99.3	True	sp|P11753.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01956	5.62e-90	90.1	99.3	True	sp|P01956.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P14387	8.62e-90	90.1	100.0	True	sp|P14387.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01932	3.25e-89	91.5	99.3	True	sp|P01932.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+B3EWC7	4.37e-89	90.1	99.3	True	sp|B3EWC7.1| RecName: Full=Hemoglobin subunit alpha [Tamias merriami]
+P28780	9.42e-89	90.1	99.3	True	sp|P28780.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P20854	1.16e-88	88.7	99.3	True	sp|P20854.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P09839	1.38e-88	89.4	99.3	True	sp|P09839.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01953	1.70e-88	88.7	99.3	True	sp|P01953.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01936	2.05e-88	89.4	99.3	True	sp|P01936.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q862A7	2.83e-88	89.5	100.0	True	sp|Q862A7.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P14389	3.97e-88	87.2	99.3	True	sp|P14389.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P20018	4.62e-88	87.9	99.3	True	sp|P20018.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P20019	7.25e-88	87.9	99.3	True	sp|P20019.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P20243	1.14e-87	87.9	99.3	True	sp|P20243.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+B3EWE3	1.40e-87	87.2	99.3	True	sp|B3EWE3.1| RecName: Full=Hemoglobin subunit alpha [Microtus pennsylvanicus]
+P10892	1.80e-87	87.2	99.3	True	sp|P10892.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01963	1.95e-87	87.3	100.0	True	sp|P01963.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9XSK1	2.30e-87	88.0	100.0	True	sp|Q9XSK1.3| RecName: Full=Hemoglobin subunit alpha-4; AltName: Full=Alpha-4-globin; AltName: Full=Hemoglobin alpha-4 ch
+D0VX09	2.32e-87	86.5	99.3	True	sp|D0VX09.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P23601	3.56e-87	87.2	99.3	True	sp|P23601.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01958	3.64e-87	88.0	100.0	True	sp|P01958.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01945	5.11e-87	86.5	99.3	True	sp|P01945.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01942	5.29e-87	85.9	100.0	True	sp|P01942.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P23600	6.09e-87	86.5	99.3	True	sp|P23600.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+Q9TSN8	8.20e-87	86.6	100.0	True	sp|Q9TSN8.3| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P01966	9.25e-87	88.0	100.0	True	sp|P01966.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P11755	9.45e-87	87.2	99.3	True	sp|P11755.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q7M2Y4	1.05e-86	87.9	99.3	True	sp|Q7M2Y4.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P41327	1.27e-86	85.1	99.3	True	sp|P41327.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9XSE9	1.42e-86	87.3	100.0	True	sp|Q9XSE9.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P09423	1.77e-86	88.0	100.0	True	sp|P09423.2| RecName: Full=Hemoglobin subunit alpha-I/II; AltName: Full=Alpha-I/II-globin; AltName: Full=Hemoglobin alph
+P09906	1.83e-86	87.2	99.3	True	sp|P09906.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01951	1.95e-86	87.2	99.3	True	sp|P01951.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18970	2.08e-86	86.6	100.0	True	sp|P18970.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9TVA3	2.20e-86	86.6	100.0	True	sp|Q9TVA3.3| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+B3EWD9	2.38e-86	87.2	99.3	True	sp|B3EWD9.1| RecName: Full=Hemoglobin subunit alpha [Tamias striatus]
+P07405	2.45e-86	85.1	99.3	True	sp|P07405.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9TSN7	2.48e-86	87.3	100.0	True	sp|Q9TSN7.3| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P14390	3.81e-86	86.5	99.3	True	sp|P14390.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P09908	4.20e-86	86.5	99.3	True	sp|P09908.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01962	4.25e-86	85.8	99.3	True	sp|P01962.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P41330	4.30e-86	85.9	100.0	True	sp|P41330.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P01969	5.01e-86	88.0	100.0	True	sp|P01969.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01968	5.59e-86	87.9	99.3	True	sp|P01968.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P10885	6.10e-86	87.2	99.3	True	sp|P10885.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P24659	6.66e-86	87.2	99.3	True	sp|P24659.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P63109	6.89e-86	83.8	100.0	True	sp|P63109.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P41329	8.96e-86	85.2	100.0	True	sp|P41329.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P18978	9.46e-86	83.7	99.3	True	sp|P18978.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01948	1.62e-85	82.4	100.0	True	sp|P01948.2| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01944	2.04e-85	84.4	99.3	True	sp|P01944.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01959	2.33e-85	85.9	100.0	True	sp|P01959.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P19015	2.71e-85	87.2	99.3	True	sp|P19015.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P10778	2.93e-85	85.8	99.3	True	sp|P10778.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9TSN9	3.13e-85	85.9	100.0	True	sp|Q9TSN9.3| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Hemoglobin alpha-3 ch
+B3EWD5	3.31e-85	87.2	99.3	True	sp|B3EWD5.1| RecName: Full=Hemoglobin subunit alpha [Peromyscus californicus]
+P18975	3.34e-85	83.1	100.0	True	sp|P18975.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q0ZA50	4.26e-85	86.6	100.0	True	sp|Q0ZA50.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P0CH25	4.26e-85	86.6	100.0	True	sp|P0CH25.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P01967	5.07e-85	87.2	99.3	True	sp|P01967.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P63110	5.98e-85	83.7	99.3	True	sp|P63110.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9XSN3	6.97e-85	85.2	100.0	True	sp|Q9XSN3.3| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q7M3B8	8.49e-85	85.1	99.3	True	sp|Q7M3B8.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P68235	9.38e-85	84.5	100.0	True	sp|P68235.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18976	9.58e-85	83.7	99.3	True	sp|P18976.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18969	1.16e-84	85.9	100.0	True	sp|P18969.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01961	1.23e-84	85.2	100.0	True	sp|P01961.3| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P08852	1.54e-84	90.8	99.3	True	sp|P08852.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P0CH26	2.16e-84	85.9	100.0	True	sp|P0CH26.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P09904	2.57e-84	85.1	99.3	True	sp|P09904.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P19645	2.78e-84	83.7	99.3	True	sp|P19645.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P11750	4.08e-84	90.8	99.3	True	sp|P11750.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P10883	4.17e-84	83.0	99.3	True	sp|P10883.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18971	5.42e-84	83.1	100.0	True	sp|P18971.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P26915	5.73e-84	83.7	99.3	True	sp|P26915.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01971	7.14e-84	85.2	100.0	True	sp|P01971.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01941	7.62e-84	80.9	99.3	True	sp|P01941.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P15163	1.00e-83	83.7	99.3	True	sp|P15163.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+B3EWC9	1.18e-83	90.1	99.3	True	sp|B3EWC9.1| RecName: Full=Hemoglobin subunit alpha [Otospermophilus beecheyi]
+P63105	1.33e-83	84.4	99.3	True	sp|P63105.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P60530	1.46e-83	83.1	100.0	True	sp|P60530.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P15448	1.57e-83	85.1	99.3	True	sp|P15448.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01943	1.72e-83	83.7	99.3	True	sp|P01943.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P17689	1.73e-83	85.1	99.3	True	sp|P17689.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P04237	1.91e-83	87.1	98.6	True	sp|P04237.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P07403	2.26e-83	90.1	99.3	True	sp|P07403.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18977	2.28e-83	85.1	99.3	True	sp|P18977.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01957	2.60e-83	84.5	99.3	True	sp|P01957.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P07414	3.39e-83	80.9	99.3	True	sp|P07414.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P60529	4.08e-83	83.7	99.3	True	sp|P60529.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P09420	4.08e-83	90.1	99.3	True	sp|P09420.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P21379	4.26e-83	85.1	99.3	True	sp|P21379.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01954	5.19e-83	83.0	99.3	True	sp|P01954.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P60523	1.49e-82	83.0	99.3	True	sp|P60523.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01965	1.83e-82	84.4	99.3	True	sp|P01965.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P67815	2.28e-82	83.0	99.3	True	sp|P67815.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P21200	2.63e-82	83.0	99.3	True	sp|P21200.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+B3EWD7	4.87e-82	85.1	99.3	True	sp|B3EWD7.1| RecName: Full=Hemoglobin subunit alpha [Tamiasciurus hudsonicus]
+P07425	6.99e-82	83.0	99.3	True	sp|P07425.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+B3EWE1	1.28e-81	84.4	99.3	True	sp|B3EWE1.1| RecName: Full=Hemoglobin subunit alpha [Blarina brevicauda]
+P19014	1.86e-81	82.4	100.0	True	sp|P19014.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01973	2.36e-81	82.3	99.3	True	sp|P01973.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01955	2.88e-81	81.6	99.3	True	sp|P01955.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01950	5.26e-81	85.1	99.3	True	sp|P01950.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P11751	1.48e-80	83.7	99.3	True	sp|P11751.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+B3EWD1	4.62e-80	82.3	99.3	True	sp|B3EWD1.1| RecName: Full=Hemoglobin subunit alpha [Sciurus carolinensis]
+P81043	9.02e-80	80.3	100.0	True	sp|P81043.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01964	1.02e-79	82.3	99.3	True	sp|P01964.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01975	2.91e-79	80.9	99.3	True	sp|P01975.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q9XSN2	3.51e-79	81.7	100.0	True	sp|Q9XSN2.3| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+B3EWD3	1.58e-78	83.0	99.3	True	sp|B3EWD3.1| RecName: Full=Hemoglobin subunit alpha [Peromyscus crinitus]
+P14525	1.61e-77	80.9	99.3	True	sp|P14525.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P23019	2.37e-76	85.8	99.3	True	sp|P23019.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01947	5.05e-75	76.1	100.0	True	sp|P01947.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18973	9.44e-75	84.4	99.3	True	sp|P18973.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P24291	1.24e-74	77.3	99.3	True	sp|P24291.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P07419	8.10e-74	81.0	100.0	True	sp|P07419.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01972	2.76e-73	77.3	90.1	True	sp|P01972.1| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01979	7.75e-73	72.3	99.3	True	sp|P01979.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+Q7LZC3	1.60e-72	70.9	99.3	True	sp|Q7LZC3.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01977	4.19e-72	73.8	99.3	True	sp|P01977.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P22740	8.46e-72	71.8	100.0	True	sp|P22740.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01986	1.30e-71	71.8	100.0	True	sp|P01986.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01988	1.46e-71	71.1	100.0	True	sp|P01988.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01987	4.19e-71	70.4	100.0	True	sp|P01987.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01989	4.38e-71	71.1	100.0	True	sp|P01989.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P21871	7.74e-71	69.0	100.0	True	sp|P21871.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01949	7.74e-71	81.6	99.3	True	sp|P01949.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01991	2.01e-70	70.9	99.3	True	sp|P01991.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01995	2.27e-70	70.9	99.3	True	sp|P01995.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+Q8HY34	2.45e-70	72.5	100.0	True	sp|Q8HY34.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01976	4.33e-70	71.6	99.3	True	sp|P01976.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P84790	5.22e-70	69.0	100.0	True	sp|P84790.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P24589	6.42e-70	70.4	100.0	True	sp|P24589.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P81023	7.91e-70	70.4	100.0	True	sp|P81023.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P22741	1.02e-69	70.2	99.3	True	sp|P22741.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01946	1.21e-69	78.2	100.0	True	sp|P01946.3| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P01994	3.01e-69	70.4	100.0	True	sp|P01994.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01992	3.22e-69	69.5	99.3	True	sp|P01992.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01978	4.52e-69	70.9	99.3	True	sp|P01978.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P08260	7.40e-69	70.2	99.3	True	sp|P08260.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01997	7.57e-69	70.9	99.3	True	sp|P01997.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01985	7.74e-69	69.7	100.0	True	sp|P01985.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01990	2.03e-68	69.0	100.0	True	sp|P01990.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P82111	2.88e-68	69.5	99.3	True	sp|P82111.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hb 1; AltName: Full=H
+P01981	3.22e-68	68.8	99.3	True	sp|P01981.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01999	3.36e-68	66.9	100.0	True	sp|P01999.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [A
+P07034	4.42e-68	68.8	99.3	True	sp|P07034.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01998	7.32e-68	68.8	99.3	True	sp|P01998.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+B0M2T2	7.73e-68	68.8	99.3	True	sp|B0M2T2.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P07404	1.27e-67	67.4	99.3	True	sp|P07404.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P07407	1.61e-67	69.5	99.3	True	sp|P07407.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P08850	1.70e-67	69.0	100.0	True	sp|P08850.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01996	2.44e-67	69.0	100.0	True	sp|P01996.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P10059	2.76e-67	69.5	99.3	True	sp|P10059.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P02000	4.13e-67	67.4	99.3	True	sp|P02000.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P01980	5.04e-67	67.6	100.0	True	sp|P01980.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [A
+P01993	5.20e-67	69.0	100.0	True	sp|P01993.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P10057	7.39e-67	68.8	99.3	True	sp|P10057.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [E
+P13273	8.16e-67	67.4	99.3	True	sp|P13273.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01983	9.10e-67	69.0	100.0	True	sp|P01983.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P07417	1.92e-66	67.6	100.0	True	sp|P07417.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P19789	4.36e-66	67.4	99.3	True	sp|P19789.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+C0HJE0	7.30e-66	67.4	99.3	True	sp|C0HJE0.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+Q10732	1.05e-65	68.1	99.3	True	sp|Q10732.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01984	4.31e-65	68.8	99.3	True	sp|P01984.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P19832	6.46e-65	66.7	99.3	True	sp|P19832.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P15162	7.37e-65	68.3	100.0	True	sp|P15162.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P19831	9.91e-65	66.0	99.3	True	sp|P19831.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P08256	1.08e-64	67.4	99.3	True	sp|P08256.1| RecName: Full=Hemoglobin subunit alpha-A/A'; AltName: Full=Alpha-A/A'-globin; AltName: Full=Hemoglobin alph
+P10780	1.38e-64	67.4	99.3	True	sp|P10780.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P83135	2.54e-64	64.1	100.0	True	sp|P83135.2| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P01982	1.19e-63	66.7	99.3	True	sp|P01982.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P14522	2.35e-63	70.9	99.3	True	sp|P14522.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P83131	3.37e-63	64.1	100.0	True	sp|P83131.2| RecName: Full=Hemoglobin A subunit alpha-1; AltName: Full=Hemoglobin A alpha-1 chain [Aldabrachelys gigante
+P83132	5.16e-62	62.7	100.0	True	sp|P83132.2| RecName: Full=Hemoglobin A subunit alpha-2; AltName: Full=Hemoglobin A alpha-2 chain [Aldabrachelys gigante
+P04241	4.14e-61	60.3	99.3	True	sp|P04241.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P81024	1.78e-60	61.7	99.3	True	sp|P81024.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P06638	2.29e-60	63.4	100.0	True	sp|P06638.2| RecName: Full=Hemoglobin subunit alpha-5; AltName: Full=Alpha-5-globin; AltName: Full=Alpha-T5; AltName: Fu
+P08849	3.11e-60	60.3	99.3	True	sp|P08849.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P68059	3.54e-60	61.0	99.3	True	sp|P68059.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P04243	3.74e-60	59.9	100.0	True	sp|P04243.2| RecName: Full=Hemoglobin subunit pi; AltName: Full=Hemoglobin pi chain; AltName: Full=Hemoglobin pi' chain;
+P04242	1.03e-59	59.6	99.3	True	sp|P04242.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02002	1.17e-59	59.6	99.3	True	sp|P02002.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P08257	1.18e-59	59.6	99.3	True	sp|P08257.1| RecName: Full=Hemoglobin subunit alpha-D/D'; AltName: Full=Alpha-D/D'-globin; AltName: Full=Hemoglobin alph
+P02001	3.86e-59	59.6	99.3	True	sp|P02001.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02007	4.07e-59	57.7	100.0	True	sp|P02007.3| RecName: Full=Hemoglobin subunit pi; AltName: Full=Hemoglobin pi chain; AltName: Full=Hemoglobin pi' chain;
+P09105	6.17e-59	62.0	100.0	True	sp|P09105.2| RecName: Full=Hemoglobin subunit theta-1; AltName: Full=Hemoglobin theta-1 chain; AltName: Full=Theta-1-glo
+P06890	6.81e-59	62.0	100.0	True	sp|P06890.2| RecName: Full=Hemoglobin subunit theta-1; AltName: Full=Hemoglobin theta-1 chain; AltName: Full=Theta-1-glo
+P82112	2.06e-58	58.9	99.3	True	sp|P82112.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hb 2; AltName: Full=H
+P02005	3.64e-58	61.0	99.3	True	sp|P02005.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P07413	4.90e-58	56.7	99.3	True	sp|P07413.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02004	8.94e-58	58.2	99.3	True	sp|P02004.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02003	9.76e-58	58.9	99.3	True	sp|P02003.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P83124	1.08e-57	59.6	99.3	True	sp|P83124.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P04442	1.67e-57	58.2	99.3	True	sp|P04442.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P06636	1.88e-57	62.7	100.0	True	sp|P06636.2| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Alpha-T3; AltName: Fu
+P83134	1.99e-57	58.9	99.3	True	sp|P83134.1| RecName: Full=Hemoglobin D subunit alpha; AltName: Full=Hemoglobin D alpha chain [Aldabrachelys gigantea]
+P06637	2.85e-57	60.6	100.0	True	sp|P06637.2| RecName: Full=Hemoglobin subunit alpha-4; AltName: Full=Alpha-4-globin; AltName: Full=Alpha-T4; AltName: Fu
+P30892	3.26e-57	57.4	99.3	True	sp|P30892.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02006	3.79e-57	61.0	99.3	True	sp|P02006.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Component CII; AltNam
+P13787	1.12e-56	59.2	100.0	True	sp|P13787.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Equu
+P02008	1.16e-56	59.9	100.0	True	sp|P02008.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=HBAZ; AltName: Full=Hemoglobin zeta chain; AltName: Fu
+P02010	1.43e-56	64.5	99.3	True	sp|P02010.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [V
+P84791	1.74e-56	58.2	99.3	True	sp|P84791.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P04240	1.84e-56	58.2	99.3	True	sp|P04240.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+Q9DF25	5.25e-56	58.2	99.3	True	sp|Q9DF25.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P07035	7.88e-56	57.4	99.3	True	sp|P07035.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+Q9PRL9	1.35e-55	61.7	99.3	True	sp|Q9PRL9.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P06467	1.59e-55	54.9	100.0	True	sp|P06467.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Alpha-like embryonic globin chain x; AltName: Full=Hem
+P04239	2.28e-55	57.4	99.3	True	sp|P04239.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P06347	2.86e-55	59.2	100.0	True	sp|P06347.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Pan 
+P06714	3.68e-55	59.2	100.0	True	sp|P06714.2| RecName: Full=Hemoglobin subunit theta-1; AltName: Full=Hemoglobin theta-1 chain; AltName: Full=Theta-1-glo
+P08422	5.58e-55	59.2	100.0	True	sp|P08422.2| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Alpha-globin larval 8
+P04238	7.68e-55	57.4	99.3	True	sp|P04238.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P15164	8.76e-55	55.3	99.3	True	sp|P15164.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P0C0U6	9.56e-55	61.0	99.3	True	sp|P0C0U6.1| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P14523	2.01e-54	56.7	99.3	True	sp|P14523.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P11896	3.08e-54	59.9	100.0	True	sp|P11896.1| RecName: Full=Hemoglobin larval subunit alpha; AltName: Full=Alpha-globin, larval; AltName: Full=Hemoglobin
+P13786	9.93e-54	56.3	100.0	True	sp|P13786.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Capr
+P10062	1.25e-53	55.3	99.3	True	sp|P10062.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02013	3.73e-53	57.7	100.0	True	sp|P02013.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P07428	5.54e-53	57.7	100.0	True	sp|P07428.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [X
+P02009	6.05e-53	56.4	98.6	True	sp|P02009.1| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Sus 
+P07431	7.95e-53	56.3	100.0	True	sp|P07431.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P10781	1.29e-52	56.8	93.0	True	sp|P10781.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P07430	1.57e-52	57.0	100.0	True	sp|P07430.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P02012	1.75e-52	56.3	100.0	True	sp|P02012.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P18974	1.97e-52	56.7	99.3	True	sp|P18974.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+O12985	4.64e-52	58.9	99.3	True	sp|O12985.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P02011	4.36e-51	57.1	98.6	True	sp|P02011.1| RecName: Full=Hemoglobin subunit alpha-3; AltName: Full=Alpha-3-globin; AltName: Full=Hemoglobin alpha-3 ch
+P41331	5.43e-51	58.9	99.3	True	sp|P41331.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [M
+P18981	5.83e-50	57.4	99.3	True	sp|P18981.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P11748	1.01e-48	55.3	98.6	True	sp|P11748.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [T
+P10784	1.32e-48	56.7	99.3	True	sp|P10784.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P10783	3.88e-48	57.7	100.0	True	sp|P10783.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P02018	6.56e-48	53.2	98.6	True	sp|P02018.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P14520	7.57e-48	52.5	98.6	True	sp|P14520.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [E
+P02019	1.32e-47	56.6	98.6	True	sp|P02019.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P84653	1.55e-47	51.7	100.0	True	sp|P84653.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P06639	1.78e-47	56.3	100.0	True	sp|P06639.4| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q90487	2.13e-47	53.1	100.0	True	sp|Q90487.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin aa1; AltName: Full=Hemoglobin alpha chai
+P84203	6.58e-47	53.5	98.6	True	sp|P84203.1| RecName: Full=Hemoglobin cathodic subunit alpha; AltName: Full=Hemoglobin cathodic alpha chain [Gymnothorax
+P55267	1.36e-46	54.9	100.0	True	sp|P55267.2| RecName: Full=Hemoglobin subunit alpha-C; AltName: Full=Alpha-C-globin; AltName: Full=Hemoglobin alpha-C ch
+P11251	1.49e-46	57.3	100.0	True	sp|P11251.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [S
+P29624	2.37e-46	50.4	98.6	True	sp|P29624.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P02014	5.04e-46	56.3	100.0	True	sp|P02014.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [T
+P83623	5.26e-46	51.1	98.6	True	sp|P83623.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P80043	7.71e-46	49.6	98.6	True	sp|P80043.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [T
+P0C238	9.48e-46	49.7	100.0	True	sp|P0C238.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P14527	1.28e-45	50.4	98.6	True	sp|P14527.1| RecName: Full=Hemoglobin subunit alpha-4; AltName: Full=Alpha-4-globin; AltName: Full=Hemoglobin alpha-4 ch
+P0C237	1.40e-45	49.7	100.0	True	sp|P0C237.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [A
+P83271	2.51e-45	51.7	100.0	True	sp|P83271.2| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P86882	5.52e-45	51.8	98.6	True	sp|P86882.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [L
+P83479	5.81e-45	55.6	100.0	True	sp|P83479.2| RecName: Full=Hemoglobin cathodic subunit alpha; AltName: Full=Hemoglobin cathodic alpha chain [Conger cong
+P45718	7.91e-45	48.2	98.6	True	sp|P45718.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P83113	8.45e-45	54.4	95.8	True	sp|P83113.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P82315	1.34e-44	52.5	98.6	True	sp|P82315.1| RecName: Full=Hemoglobin cathodic subunit alpha; AltName: Full=Hemoglobin cathodic alpha chain; Short=Hb(Ca
+P85081	1.41e-44	51.0	100.0	True	sp|P85081.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P82990	1.44e-44	48.9	98.6	True	sp|P82990.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P16417	1.54e-44	49.6	99.3	True	sp|P16417.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+K7N5M5	2.09e-44	51.1	98.6	True	sp|K7N5M5.2| RecName: Full=Hemoglobin subunit alpha 1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P83270	3.77e-44	50.3	100.0	True	sp|P83270.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q9PVM4	5.52e-44	49.0	100.0	True	sp|Q9PVM4.3| RecName: Full=Hemoglobin subunit alpha-A; AltName: Full=Alpha-A-globin; AltName: Full=Hemoglobin alpha-A ch
+P83611	6.11e-44	48.2	98.6	True	sp|P83611.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P0C0U7	8.87e-44	49.6	99.3	True	sp|P0C0U7.1| RecName: Full=Hemoglobin subunit alpha-D; AltName: Full=Alpha-D-globin; AltName: Full=Hemoglobin alpha-D ch
+P51465	1.05e-43	50.7	100.0	True	sp|P51465.2| RecName: Full=Hemoglobin subunit alpha-B; AltName: Full=Alpha-B-globin; AltName: Full=Hemoglobin alpha-B ch
+P85083	1.12e-43	51.0	100.0	True	sp|P85083.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P80270	1.27e-43	50.4	98.6	True	sp|P80270.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P02016	1.31e-43	49.7	100.0	True	sp|P02016.3| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P02017	1.69e-43	52.8	98.6	True	sp|P02017.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P23016	1.82e-43	48.2	98.6	True	sp|P23016.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P80726	3.00e-43	49.7	100.0	True	sp|P80726.2| RecName: Full=Hemoglobin cathodic subunit alpha; AltName: Full=Hemoglobin cathodic alpha chain [Anguilla an
+P56250	5.24e-43	47.9	98.6	True	sp|P56250.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [L
+P06640	9.26e-43	55.6	93.7	True	sp|P06640.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P10777	9.90e-43	48.2	98.6	True	sp|P10777.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q9PVM3	1.12e-42	48.6	100.0	True	sp|Q9PVM3.3| RecName: Full=Hemoglobin subunit alpha-B; AltName: Full=Alpha-B-globin; AltName: Full=Hemoglobin alpha-B ch
+B3EWR7	1.42e-42	53.2	98.6	True	sp|B3EWR7.1| RecName: Full=Hemoglobin cathodic subunit alpha; AltName: Full=Hemoglobin cathodic alpha chain [Ophisurus s
+C0HJT8	2.52e-42	50.4	93.0	True	sp|C0HJT8.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [D
+P83613	2.79e-42	48.9	98.6	True	sp|P83613.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P45719	4.19e-42	48.9	98.6	True	sp|P45719.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P84205	5.50e-42	46.8	98.6	True	sp|P84205.1| RecName: Full=Hemoglobin anodic subunit alpha; AltName: Full=Hemoglobin anodic alpha chain [Gymnothorax uni
+P02015	8.04e-42	52.9	98.6	True	sp|P02015.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [A
+Q1AGS9	1.18e-41	48.3	100.0	True	sp|Q1AGS9.3| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P23740	1.83e-41	51.1	98.6	True	sp|P23740.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [L
+P29623	4.88e-41	46.8	98.6	True	sp|P29623.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [G
+Q1AGS4	6.61e-41	47.6	100.0	True	sp|Q1AGS4.3| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+Q9PVU6	9.05e-41	51.8	98.6	True	sp|Q9PVU6.3| RecName: Full=Hemoglobin embryonic subunit alpha; AltName: Full=Alpha-globin, embryonic; AltName: Full=Hemo
+Q6B0K9	1.48e-40	45.4	99.3	True	sp|Q6B0K9.1| RecName: Full=Hemoglobin subunit mu; AltName: Full=Hemoglobin mu chain; AltName: Full=Mu-globin [Homo sapie
+Q1AGS5	2.20e-40	49.0	100.0	True	sp|Q1AGS5.3| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+Q1AGS8	8.14e-40	47.6	100.0	True	sp|Q1AGS8.3| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P62363	1.59e-39	48.2	98.6	True	sp|P62363.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P84609	1.15e-38	47.6	100.0	True	sp|P84609.2| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P09106	2.28e-38	63.6	69.7	False	sp|P09106.2| RecName: Full=Hemoglobin subunit theta-1; AltName: Full=Hemoglobin theta-1 chain; AltName: Full=Theta-1-glo
+P80945	2.76e-38	44.8	100.0	True	sp|P80945.2| RecName: Full=Hemoglobin anodic subunit alpha; AltName: Full=Hemoglobin anodic alpha chain [Anguilla anguil
+O42425	8.59e-38	47.6	100.0	True	sp|O42425.3| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P07408	8.18e-37	50.0	99.3	True	sp|P07408.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [S
+A1A4Q3	1.02e-36	41.8	99.3	True	sp|A1A4Q3.1| RecName: Full=Hemoglobin subunit mu; AltName: Full=Hemoglobin mu chain; AltName: Full=Mu-globin [Bos taurus
+P09421	1.30e-35	44.1	97.9	True	sp|P09421.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Sper
+P07410	1.03e-34	42.8	97.9	True	sp|P07410.1| RecName: Full=Hemoglobin subunit beta-S/F; AltName: Full=Beta-S/F-globin; AltName: Full=Hemoglobin beta-S/F
+P08853	3.37e-34	42.8	97.9	True	sp|P08853.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Marm
+P02020	3.92e-34	43.1	100.0	True	sp|P02020.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [L
+P84216	9.11e-34	46.9	100.0	True	sp|P84216.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [B
+P02078	2.89e-33	43.3	95.1	True	sp|P02078.2| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Cysteine beta-globin; A
+P61772	5.94e-33	44.1	97.9	True	sp|P61772.2| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [P
+P02028	6.72e-33	44.1	97.9	True	sp|P02028.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chlo
+P20244	7.98e-33	45.8	99.3	True	sp|P20244.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P02044	8.05e-33	43.4	97.9	True	sp|P02044.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [A
+P11517	9.59e-33	43.4	97.9	True	sp|P11517.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta chain, 
+P02024	1.12e-32	44.1	97.9	True	sp|P02024.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Gori
+P02025	1.26e-32	43.4	97.9	True	sp|P02025.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Hylo
+P02021	1.57e-32	46.1	97.9	True	sp|P02021.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [H
+P02033	1.64e-32	44.1	97.9	True	sp|P02033.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pili
+P19885	1.65e-32	44.1	97.9	True	sp|P19885.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Colo
+P02088	1.80e-32	42.8	97.9	True	sp|P02088.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02042	1.94e-32	43.4	97.9	True	sp|P02042.2| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [H
+P02032	2.18e-32	43.4	97.9	True	sp|P02032.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Semn
+P68871	2.19e-32	43.4	97.9	True	sp|P68871.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain; Cont
+P02058	2.77e-32	44.1	97.9	True	sp|P02058.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Rous
+P19886	4.26e-32	44.1	97.9	True	sp|P19886.2| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [C
+Q9TSP1	4.59e-32	43.4	97.9	True	sp|Q9TSP1.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Papi
+P08259	5.09e-32	43.4	97.9	True	sp|P08259.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Mand
+P02030	5.14e-32	43.4	97.9	True	sp|P02030.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Papi
+P02026	5.55e-32	43.4	97.9	True	sp|P02026.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Maca
+P61920	7.10e-32	41.4	97.9	True	sp|P61920.2| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+P61921	8.00e-32	41.4	97.9	True	sp|P61921.2| RecName: Full=Hemoglobin subunit gamma-2; AltName: Full=Gamma-2-globin; AltName: Full=Hemoglobin gamma-2 ch
+P02031	8.03e-32	42.8	97.9	True	sp|P02031.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cerc
+P02051	9.46e-32	43.4	97.9	True	sp|P02051.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ceph
+Q28932	9.52e-32	42.1	97.9	True	sp|Q28932.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Smin
+P02061	9.99e-32	42.8	97.9	True	sp|P02061.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Talp
+P33499	1.23e-31	41.4	97.9	True	sp|P33499.1| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [A
+Q9YGW2	1.25e-31	40.1	100.0	True	sp|Q9YGW2.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [M
+P68222	1.36e-31	42.8	97.9	True	sp|P68222.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Maca
+Q28779	1.39e-31	40.7	97.9	True	sp|Q28779.3| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+P02094	1.87e-31	43.4	97.9	True	sp|P02094.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain; AltN
+P11752	2.00e-31	42.1	97.9	True	sp|P11752.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lyro
+P02029	2.09e-31	42.8	97.9	True	sp|P02029.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ther
+P62741	2.13e-31	40.7	97.9	True	sp|P62741.2| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+P02093	2.31e-31	42.1	97.9	True	sp|P02093.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Onda
+P61948	2.68e-31	40.7	97.9	True	sp|P61948.2| RecName: Full=Hemoglobin subunit gamma-2; AltName: Full=Gamma-2-globin; AltName: Full=Hemoglobin gamma-2 ch
+B3EWD8	2.75e-31	43.4	97.9	True	sp|B3EWD8.1| RecName: Full=Hemoglobin subunit beta [Tamiasciurus hudsonicus]
+P68077	2.76e-31	40.7	97.9	True	sp|P68077.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [M
+P69891	2.82e-31	41.4	97.9	True	sp|P69891.3| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hb F Agamma; AltName:
+P02039	2.90e-31	42.1	97.9	True	sp|P02039.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Leon
+D0VX08	2.96e-31	42.8	97.9	True	sp|D0VX08.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pter
+P02057	3.33e-31	42.1	97.9	True	sp|P02057.2| RecName: Full=Hemoglobin subunit beta-1/2; AltName: Full=Beta-1/2-globin; AltName: Full=Hemoglobin beta-1/2
+P20245	3.85e-31	45.1	99.3	True	sp|P20245.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P02090	3.85e-31	43.4	97.9	True	sp|P02090.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Nann
+P13557	4.18e-31	42.8	97.9	True	sp|P13557.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Carl
+P61947	4.32e-31	40.7	97.9	True	sp|P61947.2| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+P02050	5.10e-31	42.1	97.9	True	sp|P02050.1| RecName: Full=Hemoglobin subunit beta-1/2; AltName: Full=Beta-1/2-globin; AltName: Full=Hemoglobin beta-1/2
+Q45XJ0	5.85e-31	41.4	97.9	True	sp|Q45XJ0.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [L
+P19646	6.07e-31	42.1	97.9	True	sp|P19646.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pagu
+P02103	6.25e-31	40.7	97.9	True	sp|P02103.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Beta-4 globin; AltName: Full=Epsilon-globin; AltNam
+P02084	6.34e-31	41.4	97.9	True	sp|P02084.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Elep
+Q45XI9	6.45e-31	41.4	97.9	True	sp|Q45XI9.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [E
+Q45XI8	6.45e-31	41.4	97.9	True	sp|Q45XI8.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [T
+P02085	6.48e-31	41.4	97.9	True	sp|P02085.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Loxo
+P14392	6.77e-31	42.1	97.9	True	sp|P14392.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pter
+P08535	7.04e-31	42.1	97.9	True	sp|P08535.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lepu
+P07415	7.55e-31	41.4	97.9	True	sp|P07415.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Tric
+B3EWD2	7.55e-31	42.1	97.9	True	sp|B3EWD2.1| RecName: Full=Hemoglobin subunit beta [Sciurus carolinensis]
+P02046	7.72e-31	40.7	97.9	True	sp|P02046.1| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [A
+P18996	8.02e-31	40.7	97.9	True	sp|P18996.3| RecName: Full=Hemoglobin subunit gamma-2; AltName: Full=Gamma-2-globin; AltName: Full=Hemoglobin gamma-2 ch
+P11025	8.29e-31	40.0	97.9	True	sp|P11025.2| RecName: Full=Hemoglobin subunit epsilon-M; AltName: Full=Epsilon-M-globin; AltName: Full=Hemoglobin epsilo
+P18707	9.08e-31	43.4	97.9	True	sp|P18707.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Meso
+P18995	1.01e-30	40.0	97.9	True	sp|P18995.2| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+B3EWD4	1.03e-30	43.4	97.9	True	sp|B3EWD4.1| RecName: Full=Hemoglobin subunit beta [Peromyscus crinitus]
+B3EWE4	1.08e-30	43.4	97.9	True	sp|B3EWE4.1| RecName: Full=Hemoglobin subunit beta [Microtus pennsylvanicus]
+P02091	1.11e-30	41.4	97.9	True	sp|P02091.3| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta chain, 
+P14388	1.29e-30	40.7	97.9	True	sp|P14388.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Antr
+P41328	1.33e-30	40.7	97.9	True	sp|P41328.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lynx
+Q6WN20	1.74e-30	42.8	97.9	True	sp|Q6WN20.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cher
+P68015	1.86e-30	40.7	97.9	True	sp|P68015.1| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [L
+P08223	1.98e-30	40.7	97.9	True	sp|P08223.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02040	1.99e-30	42.8	97.9	True	sp|P02040.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cebu
+P11758	2.01e-30	40.0	97.9	True	sp|P11758.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Myot
+P02047	2.08e-30	40.7	97.9	True	sp|P02047.1| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [S
+Q6WN29	2.13e-30	42.8	97.9	True	sp|Q6WN29.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Alou
+P02097	2.17e-30	40.0	97.9	True	sp|P02097.1| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [M
+Q6WN22	2.20e-30	41.4	97.9	True	sp|Q6WN22.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Atel
+P21201	2.22e-30	41.4	97.9	True	sp|P21201.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Vulp
+B3EWD6	2.34e-30	43.4	97.9	True	sp|B3EWD6.1| RecName: Full=Hemoglobin subunit beta [Peromyscus californicus]
+P18986	2.34e-30	41.4	97.9	True	sp|P18986.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Croc
+Q6WN27	2.41e-30	42.8	97.9	True	sp|Q6WN27.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pith
+Q95238	2.54e-30	40.0	97.9	True	sp|Q95238.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P19760	2.57e-30	40.7	97.9	True	sp|P19760.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [O
+P23020	2.58e-30	41.4	97.9	True	sp|P23020.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Prot
+P04244	2.93e-30	40.7	97.9	True	sp|P04244.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pant
+P02035	3.04e-30	42.8	97.9	True	sp|P02035.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Aotu
+Q28356	3.19e-30	40.0	97.9	True	sp|Q28356.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P68014	3.21e-30	40.7	97.9	True	sp|P68014.1| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [S
+Q45XH3	3.84e-30	40.7	97.9	True	sp|Q45XH3.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P24660	3.90e-30	40.7	97.9	True	sp|P24660.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Macr
+P23602	3.94e-30	42.1	97.9	True	sp|P23602.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Must
+P02095	3.94e-30	41.4	97.9	True	sp|P02095.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cavi
+P68054	3.98e-30	42.1	97.9	True	sp|P68054.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Leon
+Q28338	4.05e-30	40.7	97.9	True	sp|Q28338.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+B2KHZ4	4.05e-30	40.7	97.9	True	sp|B2KHZ4.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Rhin
+Q6WN25	4.28e-30	42.8	97.9	True	sp|Q6WN25.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lago
+P09909	4.59e-30	41.4	97.9	True	sp|P09909.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Phoc
+P02038	5.23e-30	42.1	97.9	True	sp|P02038.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Sagu
+O77655	5.61e-30	40.7	97.9	True	sp|O77655.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [C
+P02055	5.64e-30	41.4	97.9	True	sp|P02055.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Mele
+P02104	6.33e-30	40.7	97.9	True	sp|P02104.2| RecName: Full=Hemoglobin subunit epsilon-Y2; AltName: Full=Epsilon-Y2-globin; AltName: Full=Hemoglobin epsi
+Q7LZC2	6.79e-30	40.3	97.2	True	sp|Q7LZC2.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02089	7.37e-30	41.4	97.9	True	sp|P02089.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P67822	7.48e-30	42.1	97.9	True	sp|P67822.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cebu
+Q28931	7.53e-30	40.0	97.9	True	sp|Q28931.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin embryonic 
+P14526	1.04e-29	42.8	97.9	True	sp|P14526.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Brad
+P68232	1.04e-29	42.1	97.9	True	sp|P68232.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Atel
+P80727	1.17e-29	40.3	97.2	True	sp|P80727.1| RecName: Full=Hemoglobin cathodic subunit beta; AltName: Full=Hemoglobin cathodic beta chain [Anguilla angu
+P19759	1.21e-29	40.7	97.9	True	sp|P19759.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P18984	1.22e-29	40.7	97.9	True	sp|P18984.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Bala
+P02115	1.36e-29	40.4	95.1	True	sp|P02115.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Anas
+P15449	1.42e-29	41.4	97.9	True	sp|P15449.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Mell
+Q28496	1.56e-29	40.7	97.9	True	sp|Q28496.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P08224	1.58e-29	41.8	95.1	True	sp|P08224.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [C
+P68046	1.60e-29	41.4	97.9	True	sp|P68046.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Odob
+P18985	1.60e-29	42.1	97.9	True	sp|P18985.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Mico
+P02036	1.61e-29	42.1	97.9	True	sp|P02036.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Saim
+P68052	1.64e-29	41.4	97.9	True	sp|P68052.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pter
+P24292	1.67e-29	41.4	97.9	True	sp|P24292.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Echi
+Q6WN28	1.80e-29	42.1	97.9	True	sp|Q6WN28.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Call
+Q6WN21	1.86e-29	41.4	97.9	True	sp|Q6WN21.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Call
+P20855	1.86e-29	40.0	97.9	True	sp|P20855.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cten
+P02059	2.15e-29	39.3	97.9	True	sp|P02059.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Erin
+P18988	2.34e-29	40.7	97.9	True	sp|P18988.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P28781	2.50e-29	40.7	97.9	True	sp|P28781.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Taph
+P60524	2.50e-29	40.7	97.9	True	sp|P60524.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cani
+P07412	2.61e-29	40.0	97.9	True	sp|P07412.1| RecName: Full=Hemoglobin subunit beta-A/B; AltName: Full=Beta-A/B-globin; AltName: Full=Hemoglobin beta-A/B
+P18989	2.82e-29	40.7	97.9	True	sp|P18989.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Proc
+P18435	2.86e-29	38.6	97.9	True	sp|P18435.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02102	2.86e-29	39.3	97.9	True	sp|P02102.2| RecName: Full=Hemoglobin subunit epsilon-1; AltName: Full=Epsilon-1-globin; AltName: Full=Hemoglobin epsilo
+P67819	2.99e-29	44.5	98.6	True	sp|P67819.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Bos 
+P02101	3.23e-29	37.9	97.9	True	sp|P02101.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P67821	3.26e-29	41.4	97.9	True	sp|P67821.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Sapa
+P09840	3.28e-29	44.1	97.9	True	sp|P09840.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Macr
+P84204	3.54e-29	41.0	97.2	True	sp|P84204.1| RecName: Full=Hemoglobin cathodic subunit beta; AltName: Full=Hemoglobin cathodic beta chain [Gymnothorax u
+P04246	3.58e-29	37.9	97.9	True	sp|P04246.1| RecName: Full=Hemoglobin subunit theta; AltName: Full=Hemoglobin theta chain; AltName: Full=Theta-globin [S
+Q45XI7	3.76e-29	42.6	99.3	True	sp|Q45XI7.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [D
+P30893	3.94e-29	40.3	97.2	True	sp|P30893.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cotu
+P09422	4.19e-29	43.8	98.6	True	sp|P09422.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Biso
+Q6WN26	4.33e-29	42.1	97.9	True	sp|Q6WN26.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Aotu
+P10893	4.35e-29	40.7	97.9	True	sp|P10893.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lutr
+P68048	4.67e-29	40.0	97.9	True	sp|P68048.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P08225	4.77e-29	40.0	97.9	True	sp|P08225.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [E
+B3EWD0	4.80e-29	44.1	97.9	True	sp|B3EWD0.1| RecName: Full=Hemoglobin subunit beta [Otospermophilus beecheyi]
+P68065	4.80e-29	40.0	97.9	True	sp|P68065.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P68050	4.90e-29	40.0	97.9	True	sp|P68050.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P68011	5.71e-29	40.7	97.9	True	sp|P68011.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ursu
+P15166	6.94e-29	40.7	97.9	True	sp|P15166.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lept
+P02112	7.78e-29	40.4	95.1	True	sp|P02112.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Gall
+P07411	7.91e-29	39.6	97.2	True	sp|P07411.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Vult
+P02123	8.08e-29	39.6	97.2	True	sp|P02123.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Stru
+P18987	8.17e-29	38.3	95.1	True	sp|P18987.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P68064	8.49e-29	40.0	97.9	True	sp|P68064.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P02067	9.06e-29	39.3	97.9	True	sp|P02067.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Sus 
+Q2KPA3	1.02e-28	40.0	97.9	True	sp|Q2KPA3.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Scap
+P02137	1.15e-28	42.1	97.9	True	sp|P02137.2| RecName: Full=Hemoglobin larval subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-
+P02117	1.17e-28	39.6	97.2	True	sp|P02117.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Anse
+P19016	1.19e-28	40.0	97.9	True	sp|P19016.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Hipp
+P84792	1.25e-28	40.4	95.1	True	sp|P84792.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ayth
+P21667	1.30e-28	38.6	97.9	True	sp|P21667.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Vare
+P02077	1.35e-28	43.8	98.6	True	sp|P02077.1| RecName: Full=Hemoglobin subunit beta-A; AltName: Full=Alanine beta-globin; AltName: Full=Beta-A-globin; Al
+P22742	1.48e-28	40.4	95.1	True	sp|P22742.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Fran
+P02127	1.63e-28	38.9	97.2	True	sp|P02127.2| RecName: Full=Hemoglobin subunit rho; AltName: Full=Hemoglobin rho chain; AltName: Full=Rho-globin [Gallus 
+P02113	1.77e-28	39.6	97.2	True	sp|P02113.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Phas
+P02075	1.98e-28	43.8	98.6	True	sp|P02075.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ovis
+P51438	2.05e-28	37.2	97.9	True	sp|P51438.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02099	2.07e-28	40.7	97.9	True	sp|P02099.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin beta-3; AltNam
+P21668	2.10e-28	39.6	97.2	True	sp|P21668.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Psit
+P02118	2.19e-28	39.6	97.2	True	sp|P02118.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Anse
+P26916	2.42e-28	40.0	97.9	True	sp|P26916.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Nasu
+Q45XH7	2.54e-28	38.6	97.9	True	sp|Q45XH7.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [E
+P06643	2.60e-28	36.6	97.9	True	sp|P06643.2| RecName: Full=Hemoglobin subunit epsilon-4; AltName: Full=Epsilon-4-globin; AltName: Full=Hemoglobin epsilo
+P82113	2.64e-28	39.6	97.2	True	sp|P82113.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ster
+P02126	2.76e-28	41.1	95.1	True	sp|P02126.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Stur
+Q45XH8	2.99e-28	38.6	97.9	True	sp|Q45XH8.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [L
+P68057	3.22e-28	44.0	95.1	True	sp|P68057.1| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Hemoglobin beta-C chain
+P68056	3.49e-28	44.0	95.1	True	sp|P68056.2| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Hemoglobin beta-C chain
+P68026	3.64e-28	37.2	97.9	True	sp|P68026.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P51443	3.97e-28	37.2	97.9	True	sp|P51443.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02116	4.21e-28	39.7	95.1	True	sp|P02116.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ara 
+P68044	4.85e-28	40.7	97.9	True	sp|P68044.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Must
+P10058	5.34e-28	38.2	97.2	True	sp|P10058.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Eudy
+Q7LZB9	5.46e-28	39.6	97.2	True	sp|Q7LZB9.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Stre
+P18982	5.52e-28	40.0	97.9	True	sp|P18982.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ailu
+P51440	5.61e-28	36.6	97.9	True	sp|P51440.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+B3EWC8	5.64e-28	44.1	97.9	True	sp|B3EWC8.1| RecName: Full=Hemoglobin subunit beta [Tamias merriami]
+P02074	5.86e-28	42.5	98.6	True	sp|P02074.1| RecName: Full=Hemoglobin subunit beta-3; AltName: Full=Beta-3-globin; AltName: Full=Hemoglobin beta-3 chain
+P02121	6.79e-28	38.9	97.2	True	sp|P02121.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Phoe
+P51442	6.90e-28	36.6	97.9	True	sp|P51442.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P07036	7.01e-28	39.7	95.1	True	sp|P07036.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chlo
+P68016	7.05e-28	36.6	97.9	True	sp|P68016.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02110	7.36e-28	40.7	97.9	True	sp|P02110.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Tach
+P02072	8.57e-28	43.2	98.6	True	sp|P02072.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Bos 
+P02124	9.60e-28	39.0	95.1	True	sp|P02124.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Rhea
+P16418	1.00e-27	41.8	95.1	True	sp|P16418.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Eryt
+P04346	1.11e-27	43.2	98.6	True	sp|P04346.1| RecName: Full=Hemoglobin subunit beta-A; AltName: Full=Beta-A-globin; AltName: Full=Hemoglobin beta-A chain
+Q7M3C2	1.12e-27	38.6	97.9	True	sp|Q7M3C2.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Hapa
+P02114	1.12e-27	39.0	95.1	True	sp|P02114.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Anas
+P11754	1.13e-27	43.4	97.9	True	sp|P11754.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cyno
+P07406	1.27e-27	40.4	95.1	True	sp|P07406.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pass
+P83478	1.36e-27	38.2	97.2	True	sp|P83478.1| RecName: Full=Hemoglobin cathodic subunit beta; AltName: Full=Hemoglobin cathodic beta chain [Conger conger
+P08261	1.45e-27	38.9	97.2	True	sp|P08261.1| RecName: Full=Hemoglobin subunit beta/beta'; AltName: Full=Beta/beta'-globin; AltName: Full=Hemoglobin beta
+P02120	1.50e-27	38.9	97.2	True	sp|P02120.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Anse
+P80216	1.53e-27	39.6	97.2	True	sp|P80216.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Apte
+P10782	1.73e-27	39.0	95.1	True	sp|P10782.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Phal
+P51441	1.74e-27	35.9	97.9	True	sp|P51441.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P83123	1.96e-27	38.9	97.2	True	sp|P83123.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chel
+P14260	2.00e-27	39.0	95.1	True	sp|P14260.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cair
+P68944	2.08e-27	39.0	95.1	True	sp|P68944.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Bran
+Q28775	2.16e-27	39.0	95.1	True	sp|Q28775.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02076	2.20e-27	37.0	98.6	True	sp|P02076.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ovis
+P04245	2.51e-27	43.2	98.6	True	sp|P04245.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Trag
+B3EWE0	2.55e-27	42.1	97.9	True	sp|B3EWE0.1| RecName: Full=Hemoglobin subunit beta [Tamias striatus]
+P02073	2.56e-27	42.5	98.6	True	sp|P02073.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Alce
+P02070	2.62e-27	43.2	98.6	True	sp|P02070.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain; Cont
+P02105	2.65e-27	35.9	97.9	True	sp|P02105.2| RecName: Full=Hemoglobin subunit epsilon-2; AltName: Full=Epsilon-2-globin; AltName: Full=Hemoglobin epsilo
+P08851	2.66e-27	39.0	95.1	True	sp|P08851.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Astu
+P11342	2.66e-27	38.9	97.2	True	sp|P11342.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Colu
+P0C0U8	2.75e-27	41.1	95.1	True	sp|P0C0U8.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+Q45XH5	2.83e-27	36.6	97.9	True	sp|Q45XH5.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [D
+P68058	2.95e-27	43.3	95.1	True	sp|P68058.1| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Hemoglobin beta-C chain
+P02125	2.97e-27	39.6	97.2	True	sp|P02125.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cico
+P83133	3.17e-27	39.0	95.1	True	sp|P83133.1| RecName: Full=Hemoglobin A/D subunit beta; AltName: Full=Hemoglobin A/D beta chain [Aldabrachelys gigantea]
+P02100	3.22e-27	39.0	95.1	True	sp|P02100.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+Q2KPA4	3.40e-27	38.6	97.9	True	sp|Q2KPA4.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Scal
+P21380	3.55e-27	41.8	98.6	True	sp|P21380.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Rang
+P02054	3.94e-27	37.9	97.9	True	sp|P02054.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lemu
+Q95190	4.09e-27	37.2	97.9	True	sp|Q95190.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02111	4.20e-27	39.3	97.9	True	sp|P02111.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Orni
+P02128	4.27e-27	38.2	97.2	True	sp|P02128.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P22743	4.39e-27	39.6	97.2	True	sp|P22743.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P68256	4.46e-27	39.7	95.1	True	sp|P68256.2| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+P02122	4.53e-27	38.3	95.1	True	sp|P02122.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Aqui
+P18983	5.19e-27	40.0	97.9	True	sp|P18983.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Ailu
+P18994	5.36e-27	37.2	97.9	True	sp|P18994.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P68061	5.63e-27	38.3	95.1	True	sp|P68061.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Aegy
+P68257	5.79e-27	39.7	95.1	True	sp|P68257.2| RecName: Full=Hemoglobin subunit gamma-2; AltName: Full=Gamma-2-globin; AltName: Full=Hemoglobin gamma-2 ch
+Q29415	6.66e-27	35.9	97.9	True	sp|Q29415.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02087	6.66e-27	40.7	97.9	True	sp|P02087.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Dasy
+Q28220	8.27e-27	36.9	95.1	True	sp|Q28220.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P68028	9.22e-27	35.9	97.9	True	sp|P68028.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+Q45XI6	9.22e-27	37.9	97.9	True	sp|Q45XI6.3| RecName: Full=Hemoglobin subunit deltaH; AltName: Full=DeltaH-globin; AltName: Full=Hemoglobin deltaH chain
+P68030	1.02e-26	39.7	95.1	True	sp|P68030.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [A
+Q5XLE5	1.07e-26	40.0	97.9	True	sp|Q5XLE5.3| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [A
+Q03902	1.10e-26	43.4	97.9	True	sp|Q03902.2| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [O
+O13071	1.10e-26	38.0	92.3	True	sp|O13071.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+B3EWE2	1.18e-26	42.5	98.6	True	sp|B3EWE2.1| RecName: Full=Hemoglobin subunit beta [Blarina brevicauda]
+Q28507	1.22e-26	37.2	97.9	True	sp|Q28507.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P56691	1.23e-26	43.4	100.0	True	sp|P56691.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [H
+Q45XI5	1.24e-26	37.9	97.9	True	sp|Q45XI5.3| RecName: Full=Hemoglobin subunit deltaH; AltName: Full=DeltaH-globin; AltName: Full=Hemoglobin deltaH chain
+P86391	1.30e-26	39.7	95.1	True	sp|P86391.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P68068	1.54e-26	39.7	95.1	True	sp|P68068.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [A
+Q45XI4	1.64e-26	38.6	97.9	True	sp|Q45XI4.3| RecName: Full=Hemoglobin subunit deltaH; AltName: Full=DeltaH-globin; AltName: Full=Hemoglobin deltaH chain
+P41332	1.78e-26	38.2	97.2	True	sp|P41332.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Micr
+P02133	1.87e-26	38.0	95.8	True	sp|P02133.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; Short=B2G; AltName: Full=Hemoglobin b
+P81042	2.82e-26	43.4	97.9	True	sp|P81042.3| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P23741	2.96e-26	38.2	97.2	True	sp|P23741.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lati
+P02107	3.30e-26	37.2	97.9	True	sp|P02107.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Osph
+Q9GLX4	3.50e-26	39.7	95.1	True	sp|Q9GLX4.3| RecName: Full=Hemoglobin subunit gamma-1; AltName: Full=Gamma-1-globin; AltName: Full=Hemoglobin gamma-1 ch
+Q98905	3.50e-26	38.9	97.2	True	sp|Q98905.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chel
+P14524	3.52e-26	39.0	95.1	True	sp|P14524.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Turd
+P11756	4.10e-26	43.4	97.9	True	sp|P11756.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Tada
+Q9GJS7	4.49e-26	39.0	95.1	True	sp|Q9GJS7.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [C
+P06642	4.74e-26	35.2	97.9	True	sp|P06642.2| RecName: Full=Hemoglobin subunit epsilon-2; AltName: Full=Epsilon-2-globin; AltName: Full=Hemoglobin epsilo
+P02086	4.92e-26	42.1	97.9	True	sp|P02086.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Proc
+P82316	5.14e-26	36.6	97.9	True	sp|P82316.1| RecName: Full=Hemoglobin cathodic subunit beta; AltName: Full=Hemoglobin cathodic beta chain; Short=Hb(Ca) 
+P02052	5.49e-26	38.6	97.9	True	sp|P02052.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Tupa
+P13274	5.67e-26	39.0	95.1	True	sp|P13274.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chry
+P02130	6.46e-26	38.8	89.4	True	sp|P02130.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Alli
+Q45XH6	7.72e-26	36.6	97.9	True	sp|Q45XH6.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [T
+P02106	8.56e-26	37.2	97.9	True	sp|P02106.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Macr
+Q6H1U7	9.80e-26	37.2	97.9	True	sp|Q6H1U7.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Nota
+P02108	1.01e-25	37.2	97.9	True	sp|P02108.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Poto
+P15165	1.09e-25	37.6	95.1	True	sp|P15165.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Apus
+Q27940	1.09e-25	39.0	95.1	True	sp|Q27940.3| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [A
+P86390	1.16e-25	38.3	95.1	True	sp|P86390.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P02060	1.26e-25	44.1	97.9	True	sp|P02060.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Sunc
+P56285	1.53e-25	39.0	95.1	True	sp|P56285.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [A
+P18979	1.76e-25	52.2	63.4	False	sp|P18979.1| RecName: Full=Hemoglobin subunit alpha-1; AltName: Full=Alpha-1-globin; AltName: Full=Hemoglobin alpha-1 ch
+P18993	1.95e-25	39.0	95.1	True	sp|P18993.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P56251	1.98e-25	36.6	97.2	True	sp|P56251.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Leio
+P02129	2.48e-25	38.4	97.9	True	sp|P02129.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Croc
+P29626	2.49e-25	37.6	95.1	True	sp|P29626.2| RecName: Full=Hemoglobin subunit beta-Y; AltName: Full=Beta-Y-globin; AltName: Full=Hemoglobin beta-Y chain
+P18990	2.53e-25	42.1	97.9	True	sp|P18990.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Turs
+P13558	2.83e-25	40.0	97.9	True	sp|P13558.2| RecName: Full=Hemoglobin subunit delta; AltName: Full=Delta-globin; AltName: Full=Hemoglobin delta chain [C
+P07433	3.43e-25	35.8	99.3	True	sp|P07433.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+O13163	4.25e-25	41.8	89.4	True	sp|O13163.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Silu
+P02080	4.57e-25	35.5	95.1	True	sp|P02080.1| RecName: Full=Hemoglobin subunit beta-C(NA); AltName: Full=Beta-C(NA)-globin; AltName: Full=Hemoglobin beta
+P09907	4.74e-25	42.8	97.9	True	sp|P09907.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Rhin
+P08423	5.37e-25	39.0	95.1	True	sp|P08423.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+Q7M2Y5	5.49e-25	41.4	97.9	True	sp|Q7M2Y5.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P68087	6.25e-25	40.7	97.9	True	sp|P68087.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02092	6.56e-25	40.0	97.9	True	sp|P02092.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Micr
+P86919	6.85e-25	37.7	97.9	True	sp|P86919.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Croc
+P02109	7.35e-25	35.9	97.9	True	sp|P02109.3| RecName: Full=Hemoglobin subunit beta-M; AltName: Full=Beta-M-globin; AltName: Full=Hemoglobin beta-M chain
+P02083	8.29e-25	39.0	98.6	True	sp|P02083.1| RecName: Full=Hemoglobin fetal subunit beta; AltName: Full=Beta-globin, fetal; AltName: Full=Hemoglobin bet
+P04444	8.74e-25	35.2	97.9	True	sp|P04444.3| RecName: Full=Hemoglobin subunit beta-H1; AltName: Full=Beta-H1-globin; AltName: Full=Hemoglobin beta-H1 ch
+P14261	9.13e-25	36.1	97.2	True	sp|P14261.2| RecName: Full=Hemoglobin subunit epsilon; AltName: Full=Epsilon-globin; AltName: Full=Hemoglobin epsilon ch
+P02062	1.34e-24	42.8	97.9	True	sp|P02062.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Equu
+P02082	1.46e-24	39.7	98.6	True	sp|P02082.1| RecName: Full=Hemoglobin fetal subunit beta; AltName: Full=Beta-globin, fetal; AltName: Full=Hemoglobin bet
+P02049	1.53e-24	40.7	97.9	True	sp|P02049.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Nyct
+P02142	1.54e-24	37.3	95.8	True	sp|P02142.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02136	2.47e-24	38.3	95.1	True	sp|P02136.2| RecName: Full=Hemoglobin subunit beta-3; AltName: Full=Beta-3-globin; AltName: Full=Hemoglobin beta-3 chain
+Q9PVM2	2.62e-24	35.9	97.2	True	sp|Q9PVM2.2| RecName: Full=Hemoglobin subunit beta-A; AltName: Full=Beta-A-globin; AltName: Full=Hemoglobin beta-A chain
+P02048	3.09e-24	40.0	97.9	True	sp|P02048.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lori
+P18436	3.15e-24	37.7	97.9	True	sp|P18436.2| RecName: Full=Hemoglobin subunit gamma; AltName: Full=Gamma-globin; AltName: Full=Hemoglobin gamma chain [C
+Q9PVM1	3.29e-24	35.9	97.2	True	sp|Q9PVM1.3| RecName: Full=Hemoglobin subunit beta-B; AltName: Full=Beta-B-globin; AltName: Full=Hemoglobin beta-B chain
+P02066	3.37e-24	42.1	97.9	True	sp|P02066.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cera
+P02132	4.22e-24	33.3	99.3	True	sp|P02132.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P67823	5.08e-24	42.1	97.9	True	sp|P67823.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Equu
+P10061	6.30e-24	38.3	95.1	True	sp|P10061.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P0C240	6.58e-24	41.1	83.1	True	sp|P0C240.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pogo
+Q91473	8.16e-24	38.5	95.8	True	sp|Q91473.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Salm
+P07432	8.82e-24	33.3	99.3	True	sp|P07432.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+C0HJZ2	1.03e-23	44.3	98.6	True	sp|C0HJZ2.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [S
+P02053	1.46e-23	40.4	98.6	True	sp|P02053.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Eule
+P09905	1.84e-23	39.3	97.9	True	sp|P09905.1| RecName: Full=Hemoglobin subunit beta-1/2; AltName: Full=Beta-1/2-globin; AltName: Full=Hemoglobin beta-1/2
+P07409	1.85e-23	43.8	95.1	True	sp|P07409.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Squa
+P04443	4.94e-23	34.5	97.9	True	sp|P04443.5| RecName: Full=Hemoglobin subunit beta-H0; AltName: Full=Beta-H0-globin; AltName: Full=Hemoglobin beta-H0 ch
+P02081	5.95e-23	39.0	98.6	True	sp|P02081.1| RecName: Full=Hemoglobin fetal subunit beta; AltName: Full=Beta-globin, fetal; AltName: Full=Hemoglobin bet
+Q90485	6.03e-23	35.9	97.2	True	sp|Q90485.3| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Beta-A2-globin; AltName
+P84206	6.34e-23	36.6	97.2	True	sp|P84206.1| RecName: Full=Hemoglobin anodic subunit beta; AltName: Full=Hemoglobin anodic beta chain [Gymnothorax unico
+Q98TS0	6.50e-23	38.5	95.8	True	sp|Q98TS0.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Onco
+P02022	7.19e-23	35.8	96.5	True	sp|P02022.1| RecName: Full=Hemoglobin heart muscle subunit alpha-type; AltName: Full=Hemoglobin alpha-type chain, heart 
+P0C239	9.83e-23	38.7	83.1	True	sp|P0C239.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Arte
+Q90486	1.17e-22	35.9	97.2	True	sp|Q90486.3| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Beta-A1-globin; AltName
+P02141	1.23e-22	38.0	95.1	True	sp|P02141.3| RecName: Full=Hemoglobin subunit beta-4; AltName: Full=Beta-4-globin; AltName: Full=Hemoglobin beta-4 chain
+P10060	1.29e-22	39.8	89.4	True	sp|P10060.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P84610	1.31e-22	34.0	97.2	True	sp|P84610.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+Q10733	1.98e-22	34.8	95.1	True	sp|Q10733.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Care
+P68226	2.76e-22	39.3	97.9	True	sp|P68226.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lama
+Q6Y239	2.89e-22	33.8	97.2	True	sp|Q6Y239.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pagr
+P80946	4.43e-22	35.2	95.1	True	sp|P80946.1| RecName: Full=Hemoglobin anodic subunit beta; AltName: Full=Hemoglobin anodic beta chain [Anguilla anguilla
+P68230	7.77e-22	39.3	97.9	True	sp|P68230.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Came
+P11749	8.26e-22	41.1	83.1	True	sp|P11749.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Thun
+P16309	1.02e-21	37.9	83.1	True	sp|P16309.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Noto
+P45721	1.05e-21	38.2	82.4	True	sp|P45721.1| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Hemoglobin beta-C chain
+P84652	1.32e-21	38.5	81.7	True	sp|P84652.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cott
+P23018	1.36e-21	39.3	81.7	True	sp|P23018.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+C0HJE1	1.86e-21	36.6	89.4	True	sp|C0HJE1.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pale
+C0HJZ5	2.04e-21	39.0	95.8	True	sp|C0HJZ5.1| RecName: Full=Hemoglobin subunit beta-3; AltName: Full=Beta-3-globin; AltName: Full=Hemoglobin beta-3 chain
+P02134	2.09e-21	35.8	92.3	True	sp|P02134.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Pelo
+P07429	2.47e-21	32.2	97.9	True	sp|P07429.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02139	2.90e-21	34.3	95.8	True	sp|P02139.1| RecName: Full=Hemoglobin subunit beta-A/B; AltName: Full=Hemoglobin beta-A/B chain; AltName: Full=Hemoglobi
+P29625	4.09e-21	38.7	83.1	True	sp|P29625.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Gymn
+P02138	4.14e-21	38.5	95.8	True	sp|P02138.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Lepi
+P29628	4.59e-21	37.9	83.1	True	sp|P29628.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Noto
+P83625	4.59e-21	38.5	81.7	True	sp|P83625.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P83272	4.85e-21	37.9	83.1	True	sp|P83272.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+C0HJZ4	7.00e-21	39.3	95.1	True	sp|C0HJZ4.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+K7N5M6	7.38e-21	37.1	83.1	True	sp|K7N5M6.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02064	7.96e-21	40.0	97.9	True	sp|P02064.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+Q1AGS7	9.29e-21	34.0	95.1	True	sp|Q1AGS7.3| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P23017	9.29e-21	37.9	83.1	True	sp|P23017.2| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+O13164	1.25e-20	34.5	95.1	True	sp|O13164.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Deca
+O93349	2.15e-20	37.1	83.1	True	sp|O93349.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Trem
+P02140	2.64e-20	33.6	95.8	True	sp|P02140.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Cara
+P45720	2.78e-20	37.1	83.1	True	sp|P45720.1| RecName: Full=Hemoglobin subunit beta-1/2; AltName: Full=Beta-1/2-globin; AltName: Full=Hemoglobin beta-1/2
+P02065	3.00e-20	40.4	95.1	True	sp|P02065.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P45722	3.60e-20	37.7	81.7	True	sp|P45722.1| RecName: Full=Hemoglobin subunit beta-C; AltName: Full=Beta-C-globin; AltName: Full=Hemoglobin beta-C chain
+P84604	3.98e-20	36.3	83.1	True	sp|P84604.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+B3EWR8	4.92e-20	35.4	97.2	True	sp|B3EWR8.1| RecName: Full=Hemoglobin cathodic subunit beta; AltName: Full=Hemoglobin cathodic beta chain [Ophisurus ser
+Q1AGS3	6.54e-20	34.6	89.4	True	sp|Q1AGS3.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P29627	6.62e-20	43.3	63.4	False	sp|P29627.1| RecName: Full=Hemoglobin subunit beta-Z; AltName: Full=Beta-Z-globin; AltName: Full=Hemoglobin beta-Z chain
+O13078	7.28e-20	35.5	83.1	True	sp|O13078.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Merl
+P83612	7.41e-20	37.9	83.1	True	sp|P83612.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P82345	9.00e-20	37.7	81.7	True	sp|P82345.1| RecName: Full=Hemoglobin subunit beta-0; AltName: Full=Beta-0-globin; AltName: Full=Hb 0; AltName: Full=Hem
+Q7LZC1	9.63e-20	33.8	97.2	True	sp|Q7LZC1.1| RecName: Full=Hemoglobin subunit beta-3; AltName: Full=Beta-3-globin; AltName: Full=Hemoglobin beta-3 chain
+P14521	1.01e-19	34.9	97.9	True	sp|P14521.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Elec
+P83273	1.05e-19	36.9	81.7	True	sp|P83273.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+O09232	1.06e-19	36.3	83.1	True	sp|O09232.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Mela
+P86887	1.18e-19	38.7	83.1	True	sp|P86887.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P86879	1.27e-19	38.7	83.1	True	sp|P86879.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P80271	1.48e-19	36.9	81.7	True	sp|P80271.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Chel
+O93348	2.74e-19	35.5	83.1	True	sp|O93348.3| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hb 1; AltName: Full=Hem
+P80044	2.77e-19	37.1	83.1	True	sp|P80044.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Trem
+P83624	2.79e-19	37.9	83.1	True	sp|P83624.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P10785	2.96e-19	38.7	83.1	True	sp|P10785.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P81044	3.42e-19	52.6	54.9	False	sp|P81044.1| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Nota
+C0HJT6	3.46e-19	37.1	83.1	True	sp|C0HJT6.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+O93351	3.94e-19	37.1	83.1	True	sp|O93351.3| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Trem
+P83114	4.92e-19	32.9	97.9	True	sp|P83114.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P83614	5.20e-19	36.9	81.7	True	sp|P83614.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+Q1AGS6	5.87e-19	34.7	83.1	True	sp|Q1AGS6.3| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+C0HJT7	8.81e-19	36.9	81.7	True	sp|C0HJT7.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+Q575S8	1.20e-18	31.5	97.9	True	sp|Q575S8.1| RecName: Full=Cytoglobin-2; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase C
+P84611	2.00e-18	34.7	83.1	True	sp|P84611.2| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P85082	4.83e-18	33.3	95.1	True	sp|P85082.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P02135	1.86e-17	32.5	81.7	True	sp|P02135.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Aqua
+C0HJZ3	1.87e-17	37.8	95.1	True	sp|C0HJZ3.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P07420	7.10e-17	43.0	60.6	False	sp|P07420.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Dasy
+Q575S9	2.90e-16	29.7	97.9	True	sp|Q575S9.2| RecName: Full=Cytoglobin-2; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase C
+O13077	5.07e-16	33.1	83.1	True	sp|O13077.2| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Gadu
+P02207	5.66e-16	31.8	97.9	True	sp|P02207.2| RecName: Full=Globin [Lampetra fluviatilis]
+Q575T0	6.57e-16	27.7	97.9	True	sp|Q575T0.1| RecName: Full=Cytoglobin-1; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase C
+Q8UUR3	1.48e-15	30.9	97.9	True	sp|Q8UUR3.2| RecName: Full=Cytoglobin-1; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase C
+P02208	1.50e-15	31.8	97.9	True	sp|P02208.2| RecName: Full=Globin-5; AltName: Full=Hemoglobin V [Petromyzon marinus]
+Q9YGW1	1.76e-15	35.7	81.0	True	sp|Q9YGW1.1| RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain [Must
+P09968	2.13e-15	31.1	97.9	True	sp|P09968.2| RecName: Full=Globin-3; AltName: Full=Globin III [Petromyzon marinus]
+Q9I9I3	2.29e-15	31.1	97.9	True	sp|Q9I9I3.3| RecName: Full=Globin-2; AltName: Full=Globin II; AltName: Full=Hemoglobin PmII' [Petromyzon marinus]
+P10786	5.54e-15	32.4	97.9	True	sp|P10786.1| RecName: Full=Hemoglobin subunit beta-2; AltName: Full=Beta-2-globin; AltName: Full=Hemoglobin beta-2 chain
+P09967	4.54e-14	30.4	97.9	True	sp|P09967.2| RecName: Full=Globin-1; AltName: Full=Globin I [Petromyzon marinus]
+Q921A4	4.55e-12	26.7	96.5	True	sp|Q921A4.1| RecName: Full=Cytoglobin; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase CYG
+Q9CX80	4.89e-12	26.7	96.5	True	sp|Q9CX80.1| RecName: Full=Cytoglobin; AltName: Full=Nitric oxygen dioxygenase; AltName: Full=Nitrite reductase CYGB; Al
+P21198	1.19e-11	29.1	97.9	True	sp|P21198.2| RecName: Full=Globin-2; AltName: Full=Hemoglobin II [Mordacia mordax]
+P21197	3.46e-11	29.5	97.9	True	sp|P21197.2| RecName: Full=Globin-1; AltName: Full=Hemoglobin I [Mordacia mordax]
+P21199	4.05e-11	29.1	97.9	True	sp|P21199.2| RecName: Full=Globin-3; AltName: Full=Hemoglobin III [Mordacia mordax]
+P18991	3.15e-10	32.5	76.1	True	sp|P18991.1| RecName: Full=Hemoglobin subunit beta-1; AltName: Full=Beta-1-globin; AltName: Full=Hemoglobin beta-1 chain
+P18980	5.05e-10	62.5	28.2	False	sp|P18980.1| RecName: Full=Hemoglobin subunit alpha-2; AltName: Full=Alpha-2-globin; AltName: Full=Hemoglobin alpha-2 ch
+P80017	1.34e-09	28.8	97.9	True	sp|P80017.3| RecName: Full=Globin D, coelomic [Molpadia arenicola]
