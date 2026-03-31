@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alvis</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            flex-shrink: 0;
+            background: #1a1a1a;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .topbar-title:hover { opacity: 0.8; }
+
+        .topbar-help {
+            color: #999;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: auto;
+        }
+
+        .topbar-help:hover { color: #fff; }
+
+        .landing {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 22px 24px 20px;
+            overflow: auto;
+        }
+
+        .landing-header {
+            flex-shrink: 0;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .landing-title {
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .landing-tagline {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .landing-description {
+            font-size: 14px;
+            color: #666;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .landing-figure {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .landing-figure img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+
+        .landing-button {
+            flex-shrink: 0;
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 44px;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.2px;
+        }
+
+        .landing-button:hover { background: #333; }
+    </style>
+</head>
+<body>
+    <nav class="topbar">
+        <a href="/" class="topbar-title">alvis</a>
+        <a href="/about" class="topbar-help">Help</a>
+    </nav>
+
+    <div class="landing">
+        <div class="landing-header">
+            <h1 class="landing-title">alvis</h1>
+            <p class="landing-tagline">Protein alignment conservation visualizer</p>
+            <p class="landing-description">
+                Upload multiple sequence alignments to identify and visualize conserved residues.
+                Optionally add PDB structures to annotate secondary structure elements, and compare
+                conservation across protein families.
+            </p>
+        </div>
+
+        <div class="landing-figure">
+            <img src="/example-figure" alt="Conservation figure showing hemoglobin and myoglobin alignments">
+        </div>
+
+        <a href="/app" class="landing-button">Run Alvis</a>
+    </div>
+</body>
+</html>

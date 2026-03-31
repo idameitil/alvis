@@ -377,6 +377,15 @@ async function loadExample() {
                 loading: false,
             });
         }
+        if (session.all_fasta) {
+            localCross = {
+                id: nextGroupId++,
+                name: session.all_fasta.replace(/\.(fasta|fa|faa|fas)$/i, ''),
+                threshold: session.cross_threshold,
+                serverFilename: session.all_fasta,
+                loading: false,
+            };
+        }
 
         // Send display names to backend so the SVG uses them
         session = await api('PATCH', `/session/${session.id}`, {
@@ -388,7 +397,7 @@ async function loadExample() {
         const examplePdbConfig = [
             { fasta: 'HBA.fasta', pdb_id: '1A3N', chain: 'A' },
             { fasta: 'HBB.fasta', pdb_id: '1A3N', chain: 'B' },
-            { fasta: 'MB.fasta',  pdb_id: '1A6M', chain: 'A' },
+            { fasta: 'MB.fasta',  pdb_id: '3RGK', chain: 'A' },
         ];
         const fetchedPdbs = {};
         for (const cfg of examplePdbConfig) {
@@ -417,6 +426,28 @@ async function loadExample() {
 
         await fetchAllSequenceLists();
         setStatus('');
+
+        // Populate textareas with FASTA content so the user can see what was loaded.
+        // Store content on group state so it survives re-renders.
+        for (const group of localGroups) {
+            if (!group.serverFilename) continue;
+            try {
+                const data = await api('GET', `/session/${session.id}/fasta/${encodeURIComponent(group.serverFilename)}/content`);
+                if (data.content) {
+                    group.fastaContent = data.content;
+                    group._lastSubmittedContent = data.content.trim();
+                }
+            } catch (e) { /* non-fatal */ }
+        }
+        if (localCross && localCross.serverFilename) {
+            try {
+                const data = await api('GET', `/session/${session.id}/fasta/${encodeURIComponent(localCross.serverFilename)}/content`);
+                if (data.content) {
+                    localCross.fastaContent = data.content;
+                    localCross._lastSubmittedContent = data.content.trim();
+                }
+            } catch (e) { /* non-fatal */ }
+        }
         render();
     } catch (e) {
         setStatus('Error: ' + e.message, 'error');
@@ -919,7 +950,7 @@ function buildGroupCardHtml(group) {
                     <label class="fasta-input-label">Paste the alignment FASTA</label>
                     <textarea class="fasta-textarea" rows="5"
                               placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
-                              onblur="handleTextareaBlur(${group.id})"></textarea>
+                              onblur="handleTextareaBlur(${group.id})">${escapeHtml(group.fastaContent || '')}</textarea>
                     <div class="fasta-input-actions">
                         <span class="fasta-or">or upload FASTA file</span>
                         <input type="file" id="${fileInputId}" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"
@@ -984,7 +1015,7 @@ function renderCross() {
                     <label class="fasta-input-label">Paste the cross-alignment FASTA</label>
                     <textarea class="fasta-textarea" rows="5"
                               placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
-                              onblur="handleCrossTextareaBlur()"></textarea>
+                              onblur="handleCrossTextareaBlur()">${escapeHtml(localCross.fastaContent || '')}</textarea>
                     <div class="fasta-input-actions">
                         <span class="fasta-or">or upload FASTA file</span>
                         <input type="file" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"

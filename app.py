@@ -8,6 +8,10 @@ def create_app():
     app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max upload
 
     @app.route('/')
+    def landing():
+        return render_template('landing.html')
+
+    @app.route('/app')
     def index():
         return render_template('index.html')
 
@@ -21,6 +25,13 @@ def create_app():
             os.path.join(app.root_path, 'example_data'),
             'globins_example.zip',
             as_attachment=True
+        )
+
+    @app.route('/example-figure')
+    def example_figure():
+        return send_from_directory(
+            os.path.join(app.root_path, 'static'),
+            'example_figure.svg',
         )
 
     from routes import register_blueprints

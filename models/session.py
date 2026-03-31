@@ -197,6 +197,19 @@ class Session:
 
         return self
 
+    def get_fasta_content(self, filename) -> str:
+        """Return the raw text of a FASTA file."""
+        path = _safe_path(self.temp_dir, filename)
+        if not os.path.exists(path):
+            raise FileNotFoundError(f'FASTA file not found: {filename}')
+        for encoding in FASTA_ENCODINGS:
+            try:
+                with open(path, 'r', encoding=encoding) as f:
+                    return f.read()
+            except (UnicodeDecodeError, UnicodeError):
+                continue
+        raise ValueError(f'Could not read {filename} with any supported encoding')
+
     def list_sequences(self, filename):
         """List sequence IDs and lengths in a FASTA file.
 

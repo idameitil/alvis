@@ -148,6 +148,7 @@ def build_result(session) -> AnalysisResult:
     alignment_info = []
     rep_indices = {}
     warnings_list = []
+    group_conserved_sets: dict[str, set] = {}  # group_name -> set of conserved ungapped positions
 
     for fasta_file, group in sorted(session.groups.items()):
         file_path = os.path.join(session.temp_dir, fasta_file)
@@ -183,6 +184,9 @@ def build_result(session) -> AnalysisResult:
             file_path, threshold, representative_index=rep_index
         )
 
+        group_name = group.display_name or os.path.basename(fasta_file)
+        group_conserved_sets[group_name] = {p['position'] for p in conserved_positions}
+
         # Read sequences for num_sequences and representative record
         with open(file_path, 'r') as f:
             seqs = list(SeqIO.parse(f, 'fasta'))
@@ -190,7 +194,7 @@ def build_result(session) -> AnalysisResult:
         rep_seq_record = seqs[rep_index] if rep_index < len(seqs) else seqs[0]
 
         alignment_data = {
-            'name': group.display_name or os.path.basename(fasta_file),
+            'name': group_name,
             'conserved': conserved_positions,
             'length': seq_length,
             'threshold': threshold,
@@ -198,7 +202,7 @@ def build_result(session) -> AnalysisResult:
         }
 
         info = {
-            'name': group.display_name or os.path.basename(fasta_file),
+            'name': group_name,
             'num_sequences': num_sequences,
         }
 
@@ -261,6 +265,18 @@ def build_result(session) -> AnalysisResult:
                     cross_positions = analyze_cross_conservation(
                         all_fasta_path, representative_ids, session.cross_threshold
                     )
+                    # Keep only positions that are also conserved within each
+                    # individual group alignment — prevents large groups from
+                    # dominating the combined alignment score.
+                    if cross_positions:
+                        cross_positions = [
+                            entry for entry in cross_positions
+                            if all(
+                                entry['positions'].get(gname) in
+                                group_conserved_sets.get(gname, set())
+                                for gname in entry['positions']
+                            )
+                        ]
             except Exception as e:
                 print(f"Cross-conservation warning: {e}")
 

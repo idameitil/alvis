@@ -91,6 +91,21 @@ def remove_fasta(session_id, name):
     return jsonify(session.to_dict())
 
 
+@session_bp.route('/session/<session_id>/fasta/<path:name>/content', methods=['GET'])
+def get_fasta_content(session_id, name):
+    """Return the raw text content of a FASTA file."""
+    session = session_store.get(session_id)
+    if not session:
+        return jsonify({'error': 'Invalid session'}), 404
+
+    try:
+        content = session.get_fasta_content(name)
+    except FileNotFoundError as e:
+        return jsonify({'error': str(e)}), 404
+
+    return jsonify({'content': content})
+
+
 @session_bp.route('/session/<session_id>/fasta/<path:name>/sequences', methods=['GET'])
 def list_sequences(session_id, name):
     """List sequence IDs in a FASTA file (for representative selection)."""

@@ -278,7 +278,7 @@ def generate_svg(alignments, cross_conservation=None):
     )
 
     # --- Legend sizing ---
-    legend_rows = (1 if has_ss else 0) + (1 if has_uncovered else 0) + (1 if has_cross else 0)
+    legend_rows = (1 if has_ss or has_uncovered else 0) + (1 if has_cross else 0)
     legend_height = legend_rows * 25
 
     # --- SVG dimensions ---
@@ -290,6 +290,7 @@ def generate_svg(alignments, cross_conservation=None):
 
     # Create SVG
     dwg = svgwrite.Drawing(size=(svg_width, svg_height))
+    dwg.viewbox(0, 0, svg_width, svg_height)
 
     # --- Draw each alignment ---
     for idx, alignment in enumerate(alignments):
@@ -467,17 +468,17 @@ def generate_svg(alignments, cross_conservation=None):
             dwg.add(dwg.text('Coil',
                              insert=(margin_left + offset + label_gap, current_legend_y + 2),
                              font_size='12px', fill='black'))
+            offset += item_gap
 
-            current_legend_y += 25
+            if has_uncovered:
+                _draw_uncovered(dwg,
+                                margin_left + offset,
+                                margin_left + offset + mini_w,
+                                current_legend_y - 2)
+                dwg.add(dwg.text('No structure data',
+                                 insert=(margin_left + offset + label_gap, current_legend_y + 2),
+                                 font_size='12px', fill='black'))
 
-        if has_uncovered:
-            _draw_uncovered(dwg,
-                            margin_left,
-                            margin_left + 30,
-                            current_legend_y - 2)
-            dwg.add(dwg.text('No structure data',
-                             insert=(margin_left + 35, current_legend_y + 2),
-                             font_size='12px', fill='black'))
             current_legend_y += 25
 
         if has_cross:
