@@ -71,12 +71,14 @@ A web platform for visualizing conserved residues in protein sequence alignments
 
 ## Color Scheme
 
-Residues are colored by chemical properties:
-- **Magenta** (255, 0, 255): G, Y, S, T, N, C, Q (polar/small)
-- **Green** (70, 156, 118): V, I, L, P, F, M, W, A (hydrophobic)
-- **Orange** (255, 140, 0): H (histidine)
-- **Dark Red** (192, 0, 0): D, E (acidic)
-- **Blue** (0, 0, 255): K, R (basic)
+Residues are colored using the ClustalX color scheme:
+- **Blue** : A, V, I, L, M, F, W, P (hydrophobic)
+- **Red** : K, R (basic/positive)
+- **Magenta** : D, E (acidic/negative)
+- **Green** : N, Q, S, T (polar)
+- **Pink** : C (cysteine)
+- **Orange** : G (glycine)
+- **Cyan** : H, Y (aromatic/histidine)
 
 ## Technical Details
 
