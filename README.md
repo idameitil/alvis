@@ -13,7 +13,7 @@ A web platform for visualizing conserved residues in protein sequence alignments
   - Smart label positioning to avoid overlap
   - Sequence position markers
   - File names for each alignment
-- Download SVG figures
+- Download publication-ready SVG figures
 
 ## Installation
 
@@ -110,12 +110,6 @@ MVHLTPEEKTAVTALWGKVN--VDEVGGEALG
 >Sequence3
 MVHLTPEEKSAVNALWGKVNVGDEVGGEALG
 ```
-
-## Troubleshooting
-
-- **"No FASTA files found"**: Ensure your files have the correct extensions
-- **"Alignment error: sequences have different lengths"**: All sequences in a FASTA file must be the same length (properly aligned with gaps)
-- **Empty visualization**: Try lowering the conservation threshold
 
 ## License
 

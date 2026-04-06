@@ -27,13 +27,6 @@ def create_app():
             as_attachment=True
         )
 
-    @app.route('/example-figure')
-    def example_figure():
-        return send_from_directory(
-            os.path.join(app.root_path, 'static'),
-            'example_figure.svg',
-        )
-
     from routes import register_blueprints
     register_blueprints(app)
 
@@ -45,4 +38,4 @@ def create_app():
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=os.getenv('FLASK_DEBUG', '0') == '1', port=int(os.getenv('PORT', 5000)))

@@ -698,7 +698,10 @@ function regenerate() {
 }
 
 function showResult(svgContent, alignmentInfo) {
-    el('svg-container').innerHTML = svgContent;
+    const svgDoc = new DOMParser().parseFromString(svgContent, 'image/svg+xml');
+    const svgEl = svgDoc.documentElement;
+    const container = el('svg-container');
+    container.replaceChildren(document.adoptNode(svgEl));
 
     const detailsEl = el('analysis-details');
     const contentEl = el('analysis-details-content');

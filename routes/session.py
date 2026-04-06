@@ -11,7 +11,11 @@ def create_session():
     """Create a new empty session."""
     session_store.cleanup_expired()
     session = Session.create_new(session_id='')
-    session_store.create(session)
+    try:
+        session_store.create(session)
+    except RuntimeError as e:
+        session.cleanup()
+        return jsonify({'error': str(e)}), 503
     return jsonify(session.to_dict())
 
 

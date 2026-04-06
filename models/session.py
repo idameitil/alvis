@@ -9,13 +9,17 @@ from dataclasses import dataclass, field
 from Bio import SeqIO
 from Bio.PDB import PDBParser, MMCIFParser
 from Bio import SeqUtils
+from werkzeug.utils import secure_filename
 
 from models.types import ChainInfo, PdbInfo, GroupConfig
-from models.analysis import find_representative_index
 from models.analysis import find_representative_index
 
 FASTA_EXTENSIONS = ('.fasta', '.fa', '.faa', '.fas')
 FASTA_ENCODINGS = ('utf-8', 'latin-1', 'cp1252', 'iso-8859-1')
+
+MAX_FASTA_FILES = 20                    # per session
+MAX_ZIP_COMPRESSED   =  50 * 1024 * 1024  # 50 MB  (enforced by Flask too)
+MAX_ZIP_UNCOMPRESSED = 200 * 1024 * 1024  # 200 MB
 
 
 def _safe_path(base_dir: str, filename: str) -> str:
@@ -87,18 +91,22 @@ class Session:
 
     def _save_file(self, filename, file_storage):
         """Save an uploaded file to the temp directory."""
-        dest = os.path.join(self.temp_dir, filename)
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        safe = secure_filename(filename)
+        if not safe:
+            raise ValueError('Invalid filename')
+        dest = os.path.join(self.temp_dir, safe)
         file_storage.save(dest)
-        return dest
+        return dest, safe
 
     def _save_content(self, filename, content):
         """Save text content as a file in the temp directory."""
-        dest = os.path.join(self.temp_dir, filename)
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        safe = secure_filename(filename)
+        if not safe:
+            raise ValueError('Invalid filename')
+        dest = os.path.join(self.temp_dir, safe)
         with open(dest, 'w') as f:
             f.write(content)
-        return dest
+        return dest, safe
 
     def _add_group(self, filename, path):
         """Register a FASTA file as a group, scanning for metadata."""
@@ -111,26 +119,30 @@ class Session:
 
     def add_fasta_file(self, filename, file_storage) -> 'Session':
         """Add a single FASTA file from an upload."""
-        path = self._save_file(filename, file_storage)
-        self._add_group(filename, path)
+        if len(self.groups) >= MAX_FASTA_FILES:
+            raise ValueError(f'Maximum {MAX_FASTA_FILES} FASTA files per session')
+        _, safe = self._save_file(filename, file_storage)
+        self._add_group(safe, os.path.join(self.temp_dir, safe))
         return self
 
     def add_fasta_content(self, filename, content) -> 'Session':
         """Add a FASTA file from text content."""
-        path = self._save_content(filename, content)
-        self._add_group(filename, path)
+        if len(self.groups) >= MAX_FASTA_FILES:
+            raise ValueError(f'Maximum {MAX_FASTA_FILES} FASTA files per session')
+        _, safe = self._save_content(filename, content)
+        self._add_group(safe, os.path.join(self.temp_dir, safe))
         return self
 
     def add_cross_fasta_file(self, filename, file_storage) -> 'Session':
         """Add a FASTA file as the cross-alignment (all.fasta)."""
-        self._save_file(filename, file_storage)
-        self.all_fasta = filename
+        _, safe = self._save_file(filename, file_storage)
+        self.all_fasta = safe
         return self
 
     def add_cross_fasta_content(self, filename, content) -> 'Session':
         """Add text content as the cross-alignment."""
-        self._save_content(filename, content)
-        self.all_fasta = filename
+        _, safe = self._save_content(filename, content)
+        self.all_fasta = safe
         return self
 
     def add_fasta_zip(self, file_storage) -> 'Session':
@@ -140,16 +152,35 @@ class Session:
 
         try:
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                entries = zip_ref.infolist()
+
+                # Reject ZIP bombs: check uncompressed total from headers
+                total_uncompressed = sum(e.file_size for e in entries)
+                if total_uncompressed > MAX_ZIP_UNCOMPRESSED:
+                    raise ValueError(
+                        f'ZIP contents exceed {MAX_ZIP_UNCOMPRESSED // 1024 // 1024} MB uncompressed'
+                    )
+
+                # Reject if file count would exceed session limit
+                fasta_count = sum(
+                    1 for e in entries
+                    if not e.is_dir() and e.filename.lower().endswith(FASTA_EXTENSIONS)
+                )
+                if fasta_count > MAX_FASTA_FILES:
+                    raise ValueError(
+                        f'ZIP contains more than {MAX_FASTA_FILES} FASTA files'
+                    )
+
                 # Validate all paths before extracting (prevent ZipSlip)
-                for member in zip_ref.namelist():
+                for entry in entries:
                     member_path = os.path.normpath(
-                        os.path.join(self.temp_dir, member)
+                        os.path.join(self.temp_dir, entry.filename)
                     )
                     if not member_path.startswith(
                         os.path.normpath(self.temp_dir) + os.sep
                     ) and member_path != os.path.normpath(self.temp_dir):
                         raise ValueError(
-                            f'ZIP contains path traversal entry: {member}'
+                            f'ZIP contains path traversal entry: {entry.filename}'
                         )
                 zip_ref.extractall(self.temp_dir)
         except zipfile.BadZipFile:
@@ -241,10 +272,13 @@ class Session:
 
     def add_pdb(self, filename, file_storage) -> list[ChainInfo]:
         """Save a PDB file and return its parsed chains."""
+        safe = secure_filename(filename)
+        if not safe:
+            raise ValueError('Invalid filename')
         pdb_dir = os.path.join(self.temp_dir, 'pdb')
         os.makedirs(pdb_dir, exist_ok=True)
 
-        pdb_path = os.path.join(pdb_dir, filename)
+        pdb_path = os.path.join(pdb_dir, safe)
         file_storage.save(pdb_path)
 
         try:
@@ -261,10 +295,13 @@ class Session:
 
     def add_pdb_from_bytes(self, filename, data) -> list[ChainInfo]:
         """Save PDB data (bytes) and return its parsed chains."""
+        safe = secure_filename(filename)
+        if not safe:
+            raise ValueError('Invalid filename')
         pdb_dir = os.path.join(self.temp_dir, 'pdb')
         os.makedirs(pdb_dir, exist_ok=True)
 
-        pdb_path = os.path.join(pdb_dir, filename)
+        pdb_path = os.path.join(pdb_dir, safe)
         with open(pdb_path, 'wb') as f:
             f.write(data)
 

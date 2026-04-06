@@ -1,6 +1,7 @@
 import math
 import svgwrite
 from io import StringIO
+import xml.sax.saxutils as saxutils
 
 # ClustalX color scheme
 COLOR_SCHEME = {
@@ -305,7 +306,7 @@ def generate_svg(alignments, cross_conservation=None):
 
         # Alignment name
         dwg.add(dwg.text(
-            alignment['name'],
+            saxutils.escape(alignment['name']),
             insert=(margin_left - 10, line_y + 5),
             text_anchor='end',
             font_size='14px',
