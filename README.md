@@ -2,7 +2,7 @@
 
 A web platform for visualizing conserved residues in protein sequence alignments.
 
-![Example conservation visualization](example_figure.svg)
+![Example conservation visualization](static/example_figure.svg)
 
 ## Features
 
