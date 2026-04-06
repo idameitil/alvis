@@ -91,15 +91,32 @@ Residues are colored using the ClustalX color scheme:
 
 ```
 alvis/
-├── app.py                 # Flask application
-├── conservation.py        # Conservation analysis logic
-├── structure.py           # Secondary structure extraction (PDB + DSSP)
-├── svg_generator.py       # SVG generation with smart positioning
-├── requirements.txt       # Python dependencies
+├── app.py                      # Flask app factory
+├── conservation.py             # Conservation analysis
+├── structure.py                # Secondary structure (PDB + DSSP)
+├── svg_generator.py            # SVG generation
+├── session_store.py            # In-memory session store
+├── models/
+│   ├── analysis.py             # Analysis pipeline (build_result)
+│   ├── session.py              # Session dataclass + file ops
+│   └── types.py                # Dataclasses: ChainInfo, PdbInfo, GroupConfig
+├── routes/
+│   ├── __init__.py             # Blueprint registration
+│   ├── session.py              # Session + FASTA/PDB upload endpoints
+│   ├── analysis.py             # GET /session/<id>/result
+│   └── pdb.py                  # POST /fetch-pdb
 ├── templates/
-│   └── index.html        # Web interface
-└── static/
-    └── style.css         # Styling
+│   ├── landing.html            # Landing page
+│   ├── index.html              # App interface
+│   └── about.html              # Help/about page
+├── static/
+│   ├── app.js                  # All client-side logic
+│   ├── style.css               # Styles
+│   └── example_figure.svg      # Example output for landing page
+├── tests/                      # Pytest test suite
+├── scripts/                    # Utility scripts (example data generation)
+├── Dockerfile
+└── docker-compose.yml
 ```
 
 ## Example FASTA Alignment Format
