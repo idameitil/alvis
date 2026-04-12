@@ -1,6 +1,6 @@
 # Protein Alignment Conservation Analyzer
 
-A web platform for visualizing conserved residues in protein sequence alignments.
+A web platform for visualizing conserved residues in protein sequence alignments. Try it at [alvis.idameitil.dk](https://alvis.idameitil.dk).
 
 ![Example conservation visualization](static/example_figure.svg)
 
