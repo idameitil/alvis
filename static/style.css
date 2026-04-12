@@ -58,6 +58,30 @@ body {
     opacity: 1;
 }
 
+.site-footer {
+    background: #1a1a1a;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.footer-icons a {
+    display: flex;
+    align-items: center;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+
+.footer-icons a:hover {
+    opacity: 1;
+}
+
 .container {
     max-width: 1120px;
     margin: 0 auto;
