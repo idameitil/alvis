@@ -132,4 +132,4 @@ MVHLTPEEKSAVNALWGKVNVGDEVGGEALG
 
 ## License
 
-MIT
+Alvis is released under the MIT license. See [LICENSE](LICENSE).
