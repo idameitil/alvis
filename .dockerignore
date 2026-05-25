@@ -6,4 +6,3 @@ __pycache__/
 temp_*/
 *.log
 .env
-plans/

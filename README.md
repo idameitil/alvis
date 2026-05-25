@@ -15,59 +15,10 @@ A web platform for visualizing conserved residues in protein sequence alignments
   - File names for each alignment
 - Download SVG figures
 
-## Installation
+## Documentation
 
-1. **Install Python dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Install DSSP** (required for secondary structure analysis):
-
-   DSSP is an external binary — BioPython calls it as a subprocess.
-
-   ```bash
-   # macOS (Homebrew)
-   brew install dssp
-
-   # Conda (any platform)
-   conda install -c salilab dssp
-
-   # Ubuntu/Debian
-   sudo apt install dssp
-   ```
-
-   Verify it works:
-   ```bash
-   mkdssp --version
-   ```
-
-## Running the Application
-
-1. **Start the Flask server:**
-   ```bash
-   python app.py
-   ```
-
-2. **Open your browser:**
-   Navigate to `http://localhost:5000`
-
-## Usage
-
-1. **Prepare your data:**
-   - Create a ZIP file containing your FASTA alignment files
-   - Files should have extensions: `.fasta`, `.fa`, `.faa`, or `.fas`
-   - Each FASTA file should contain a protein sequence alignment (all sequences same length)
-   - The first sequence in each file will be used as the representative
-
-2. **Upload and configure:**
-   - Upload your ZIP file
-   - Choose to use the default 95% conservation threshold for all files, or customize per file
-   - Click "Generate SVG"
-
-3. **Download:**
-   - The SVG will be automatically downloaded
-   - Open with any SVG viewer or import into Illustrator/Inkscape for further editing
+- **[Getting started](docs/getting-started.md)** — install, run locally (Docker or Python), and a usage walkthrough
+- **[Deployment](docs/deployment.md)** — production deployment guide (nginx + Docker on a VM)
 
 ## Color Scheme
 
@@ -94,10 +45,12 @@ alvis/
 ├── structure.py           # Secondary structure extraction (PDB + DSSP)
 ├── svg_generator.py       # SVG generation with smart positioning
 ├── requirements.txt       # Python dependencies
-├── templates/
-│   └── index.html        # Web interface
-└── static/
-    └── style.css         # Styling
+├── models/                # Dataclasses + business logic
+├── routes/                # Flask blueprints
+├── templates/             # HTML templates
+├── static/                # CSS, JS
+├── docs/                  # Getting-started + deployment docs
+└── deployment/            # Production compose file + nginx config
 ```
 
 ## Example FASTA Alignment Format
@@ -110,12 +63,6 @@ MVHLTPEEKTAVTALWGKVN--VDEVGGEALG
 >Sequence3
 MVHLTPEEKSAVNALWGKVNVGDEVGGEALG
 ```
-
-## Troubleshooting
-
-- **"No FASTA files found"**: Ensure your files have the correct extensions
-- **"Alignment error: sequences have different lengths"**: All sequences in a FASTA file must be the same length (properly aligned with gaps)
-- **Empty visualization**: Try lowering the conservation threshold
 
 ## License
 
