@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Alvis: Protein Alignment Conservation Visualizer"
+version: 1.0.0
+date-released: 2026-05-25
+authors:
+  - family-names: Meitil
+    given-names: Ida K. S.
+    orcid: "https://orcid.org/0000-0001-9214-0980"
+  - family-names: Martinez Pineda
+    given-names: Diego Joshua
+repository-code: "https://github.com/idameitil/alvis"
+doi: "10.5281/zenodo.20375233"
