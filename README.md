@@ -130,6 +130,21 @@ MVHLTPEEKTAVTALWGKVN--VDEVGGEALG
 MVHLTPEEKSAVNALWGKVNVGDEVGGEALG
 ```
 
+## Citation
+
+If you use Alvis in your research, please cite:
+
+```bibtex
+@software{meitil2026alvis,
+  author       = {Meitil, Ida K. S. and Martinez Pineda, Diego Joshua},
+  title        = {Alvis: Protein Alignment Conservation Visualizer},
+  year         = {2026},
+  version      = {1.0.0},
+  doi          = {10.5281/zenodo.XXXXXXX},
+  url          = {https://github.com/idameitil/alvis}
+}
+```
+
 ## License
 
 Alvis is released under the MIT license. See [LICENSE](LICENSE).
