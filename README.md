@@ -1,4 +1,5 @@
 # Protein Alignment Conservation Analyzer
+[![DOI](https://zenodo.org/badge/1156497058.svg)](https://doi.org/10.5281/zenodo.20375232)
 
 A web platform for visualizing conserved residues in protein sequence alignments. Try it at [alvis.idameitil.dk](https://alvis.idameitil.dk).
 
