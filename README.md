@@ -1,8 +1,9 @@
 # Protein Alignment Conservation Analyzer
+[![DOI](https://zenodo.org/badge/1156497058.svg)](https://doi.org/10.5281/zenodo.20375232)
 
-A web platform for visualizing conserved residues in protein sequence alignments.
+A web platform for visualizing conserved residues in protein sequence alignments. Try it at [alvis.idameitil.dk](https://alvis.idameitil.dk).
 
-![Example conservation visualization](example_figure.svg)
+![Example conservation visualization](static/example_figure.svg)
 
 ## Features
 
@@ -13,7 +14,7 @@ A web platform for visualizing conserved residues in protein sequence alignments
   - Smart label positioning to avoid overlap
   - Sequence position markers
   - File names for each alignment
-- Download SVG figures
+- Download publication-ready SVG figures
 
 ## Documentation
 
@@ -22,12 +23,14 @@ A web platform for visualizing conserved residues in protein sequence alignments
 
 ## Color Scheme
 
-Residues are colored by chemical properties:
-- **Magenta** (255, 0, 255): G, Y, S, T, N, C, Q (polar/small)
-- **Green** (70, 156, 118): V, I, L, P, F, M, W, A (hydrophobic)
-- **Orange** (255, 140, 0): H (histidine)
-- **Dark Red** (192, 0, 0): D, E (acidic)
-- **Blue** (0, 0, 255): K, R (basic)
+Residues are colored using the ClustalX color scheme:
+- **Blue** : A, V, I, L, M, F, W, P (hydrophobic)
+- **Red** : K, R (basic/positive)
+- **Magenta** : D, E (acidic/negative)
+- **Green** : N, Q, S, T (polar)
+- **Pink** : C (cysteine)
+- **Orange** : G (glycine)
+- **Cyan** : H, Y (aromatic/histidine)
 
 ## Technical Details
 
@@ -64,6 +67,21 @@ MVHLTPEEKTAVTALWGKVN--VDEVGGEALG
 MVHLTPEEKSAVNALWGKVNVGDEVGGEALG
 ```
 
+## Citation
+
+If you use Alvis in your research, please cite:
+
+```bibtex
+@software{meitil2026alvis,
+  author       = {Meitil, Ida K. S. and Martinez Pineda, Diego Joshua},
+  title        = {Alvis: Protein Alignment Conservation Visualizer},
+  year         = {2026},
+  version      = {1.0.0},
+  doi          = {10.5281/zenodo.20375233},
+  url          = {https://github.com/idameitil/alvis}
+}
+```
+
 ## License
 
-MIT
+Alvis is released under the MIT license. See [LICENSE](LICENSE).

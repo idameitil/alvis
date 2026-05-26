@@ -1,0 +1,132 @@
+accession	evalue	identity_pct	query_coverage	passes_filter	title
+P02144	2.35e-110	100.0	100.0	True	sp|P02144.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Homo sapien
+P62734	9.48e-110	99.4	100.0	True	sp|P62734.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Hylobates a
+P02145	1.87e-109	99.4	100.0	True	sp|P02145.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Pan troglod
+P02147	1.98e-109	99.4	100.0	True	sp|P02147.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Gorilla ber
+P02148	2.21e-108	98.7	100.0	True	sp|P02148.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Pongo pygma
+P68084	1.97e-105	96.1	100.0	True	sp|P68084.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Papio anubi
+P02150	9.16e-105	95.5	100.0	True	sp|P02150.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Macaca fasc
+P02163	2.44e-103	94.2	100.0	True	sp|P02163.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Rousettus a
+P02189	6.33e-103	93.5	100.0	True	sp|P02189.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Sus scrofa]
+P02165	9.23e-101	91.6	100.0	True	sp|P02165.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Tupaia glis
+P14396	2.03e-100	90.3	100.0	True	sp|P14396.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Castor fibe
+P02164	2.56e-100	90.3	100.0	True	sp|P02164.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Orycteropus
+P11343	5.70e-100	90.9	100.0	True	sp|P11343.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Lutra lutra
+P02152	6.87e-100	90.9	100.0	True	sp|P02152.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Callithrix 
+P02151	1.14e-99	90.3	100.0	True	sp|P02151.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Aotus trivi
+P02153	1.28e-99	90.9	100.0	True	sp|P02153.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Sapajus ape
+P02171	3.98e-99	90.3	100.0	True	sp|P02171.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ochotona pr
+P02193	4.02e-99	90.3	100.0	True	sp|P02193.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Didelphis v
+P20856	1.04e-98	90.3	100.0	True	sp|P20856.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ctenodactyl
+P04250	1.55e-98	89.0	100.0	True	sp|P04250.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Lagostomus 
+P02166	1.75e-98	89.6	100.0	True	sp|P02166.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Perodicticu
+P04249	2.46e-98	89.0	100.0	True	sp|P04249.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Proechimys 
+P02154	2.60e-98	89.6	100.0	True	sp|P02154.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Lagothrix l
+P02156	2.68e-98	89.6	100.0	True	sp|P02156.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Erinaceus e
+P02155	6.25e-98	89.0	100.0	True	sp|P02155.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Saimiri sci
+P02181	6.75e-98	88.3	100.0	True	sp|P02181.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Inia geoffr
+C0HJQ9	7.28e-98	89.0	100.0	True	sp|C0HJQ9.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Hystrix cri
+P02170	1.12e-97	89.6	100.0	True	sp|P02170.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Oryctolagus
+P04248	1.22e-97	89.0	100.0	True	sp|P04248.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Nannospalax
+P02157	2.13e-97	89.0	100.0	True	sp|P02157.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Meles meles
+R9RZK8	2.26e-97	87.7	100.0	True	sp|R9RZK8.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Balaena mys
+Q6PL31	3.69e-97	89.0	100.0	True	sp|Q6PL31.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ochotona cu
+P02161	5.02e-97	87.7	100.0	True	sp|P02161.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Zalophus ca
+C0HKB7	6.19e-97	89.6	100.0	True	sp|C0HKB7.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Sciurus vul
+P68082	8.98e-97	88.3	100.0	True	sp|P68082.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Equus cabal
+P68277	1.92e-96	87.0	100.0	True	sp|P68277.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Phocoenoide
+P02174	4.51e-96	86.4	100.0	True	sp|P02174.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Globicephal
+P02177	4.87e-96	85.7	100.0	True	sp|P02177.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Eschrichtiu
+P68276	7.72e-96	86.4	100.0	True	sp|P68276.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Delphinus d
+P32428	8.90e-96	85.7	100.0	True	sp|P32428.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ondatra zib
+P02167	1.32e-95	87.7	100.0	True	sp|P02167.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Nycticebus 
+Q0KIY3	1.38e-95	85.7	100.0	True	sp|Q0KIY3.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Peponocepha
+P02173	1.49e-95	85.7	100.0	True	sp|P02173.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Orcinus orc
+P02178	1.68e-95	85.1	100.0	True	sp|P02178.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Megaptera n
+Q0KIY6	2.58e-95	85.7	100.0	True	sp|Q0KIY6.3| RecName: Full=Myoglobin-2; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Stenella 
+P02169	7.64e-95	85.7	100.0	True	sp|P02169.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Lepilemur m
+P02185	9.41e-95	84.4	100.0	True	sp|P02185.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Physeter ma
+P02183	1.16e-94	86.4	100.0	True	sp|P02183.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Mesoplodon 
+P02160	1.59e-94	85.7	100.0	True	sp|P02160.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Vulpes cham
+P63113	3.22e-94	85.1	100.0	True	sp|P63113.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Canis lupus
+Q0KIY9	3.63e-94	85.7	100.0	True	sp|Q0KIY9.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Indopacetus
+P02182	5.63e-94	85.1	100.0	True	sp|P02182.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ziphius cav
+P02179	5.94e-94	83.8	100.0	True	sp|P02179.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Balaenopter
+C0HJR0	8.54e-94	85.7	100.0	True	sp|C0HJR0.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Rangifer ta
+P02194	8.82e-94	85.7	100.0	True	sp|P02194.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Osphranter 
+P02159	1.10e-93	84.4	100.0	True	sp|P02159.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Lycaon pict
+P02184	1.41e-93	84.4	100.0	True	sp|P02184.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Kogia sima]
+P02186	1.48e-93	84.4	100.0	True	sp|P02186.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Elephas max
+P02168	1.63e-93	85.1	100.0	True	sp|P02168.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Otolemur cr
+P68080	1.67e-93	84.4	100.0	True	sp|P68080.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Phoca vitul
+P02191	3.36e-93	85.1	100.0	True	sp|P02191.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Cervus elap
+P02180	3.75e-93	83.1	100.0	True	sp|P02180.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Balaenopter
+P02187	7.17e-93	84.4	100.0	True	sp|P02187.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Loxodonta a
+P02192	2.73e-92	84.4	100.0	True	sp|P02192.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Bos taurus]
+Q9QZ76	6.22e-92	83.1	100.0	True	sp|Q9QZ76.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Rattus norv
+B7U9B5	8.28e-92	84.4	100.0	True	sp|B7U9B5.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Capra hircu
+P02195	3.33e-91	83.8	100.0	True	sp|P02195.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Tachyglossu
+P04247	5.34e-91	83.8	100.0	True	sp|P04247.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Mus musculu
+P02196	9.14e-91	83.8	100.0	True	sp|P02196.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ornithorhyn
+P84997	1.24e-90	83.1	100.0	True	sp|P84997.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Bubalus bub
+P30562	1.01e-89	82.5	100.0	True	sp|P30562.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Pusa sibiri
+P83682	1.09e-86	81.2	100.0	True	sp|P83682.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Delphinapte
+Q7LZM3	1.01e-83	74.7	100.0	True	sp|Q7LZM3.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Phalacrocor
+G1NJB6	3.00e-83	76.6	100.0	True	sp|G1NJB6.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Meleagris g
+Q7LZM2	9.48e-82	74.7	100.0	True	sp|Q7LZM2.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Anas poecil
+Q7LZM5	9.90e-81	72.7	100.0	True	sp|Q7LZM5.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Aethia pygm
+Q7LZM1	4.91e-80	72.7	100.0	True	sp|Q7LZM1.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Uria lomvia
+P02203	5.02e-80	72.1	100.0	True	sp|P02203.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Varanus var
+Q7LZM4	5.30e-80	72.1	100.0	True	sp|Q7LZM4.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Cerorhinca 
+P85077	6.24e-80	72.7	100.0	True	sp|P85077.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Struthio ca
+P02199	2.68e-79	72.1	100.0	True	sp|P02199.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Aptenodytes
+P86874	6.88e-78	72.1	100.0	True	sp|P86874.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Dromaius no
+P02201	4.79e-77	70.1	100.0	True	sp|P02201.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Graptemys g
+P56208	2.65e-76	69.5	100.0	True	sp|P56208.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Caretta car
+P02202	4.10e-75	68.8	100.0	True	sp|P02202.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Chelonia my
+P02200	2.85e-73	65.6	100.0	True	sp|P02200.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Alligator m
+Q7M3C1	1.70e-40	88.6	51.3	False	sp|Q7M3C1.1| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Ailuropoda 
+Q9DGJ0	1.05e-38	47.7	96.8	True	sp|Q9DGJ0.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Sarda chili
+Q9DGJ1	1.33e-37	47.7	96.8	True	sp|Q9DGJ1.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Makaira nig
+P02206	3.59e-37	43.9	96.1	True	sp|P02206.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Heterodontu
+P02205	7.87e-36	45.9	96.1	True	sp|P02205.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Thunnus alb
+Q6I7B0	1.78e-35	45.3	96.1	True	sp|Q6I7B0.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Auxis roche
+P68189	1.82e-35	45.9	96.1	True	sp|P68189.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Thunnus thy
+Q9DGJ2	2.61e-35	44.6	96.1	True	sp|Q9DGJ2.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Thunnus ala
+P14399	3.05e-35	41.2	96.1	True	sp|P14399.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Mustelus an
+Q9DEN9	5.12e-35	44.6	96.1	True	sp|Q9DEN9.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Gobionototh
+Q9DGI9	5.64e-35	45.9	96.1	True	sp|Q9DGI9.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Scomber jap
+P02204	1.16e-34	44.5	94.8	True	sp|P02204.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Cyprinus ca
+Q7T044	3.12e-34	44.6	96.1	True	sp|Q7T044.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Channichthy
+Q9DEP0	3.22e-34	44.6	96.1	True	sp|Q9DEP0.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Pagetodes a
+Q9DEN8	3.75e-34	43.9	96.1	True	sp|Q9DEN8.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Notothenia 
+P87497	4.00e-34	43.9	96.1	True	sp|P87497.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Chionodraco
+Q9DEP1	4.05e-34	43.9	96.1	True	sp|Q9DEP1.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Pseudochaen
+Q701N9	1.01e-33	43.9	96.1	True	sp|Q701N9.4| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Tetraodon n
+P14397	6.22e-33	40.9	96.8	True	sp|P14397.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Galeorhinus
+Q6VN46	1.03e-32	43.2	94.8	True	sp|Q6VN46.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Danio rerio
+Q9DGI8	1.47e-32	45.8	93.5	True	sp|Q9DGI8.3| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Katsuwonus 
+P14398	1.53e-32	40.9	96.8	True	sp|P14398.2| RecName: Full=Myoglobin; AltName: Full=Nitrite reductase MB; AltName: Full=Pseudoperoxidase MB [Hemitriakis
+P13787	4.45e-19	30.9	96.1	True	sp|P13787.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Equu
+Q575T0	1.98e-18	26.1	97.4	True	sp|Q575T0.1| RecName: Full=Cytoglobin-1; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase C
+P13786	4.68e-17	29.5	96.1	True	sp|P13786.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Capr
+Q921A4	4.34e-16	28.7	95.5	True	sp|Q921A4.1| RecName: Full=Cytoglobin; AltName: Full=Nitric oxygen dioxygenase CYGB; AltName: Full=Nitrite reductase CYG
+Q8WWM9	8.63e-16	28.7	95.5	True	sp|Q8WWM9.1| RecName: Full=Cytoglobin; AltName: Full=Histoglobin; Short=HGb; AltName: Full=Nitric oxygen dioxygenase CYG
+Q9CX80	8.90e-16	28.0	95.5	True	sp|Q9CX80.1| RecName: Full=Cytoglobin; AltName: Full=Nitric oxygen dioxygenase; AltName: Full=Nitrite reductase CYGB; Al
+P06347	9.15e-16	28.2	96.1	True	sp|P06347.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=Hemoglobin zeta chain; AltName: Full=Zeta-globin [Pan 
+P02008	1.66e-15	28.2	96.1	True	sp|P02008.2| RecName: Full=Hemoglobin subunit zeta; AltName: Full=HBAZ; AltName: Full=Hemoglobin zeta chain; AltName: Fu
+P23740	1.80e-10	28.4	95.5	True	sp|P23740.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [L
+P01998	4.05e-09	24.7	94.8	True	sp|P01998.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+B0M2T2	5.16e-09	25.9	94.8	True	sp|B0M2T2.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [C
+P01946	7.64e-09	28.2	96.1	True	sp|P01946.3| RecName: Full=Hemoglobin subunit alpha-1/2; AltName: Full=Alpha-1/2-globin; AltName: Full=Hemoglobin alpha-
+P07405	1.39e-08	26.5	94.8	True	sp|P07405.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P41327	1.54e-08	25.3	94.8	True	sp|P41327.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P26915	2.51e-08	25.9	94.8	True	sp|P26915.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P63109	3.15e-08	25.0	96.1	True	sp|P63109.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P01949	4.01e-08	27.9	94.8	True	sp|P01949.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P10883	4.69e-08	24.7	94.8	True	sp|P10883.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18975	5.02e-08	25.0	96.1	True	sp|P18975.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+C0HJE0	5.04e-08	24.0	94.8	True	sp|C0HJE0.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain [P
+P68235	7.53e-08	25.7	96.1	True	sp|P68235.2| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P18976	9.29e-08	24.7	94.8	True	sp|P18976.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C
+P63110	1.16e-07	24.7	94.8	True	sp|P63110.1| RecName: Full=Hemoglobin subunit alpha; AltName: Full=Alpha-globin; AltName: Full=Hemoglobin alpha chain; C

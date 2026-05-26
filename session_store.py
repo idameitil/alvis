@@ -13,8 +13,9 @@ logger = logging.getLogger(__name__)
 
 _sessions = {}  # {token: Session}
 _lock = threading.Lock()
-MAX_AGE = 259200  # 3 days
-CLEANUP_INTERVAL = 3600  # run cleanup every hour
+MAX_AGE = 259200        # 3 days
+CLEANUP_INTERVAL = 1800 # run cleanup every 30 minutes
+MAX_SESSIONS = 200      # hard cap on concurrent sessions
 
 
 def create(session):
@@ -22,6 +23,8 @@ def create(session):
     token = uuid.uuid4().hex
     session.id = token
     with _lock:
+        if len(_sessions) >= MAX_SESSIONS:
+            raise RuntimeError('Server is at capacity. Please try again later.')
         _sessions[token] = session
     return token
 

@@ -359,21 +359,95 @@ async function loadExample() {
         const form = new FormData();
         form.append('file', file);
         session = await api('POST', `/session/${session.id}/fasta`, form);
-        setStatus('');
+
+        const exampleDisplayNames = {
+            'HBA.fasta': 'Hemoglobin \u03b1',
+            'HBB.fasta': 'Hemoglobin \u03b2',
+            'MB.fasta':  'Myoglobin',
+        };
 
         localGroups = [];
         localCross = null;
         for (const [filename, groupConfig] of Object.entries(session.groups)) {
             localGroups.push({
                 id: nextGroupId++,
-                name: filename.replace(/\.(fasta|fa|faa|fas)$/i, ''),
+                name: exampleDisplayNames[filename] || filename.replace(/\.(fasta|fa|faa|fas)$/i, ''),
                 threshold: groupConfig.threshold,
                 serverFilename: filename,
                 loading: false,
             });
         }
+        if (session.all_fasta) {
+            localCross = {
+                id: nextGroupId++,
+                name: session.all_fasta.replace(/\.(fasta|fa|faa|fas)$/i, ''),
+                threshold: session.cross_threshold,
+                serverFilename: session.all_fasta,
+                loading: false,
+            };
+        }
+
+        // Send display names to backend so the SVG uses them
+        session = await api('PATCH', `/session/${session.id}`, {
+            display_names: exampleDisplayNames,
+        });
+
+        // Load PDB structures for the example alignments
+        setStatus('Loading PDB structures...', 'info');
+        const examplePdbConfig = [
+            { fasta: 'HBA.fasta', pdb_id: '1A3N', chain: 'A' },
+            { fasta: 'HBB.fasta', pdb_id: '1A3N', chain: 'B' },
+            { fasta: 'MB.fasta',  pdb_id: '3RGK', chain: 'A' },
+        ];
+        const fetchedPdbs = {};
+        for (const cfg of examplePdbConfig) {
+            if (!session.groups[cfg.fasta]) continue;
+            if (!fetchedPdbs[cfg.pdb_id]) {
+                try {
+                    fetchedPdbs[cfg.pdb_id] = await api('POST', '/fetch-pdb', {
+                        session_id: session.id,
+                        pdb_id: cfg.pdb_id,
+                    });
+                } catch (e) {
+                    console.warn('Could not fetch PDB', cfg.pdb_id, e);
+                }
+            }
+            const pdbResp = fetchedPdbs[cfg.pdb_id];
+            if (!pdbResp) continue;
+            const chain = pdbResp.chains.find(c => c.id === cfg.chain) || pdbResp.chains[0];
+            pdbData[cfg.fasta] = {
+                pdb_filename: pdbResp.pdb_filename,
+                chain_id: chain.id,
+                chain_sequence: chain.sequence,
+                chains: pdbResp.chains,
+                pdb_id_value: pdbResp.pdb_filename.replace(/\.(pdb|cif)$/i, ''),
+            };
+        }
 
         await fetchAllSequenceLists();
+        setStatus('');
+
+        // Populate textareas with FASTA content so the user can see what was loaded.
+        // Store content on group state so it survives re-renders.
+        for (const group of localGroups) {
+            if (!group.serverFilename) continue;
+            try {
+                const data = await api('GET', `/session/${session.id}/fasta/${encodeURIComponent(group.serverFilename)}/content`);
+                if (data.content) {
+                    group.fastaContent = data.content;
+                    group._lastSubmittedContent = data.content.trim();
+                }
+            } catch (e) { /* non-fatal */ }
+        }
+        if (localCross && localCross.serverFilename) {
+            try {
+                const data = await api('GET', `/session/${session.id}/fasta/${encodeURIComponent(localCross.serverFilename)}/content`);
+                if (data.content) {
+                    localCross.fastaContent = data.content;
+                    localCross._lastSubmittedContent = data.content.trim();
+                }
+            } catch (e) { /* non-fatal */ }
+        }
         render();
     } catch (e) {
         setStatus('Error: ' + e.message, 'error');
@@ -624,7 +698,10 @@ function regenerate() {
 }
 
 function showResult(svgContent, alignmentInfo) {
-    el('svg-container').innerHTML = svgContent;
+    const svgDoc = new DOMParser().parseFromString(svgContent, 'image/svg+xml');
+    const svgEl = svgDoc.documentElement;
+    const container = el('svg-container');
+    container.replaceChildren(document.adoptNode(svgEl));
 
     const detailsEl = el('analysis-details');
     const contentEl = el('analysis-details-content');
@@ -876,7 +953,7 @@ function buildGroupCardHtml(group) {
                     <label class="fasta-input-label">Paste the alignment FASTA</label>
                     <textarea class="fasta-textarea" rows="5"
                               placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
-                              onblur="handleTextareaBlur(${group.id})"></textarea>
+                              onblur="handleTextareaBlur(${group.id})">${escapeHtml(group.fastaContent || '')}</textarea>
                     <div class="fasta-input-actions">
                         <span class="fasta-or">or upload FASTA file</span>
                         <input type="file" id="${fileInputId}" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"
@@ -941,7 +1018,7 @@ function renderCross() {
                     <label class="fasta-input-label">Paste the cross-alignment FASTA</label>
                     <textarea class="fasta-textarea" rows="5"
                               placeholder=">seq1&#10;MVLSPADKTN-VKAAWGKVGA&#10;>seq2&#10;MVLSGEDKSN-IKAA--KVGA&#10;..."
-                              onblur="handleCrossTextareaBlur()"></textarea>
+                              onblur="handleCrossTextareaBlur()">${escapeHtml(localCross.fastaContent || '')}</textarea>
                     <div class="fasta-input-actions">
                         <span class="fasta-or">or upload FASTA file</span>
                         <input type="file" accept=".fasta,.fa,.faa,.fas" class="fasta-file-input"

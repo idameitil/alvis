@@ -8,6 +8,10 @@ def create_app():
     app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max upload
 
     @app.route('/')
+    def landing():
+        return render_template('landing.html')
+
+    @app.route('/app')
     def index():
         return render_template('index.html')
 

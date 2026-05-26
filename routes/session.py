@@ -11,7 +11,11 @@ def create_session():
     """Create a new empty session."""
     session_store.cleanup_expired()
     session = Session.create_new(session_id='')
-    session_store.create(session)
+    try:
+        session_store.create(session)
+    except RuntimeError as e:
+        session.cleanup()
+        return jsonify({'error': str(e)}), 503
     return jsonify(session.to_dict())
 
 
@@ -89,6 +93,21 @@ def remove_fasta(session_id, name):
         return jsonify({'error': str(e)}), 404
 
     return jsonify(session.to_dict())
+
+
+@session_bp.route('/session/<session_id>/fasta/<path:name>/content', methods=['GET'])
+def get_fasta_content(session_id, name):
+    """Return the raw text content of a FASTA file."""
+    session = session_store.get(session_id)
+    if not session:
+        return jsonify({'error': 'Invalid session'}), 404
+
+    try:
+        content = session.get_fasta_content(name)
+    except FileNotFoundError as e:
+        return jsonify({'error': str(e)}), 404
+
+    return jsonify({'content': content})
 
 
 @session_bp.route('/session/<session_id>/fasta/<path:name>/sequences', methods=['GET'])
