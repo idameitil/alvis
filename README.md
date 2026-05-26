@@ -141,7 +141,7 @@ If you use Alvis in your research, please cite:
   title        = {Alvis: Protein Alignment Conservation Visualizer},
   year         = {2026},
   version      = {1.0.0},
-  doi          = {10.5281/zenodo.XXXXXXX},
+  doi          = {10.5281/zenodo.20375233},
   url          = {https://github.com/idameitil/alvis}
 }
 ```
