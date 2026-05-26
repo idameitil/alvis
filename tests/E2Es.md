@@ -15,5 +15,3 @@ All the required files are in `example_data`.
 2. For a-linsi select `O76708`
 3. For b-linsi select `F4PFF7`
 4. Generate SVG
-
-# 3. A fasta file is provided and then a sequence is pasted

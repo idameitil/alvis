@@ -1,13 +1,12 @@
-version: '3.8'
-
 services:
   web:
     build: .
     ports:
-      - "5001:8000"
+      - "5001:5001"
+      - "5678:5678"
     volumes:
       - .:/app
       - /app/__pycache__
     environment:
-      - FLASK_ENV=development
-    command: gunicorn --bind 0.0.0.0:8000 --workers 1 --reload --timeout 300 app:app
+      - DEBUGPY=1
+    command: python app.py

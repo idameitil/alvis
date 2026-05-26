@@ -11,12 +11,15 @@ secondary structure, and gets an SVG diagram.
 
 ```bash
 # Docker (preferred)
-docker compose up
+docker compose up      # → http://localhost:5001
 
 # Local
 source venv/bin/activate
-python app.py          # → http://localhost:5000
+python app.py          # → http://localhost:5001
 ```
+
+See [docs/getting-started.md](docs/getting-started.md) for full setup, and
+[docs/deployment.md](docs/deployment.md) for production deployment.
 
 ## Running tests
 
@@ -55,6 +58,14 @@ session_store.py           Thread-safe in-memory store: create/get/remove/cleanu
 templates/index.html       HTML shell (no inline JS)
 static/app.js              All client-side logic (upload, PDB, generate, results)
 static/style.css           All styles
+
+docs/
+  getting-started.md       Local dev setup (Docker + Python venv paths)
+  deployment.md            Production deployment guide (alvis.idameitil.dk)
+
+deployment/
+  docker-compose.prod.yml  Prod compose (used by .github/workflows/deploy.yml)
+  nginx/alvis.conf         nginx site config installed on the prod VM
 ```
 
 ## API (resource-oriented)

@@ -38,4 +38,12 @@ def create_app():
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=os.getenv('FLASK_DEBUG', '0') == '1', port=int(os.getenv('PORT', 5000)))
+    # Start debugpy listener inside the reloader child only — the parent
+    # supervisor process doesn't serve requests, and binding the port twice
+    # would fail on reload.
+    if os.environ.get('DEBUGPY') == '1' and os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+        import debugpy
+        debugpy.listen(('0.0.0.0', 5678))
+        print('debugpy listening on 0.0.0.0:5678', flush=True)
+
+    app.run(debug=True, host='0.0.0.0', port=5001)
